@@ -1,0 +1,111 @@
+package io.ceremo.ceremobackend.wire.logstash.infrastructure.secondary;
+
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.pattern.ThrowableHandlingConverter;
+import ch.qos.logback.core.util.Duration;
+import java.net.InetSocketAddress;
+import java.util.Map;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Optional;
+import net.logstash.logback.appender.LogstashTcpSocketAppender;
+import net.logstash.logback.encoder.LogstashEncoder;
+import net.logstash.logback.stacktrace.ShortenedThrowableConverter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.SmartLifecycle;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
+
+class LogstashTcpLifeCycle implements SmartLifecycle {
+
+  public static final String ASYNC_LOGSTASH_APPENDER_NAME = "ASYNC_LOGSTASH_TCP";
+
+  private static final Logger log = LoggerFactory.getLogger(LogstashTcpLifeCycle.class);
+
+  private final Map<String, String> fields;
+  private final LogstashTcpProperties properties;
+  private final ObjectMapper objectMapper;
+
+  private volatile boolean running;
+  private LoggerContext loggerContext;
+  private LogstashTcpSocketAppender appender;
+
+  public LogstashTcpLifeCycle(Map<String, String> fields, LogstashTcpProperties properties) {
+    this(fields, properties, null);
+  }
+
+  public LogstashTcpLifeCycle(Map<String, String> fields, LogstashTcpProperties properties, ObjectMapper objectMapper) {
+    this.fields = fields == null ? Map.of() : Collections.unmodifiableMap(new HashMap<>(fields));
+    this.properties = properties;
+    this.objectMapper = Optional.ofNullable(objectMapper).orElse(new ObjectMapper());
+  }
+
+  @Override
+  public synchronized void start() {
+    if (running) {
+      return;
+    }
+    log.debug("Adding Logstash TCP appender to {}:{}", properties.getHost(), properties.getPort());
+
+    loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
+    appender = logstashTcpSocketAppender(loggerContext);
+    appender.start();
+    loggerContext.getLogger(Logger.ROOT_LOGGER_NAME).addAppender(appender);
+    running = appender.isStarted();
+  }
+
+  @Override
+  public synchronized void stop() {
+    if (appender != null) {
+      loggerContext.getLogger(Logger.ROOT_LOGGER_NAME).detachAppender(appender);
+      appender.stop();
+      appender = null;
+    }
+    running = false;
+  }
+
+  @Override
+  public boolean isRunning() {
+    return running;
+  }
+
+  protected LogstashTcpSocketAppender logstashTcpSocketAppender(LoggerContext context) {
+    // Documentation is available at: https://github.com/logfellow/logstash-logback-encoder
+    var logstashAppender = new LogstashTcpSocketAppender();
+    logstashAppender.addDestinations(new InetSocketAddress(properties.getHost(), properties.getPort()));
+    logstashAppender.setContext(context);
+    LogstashEncoder encoder = logstashEncoder();
+    encoder.setContext(context);
+    logstashAppender.setEncoder(encoder);
+    logstashAppender.setName(ASYNC_LOGSTASH_APPENDER_NAME);
+    if (properties.getRingBufferSize() != null) {
+      logstashAppender.setRingBufferSize(properties.getRingBufferSize());
+    }
+    if (properties.getShutdownGracePeriod() != null) {
+      logstashAppender.setShutdownGracePeriod(Duration.buildByMilliseconds(properties.getShutdownGracePeriod().toMillis()));
+    }
+    return logstashAppender;
+  }
+
+  protected LogstashEncoder logstashEncoder() {
+    final var logstashEncoder = new LogstashEncoder();
+    logstashEncoder.setThrowableConverter(throwableConverter());
+    logstashEncoder.setCustomFields(serializedFields());
+    return logstashEncoder;
+  }
+
+  protected ThrowableHandlingConverter throwableConverter() {
+    final var throwableConverter = new ShortenedThrowableConverter();
+    throwableConverter.setRootCauseFirst(true);
+    return throwableConverter;
+  }
+
+  protected String serializedFields() {
+    try {
+      return objectMapper.writeValueAsString(fields);
+    } catch (JacksonException e) {
+      throw new IllegalStateException("Unable to serialize custom fields", e);
+    }
+  }
+}

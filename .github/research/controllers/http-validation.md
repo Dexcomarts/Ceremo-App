@@ -1,0 +1,108 @@
+# Controllers, validation and errors
+
+- Entry ID: controllers/http-validation
+- Researched: 20 October 2026
+- Status: account HTTP adapter and verified-email activation implemented on 4 November 2026; see the latest checkpoint below. Earlier pending/planning statements are historical.
+- Question: how to expose use cases without moving business rules or persistence into HTTP handlers
+
+## Evidence and adaptation
+
+[Spring MVC validation](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-validation.html) covers transport validation. [Exception handling](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-exceptionhandler.html) covers handler advice. These document the framework; the request fields and account policies are CEREMO decisions.
+
+## CEREMO implementation
+
+Reuse [shared error infrastructure](../../../src/main/java/io/ceremo/ceremobackend/shared/error/infrastructure/primary), including `BeanValidationErrorsHandler`, `CeremoErrorsHandler` and `ApiProblemResponse`. New feature errors add keys/translations, not another response envelope. Domain assertions normally map to 500; public input must be validated at the HTTP boundary rather than assuming every domain rejection becomes 400.
+
+Controllers belong in `infrastructure/primary/rest` and call application inbound ports. Explicit request records must not accept trusted issuer/subject, ownership, privileged status or verification results as authority. Protected use cases enforce their own access rules even when entered outside HTTP. Read the shared authentication/error sections before implementing a controller.
+
+## Verification and next work
+
+The latest implementation and verification checkpoint is [below](#account-http-implementation-4-november-2026). Earlier reviews retain their original observations for traceability. Mocked HTTP tests do not prove live Keycloak or PostgreSQL behaviour.
+
+Related: [application](../application/user-registration.md), [boundaries](../ports-and-adapters/feature-boundaries.md).
+
+## Next-stage review, 23 October 2026
+
+Status: researched; HTTP adapter still absent in the current feature source. Question: what follows the verified 100% coverage checkpoint? Next stage is the User Management HTTP contract and adapters for the already documented GET/POST `/api/v1/users/me`, before provider onboarding. Keycloak authenticates the person; CEREMO explicitly registers their local profile and accepted terms. A read must not create a profile.
+
+Reopened `UserAccounts`, `UserService`, `User`, `SpringCurrentUser`, shared `SecurityConfiguration`, `BeanValidationErrorsHandler`, `ApiProblemResponse` and `UserManagementConfiguration`, alongside both reuse maps and security rules. Existing registration accepts display name, terms version and explicit consent, derives identity from the authenticated caller, creates PENDING status, and is composed through `TransactionalUserAccounts`. Reuse these contracts, the shared advice and wire CORS/OpenAPI rather than adding a repository call or token parser to the controller.
+
+Revalidated primary evidence on 23 October: [Spring MVC validation](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-validation.html) explains request-body `@Valid` and the distinction between body and method-validation exceptions. Its live page is Framework 7.0.10; this review does not upgrade CEREMO. [Spring Petclinic OwnerController](https://github.com/spring-projects/spring-petclinic/blob/main/src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java), Apache-2.0, uses `dataBinder.setDisallowedFields("id", "*.id");` and validates submitted input. Adopt the principle of limiting writable fields through explicit CEREMO REST records; its HTML forms, entity binding and direct repository calls do not fit our strict inbound-port boundary. `main` is an observation, not a pinned revision. [Spring Security OAuth2 testing](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/oauth2.html) demonstrates `.perform(get("/endpoint").with(jwt()));`; configure synthetic issuer/subject for our adapter and distinguish downstream policy tests from actual signature validation. The live manual is Security 7.1.2, ahead of the previously recorded 7.1.1 installation; confirm installed APIs when writing tests. No external source class was copied, no stars/company-practice claims were needed, and no Salesync files were accessed.
+
+Proposed sequence: settle statuses and safe field sets; add `RestRegisterUserRequest` and `RestUserResponse`; add `UserResource` calling only `UserAccounts`; verify body/error/security paths and composed PostgreSQL requests; retain per-class 100% checks. Recommended contract is GET 200/404 without creation, POST 201 with Location after successful commit, duplicate 409 and invalid/stale terms 400. These exact controller behaviours remain proposed, not implemented. Missing-local-profile error key, unknown-field policy, permitted self-introspection by account status, malformed/filter error bodies and registration rate/size limits must be settled and tested before declaring the HTTP stage complete. New accounts remain PENDING; no activation or provider entitlement is implied.
+
+No application source/configuration/tests changed or tests rerun for this planning review. The 22 October 490-test/100% result remains dated evidence, not a new run. Sonar server gate and live Keycloak/JWKS verification remain outstanding separate checks. Keep exactly eight product documents.
+
+## Request and response boundary review
+
+Researched: 21 October 2026. Status: researched; no production User Management controller/DTOs exist. The repository adapter is not the HTTP entry point. Existing documentation specifies `GET / POST /api/v1/users/me`; this review does not invent new endpoints.
+
+### Evidence from inspected source
+
+- [Spring DispatcherServlet](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-servlet.html) describes request mapping, controller delegation and exception handling. Spring MVC is downstream of the shared security filter chain. This is a framework workflow, not a requirement to write a custom dispatcher.
+- [Spring Petclinic OwnerController](https://github.com/spring-projects/spring-petclinic/blob/main/src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java) and [OwnerControllerTests](https://github.com/spring-projects/spring-petclinic/blob/main/src/test/java/org/springframework/samples/petclinic/owner/OwnerControllerTests.java) were inspected, including Apache-2.0 headers, validation and error-path tests. A short controller excerpt is `dataBinder.setDisallowedFields("id", "*.id");`. Learn validation and limiting client-writable fields. This sample is HTML MVC, binds an entity and calls a repository directly; do not copy those parts into CEREMO's REST DTO/inbound-port architecture. These `main` links are observations on the review date, not pinned releases or proof of an identity workflow. The initially attempted Petclinic REST controller URL was unavailable and is not evidence.
+- [Spring MVC validation](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-validation.html) distinguishes request-body validation from method validation. The inspected CEREMO handler covers `MethodArgumentNotValidException` and Jakarta `ConstraintViolationException`, but does not explicitly cover MVC `HandlerMethodValidationException` or malformed JSON. Check framework defaults and actual HTTP bodies before deciding on a narrow shared-handler extension.
+- [Spring Security 7.1.1 BearerTokenAuthenticationEntryPoint](https://github.com/spring-projects/spring-security/blob/7.1.1/oauth2/oauth2-resource-server/src/main/java/org/springframework/security/oauth2/server/resource/web/BearerTokenAuthenticationEntryPoint.java) sets the bearer challenge/header and response status. Short evidence excerpt: `response.setStatus(status.value());`. Its inspected Apache-2.0 implementation does not serialize `ApiProblemResponse`. MVC authentication advice is not proof that pre-controller JWT failures have the same error body. Preserve `WWW-Authenticate` when defining any future common-body integration.
+- [Spring JWT resource-server guidance](https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html), [OWASP authorisation](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html) and [REST security](https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html) support trusted authentication, per-operation access policy, bounded inputs and safe errors. They do not establish that CEREMO has implemented rate limits or all local account policies.
+
+### Proposed HTTP contract and existing gaps
+
+The transport record should contain only display name, the terms version being accepted and an explicit acceptance flag for this operation. Required/max-length constraints must match the implemented domain limits (120/40) and omission/false acceptance must not become consent. ID, issuer, subject, account status, actor/audit timestamps, roles and paid/verification state must never become trusted client-writable fields. Decide/test unknown-property handling; do not assume every extra field is rejected by current Jackson defaults.
+
+The response record should expose an explicit agreed account field set, never a JPA entity, identity issuer/subject, token, audit actor or driver error. Keep issuer/subject server-derived via shared `SecurityConfiguration`, `AudienceValidator`, `AuthenticatedUser` and the existing `SpringCurrentUser` adapter. Do not implement another token filter/decoder. Repository/domain objects do not determine HTTP status by themselves.
+
+Before implementation, define/test these outcomes in the existing API contract: successful GET; missing local profile without automatic registration; successful POST after commit; duplicate registration; invalid/stale terms; unauthenticated/forbidden access; malformed JSON and invalid fields; rate-limited request; unexpected infrastructure failure. Candidate HTTP statuses follow normal semantics (200/201, 400, 401, 403, 404, 409, 429 and safe 5xx), but exact missing-profile/error-body and retry policies require the controller contract. No fake not-found response for a database outage, raw SQL/constraint details, swallowed validation or generic 200 failure envelope.
+
+`UserService.currentUser()` currently retrieves the caller's saved account/status without an explicit status restriction. Do not turn a missing/suspended/anonymised account into a new ACTIVE account or silently remap its status. Decide which self-account introspection is allowed for each status and separately enforce privileged feature permissions. This review does not invent an activation workflow or forbid every suspended-user self-account read. Trusted login alone does not authorise provider/staff operations.
+
+The shared error infrastructure already provides `ApiProblemResponse`, translated feature errors and `UserAlreadyExistsException` with CONFLICT. Reuse it. Safe error shape at the security-filter and malformed/method-validation paths is not yet established by current tests; add targeted evidence rather than another controller-only advice class. There is no rate limiter found in the inspected feature/shared/wire code. Establish request-size/rate policy and the 429 contract before exposing registration; no arbitrary threshold or extra dependency is selected here.
+
+Reuse wire CORS/OpenAPI and the future outer `UserAccounts` composition. CORS is not ownership enforcement and OpenAPI security metadata is not a runtime check. Keep session CSRF protection and bearer API boundaries as they are; review real origin/credential needs instead of adding per-controller `@CrossOrigin` or a second security chain.
+
+### Required HTTP evidence when the controller is written
+
+Use HTTP slice/security integration tests for body parsing/validation, content type, declared fields/statuses, error translations, missing/invalid tokens, denied access and absence of JPA/SQL/token data. Verify invalid or unauthenticated callers cannot invoke registration/repository work. Token-principal mocks exercise downstream policy; actual signature/issuer/audience/time verification and live Keycloak require their own checks. Add a full composed request-to-PostgreSQL test for registration success/rollback; a mocked controller service does not establish commit semantics. For races, follow the [repository test plan](../repositories/user-persistence.md#verification-required-before-calling-persistence-complete).
+
+No HTTP adapter, rate limiter, handler extension or runtime configuration was added by this review, and no new HTTP tests were executed. Open gaps are requirements for the guide, not claims of deployed vulnerabilities or proof of a complete security audit.
+
+## Account HTTP implementation, 4 November 2026
+
+- Entry: controllers/http-validation; researched and implemented 4 November 2026.
+- Question: expose explicit account registration, read and verified-email activation through the existing core without allowing client identity or privilege assignment.
+- Scope: Java 25, Boot 4.1.1, existing Gradle/dependencies, H2 HTTP tests and disposable PostgreSQL 18 integration. No new dependency, migration or token decoder.
+
+### Reviewed evidence
+
+| Source and version | Finding | CEREMO adaptation and limits |
+| --- | --- | --- |
+| [Spring MVC validation](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-validation.html), live Framework 7.0.10, reviewed 4 November | Request-body validation is triggered by `@Valid`; body and method validation have distinct exceptions. | Explicit request record; field/consent limits match the domain. Existing Bean Validation advice retains precedence. The live manual is ahead of the previously resolved 7.0.9 baseline; compilation and HTTP tests establish local API fit. |
+| [ResponseEntityExceptionHandler, v7.0.9](https://github.com/spring-projects/spring-framework/blob/v7.0.9/spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/ResponseEntityExceptionHandler.java), Spring maintainers, Apache-2.0 | `handleExceptionInternal` preserves committed responses and delegates to `createResponseEntity`. Short excerpt: `return createResponseEntity(body, headers, statusCode, request);` | Extend that response hook with the existing ApiProblemResponse, preserving status/Allow headers and avoiding parser/driver details. No complete external class was copied. Also reviewed v7.0.10 for API consistency. |
+| [Spring exception resolution](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-exceptionhandler.html), Framework 7.0.10; [security architecture](https://docs.spring.io/spring-security/reference/servlet/architecture.html), Security 7.1.2 | An exception handler may rethrow the original exception; ExceptionTranslationFilter handles authentication and access-denied exceptions downstream. | The fallback rethrows Spring Security exceptions rather than converting them to 500. Keep existing bearer challenge and security chains. These are framework mechanisms, not a claim of uniform response bodies. |
+| [Petclinic OwnerController](https://github.com/spring-projects/spring-petclinic/blob/main/src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java), [tests](https://github.com/spring-projects/spring-petclinic/blob/main/src/test/java/org/springframework/samples/petclinic/owner/OwnerControllerTests.java), Spring maintainers, Apache-2.0 | Validation, restricted writable fields and error-path tests. | Reuse the principle through a dedicated JSON record and explicit mapping; exclude HTML form flow, entity binding and direct repository access. Main was inspected on the review date, not pinned to a commit; no entire controller was copied. |
+| [Spring Security sample controller](https://github.com/spring-projects/spring-security-samples/blob/main/servlet/spring-boot/java/oauth2/resource-server/hello-security/src/main/java/example/OAuth2ResourceServerController.java), Apache-2.0; [OAuth2 MockMvc testing](https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/oauth2.html) | Maintainer REST/resource-server boundary and synthetic authentication tests. | Keep claims behind SpringCurrentUser and call UserAccounts. Do not expose a token/principal or copy the sample's echo operation. Main is a dated observation; live security manual 7.1.2 differs from previously resolved 7.1.1. |
+| [Jackson JsonAnySetter source](https://github.com/FasterXML/jackson-annotations/blob/master/src/main/java/com/fasterxml/jackson/annotation/JsonAnySetter.java), FasterXML maintainers, Apache-2.0 | A two-argument method receives otherwise unrecognised JSON properties. | The registration record rejects unknown fields, including attempted authority assignment. Actual Jackson/Boot compatibility is verified by malformed/unknown-field HTTP cases. Master is a review-date observation; attempted version-tag retrieval was unavailable. |
+
+### Implemented boundary and reuse
+
+Original CEREMO-specific code, informed by the mechanisms above: [UserResource](../../../src/main/java/io/ceremo/ceremobackend/account/infrastructure/primary/rest/UserResource.java), [request](../../../src/main/java/io/ceremo/ceremobackend/account/infrastructure/primary/rest/dto/request/RestRegisterUserRequest.java), [response](../../../src/main/java/io/ceremo/ceremobackend/account/infrastructure/primary/rest/dto/response/RestUserResponse.java), and [fallback advice](../../../src/main/java/io/ceremo/ceremobackend/shared/error/infrastructure/primary/HttpErrorsHandler.java).
+
+GET self returns 200 or 404 without creation/activation. POST registration accepts only displayName, termsVersion and true termsAccepted, returns 201/Location after the outer transaction succeeds, and rejects duplicate identity with 409. POST activate returns 200, uses no client-supplied claims and applies the [approved activation policy](../application/user-registration.md#verified-email-activation-4-november-2026). Successful responses contain only id, displayName, status, termsVersion and termsAcceptedAt with no-store. Own-account reads preserve saved status, including restrictions; they confer no provider/staff permission.
+
+Shared reused: CeremoException, feature keys/translations, ApiProblemResponse, existing Bean Validation/authentication/domain advice, validated authentication and UUID generation. Wire reused: existing security/CORS/database/composition and transaction decorator. New transport types define the allowed fields; the new shared fallback fills malformed-body/framework-error/optimistic-conflict response gaps. It is deliberately lower priority than existing advice.
+
+### Verification and remaining work
+
+[UserResourceTest](../../../src/test/java/io/ceremo/ceremobackend/account/infrastructure/primary/rest/UserResourceTest.java) exercises all three routes with the real security chain, application, transaction and H2 mapping; only the JwtDecoder is mocked. It covers safe fields, consent/limits, malformed and unknown input, exact caller identity, duplicate registration, missing/invalid authentication, activation/retry and restricted status. This is not cryptographic token validation.
+
+[HttpErrorsHandlerTest](../../../src/test/java/io/ceremo/ceremobackend/shared/error/infrastructure/primary/HttpErrorsHandlerTest.java) covers safe failure bodies, optimistic exceptions, Allow headers, committed responses and Spring Security rethrow. PostgreSQL composition also receives a standalone MVC registration request; that test deliberately establishes authentication directly and is not a security-filter test. See the [fresh full-build record](../quality/tests-and-analysis.md#account-feature-verification-4-november-2026) for actual suite counts, counters and command outcome.
+
+Public request-rate/body-size policy, live Keycloak/JWKS/SMTP, production actor auditing and downstream feature permissions remain release work. Primary maintainer source supplies the technical evidence; no Medium, LinkedIn or Slack post is relied on for implementation claims. No private discussion, author credentials, Salesync access or external skill installation is claimed. CI is a local template, not an executed remote pipeline.
+
+Writing verification: documentation version 3.1/context update, 4 November 2026. Local humanizer review applied to the changed prose and links; Grammarly remains pending/unavailable in this session. No company draft was uploaded and no score or authorship certification is claimed.
+
+## Provider account security, 5 November 2026
+
+AccountResource, LogoutResource and tenant HTTP adapters now call inbound ports. New request records reject unknown privilege/ownership fields. Tenant errors reuse the EN/FR shared message sources. Signed JWT/PostgreSQL tests cover these routes, including browser logout and cross-tenant denials; live Keycloak remains separate. See [the implementation/API record](../ports-and-adapters/provider-account-security.md).
+
+
+Consolidation, 5 November 2026: current source, ports, adapters and tests are under `account`; composition is `wire/account/AccountConfiguration`. Existing domain behaviour, transactions, HTTP routes and database schema continue. Older package names in dated examples/commands are historical. See [the approved consolidation](../ports-and-adapters/provider-account-security.md#account-module-consolidation-5-november-2026).
