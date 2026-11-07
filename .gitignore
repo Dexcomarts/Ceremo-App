@@ -41,6 +41,7 @@ out/
 .env.*
 !.env.example
 sonar-token
+/scripts/__pycache__/
 
 # Local-only documentation and agent context. Keep these files on this machine.
 /docs/

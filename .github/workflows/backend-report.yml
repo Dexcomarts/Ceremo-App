@@ -1,0 +1,58 @@
+name: Backend report
+
+'on':
+  workflow_run:
+    workflows: ['Backend checks']
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      runId:
+        description: Completed Backend checks run to report
+        required: true
+        type: string
+  push:
+    paths:
+      - '.github/workflows/backend-report.yml'
+      - 'scripts/ci_report.py'
+      - 'scripts/test_ci_report.py'
+
+permissions: {}
+
+jobs:
+  validate:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Check out reporting code
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - name: Verify reporting and publication safeguards
+        run: python3 -m unittest discover -s scripts -p test_ci_report.py
+
+  comment:
+    if: github.event_name == 'workflow_run' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    concurrency:
+      group: backend-report-${{ github.event.workflow_run.head_branch || inputs.runId }}
+      cancel-in-progress: false
+    permissions:
+      actions: read
+      contents: read
+      pull-requests: write
+    steps:
+      # workflow_sha is the reporter's trusted revision, never the tested PR's head.
+      - name: Check out trusted reporter
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          ref: ${{ github.workflow_sha }}
+          persist-credentials: false
+      - name: Update current PR report
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPORT_RUN_ID: ${{ inputs.runId || github.event.workflow_run.id }}
+        run: python3 scripts/ci_report.py publish --run-id "$REPORT_RUN_ID"
