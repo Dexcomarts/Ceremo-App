@@ -1,0 +1,127 @@
+logging:
+  level:
+    io:
+      ceremo_app:
+        ceremo: INFO
+spring:
+  application:
+    name: ceremo
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      auto-commit: false
+      poolName: Hikari
+    password: ''
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://localhost:5432/ceremo?reWriteBatchedInserts=true
+    username: ceremo
+  task:
+    execution:
+      pool:
+        keep-alive: 10s
+        max-size: 16
+        queue-capacity: 100
+      thread-name-prefix: ceremo-task-
+    scheduling:
+      pool:
+        size: 2
+      thread-name-prefix: ceremo-scheduling-
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: deferred
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        implicit-strategy: org.springframework.boot.hibernate.SpringImplicitNamingStrategy
+        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+    open-in-view: false
+    properties:
+      hibernate:
+        connection:
+          provider_disables_autocommit: true
+        generate_statistics: false
+        jdbc:
+          batch_size: 25
+          time_zone: UTC
+        order_inserts: true
+        order_updates: true
+        query:
+          fail_on_pagination_over_collection_fetch: true
+          in_clause_parameter_padding: true
+        cache:
+          use_second_level_cache: true
+  jackson:
+    default-property-inclusion: non_absent
+  security:
+    oauth2:
+      client:
+        provider:
+          oidc:
+            issuer-uri: http://localhost:9080/realms/ceremo
+        registration:
+          oidc:
+            client-id: web_app
+            client-authentication-method: none
+            scope: openid,profile,email
+application:
+  version: '1.0.0'
+  registration:
+    terms-version: ${CEREMO_TERMS_VERSION:}
+  logging:
+    logstash:
+      tcp:
+        enabled: false
+        host: localhost
+        port: 5000
+        ring-buffer-size: 8192
+        shutdown_grace_period: PT1M
+  cache:
+    ehcache:
+      max-entries: 100
+      time-to-live-seconds: 3600
+  security:
+    oauth2:
+      audience: ceremo-api
+management:
+  endpoint:
+    health:
+      access: read-only
+      probes:
+        enabled: true
+      show-details: always
+  endpoints:
+    access:
+      default: none
+    jmx:
+      exposure:
+        exclude: '*'
+    web:
+      base-path: /management
+      exposure:
+        include:
+          - configprops
+          - env
+          - health
+          - info
+          - logfile
+          - loggers
+          - threaddump
+server:
+  port: 8080
+springdoc:
+  enable-native-support: true
+  swagger-ui:
+    operationsSorter: alpha
+    tagsSorter: alpha
+    tryItOutEnabled: true
+    oauth:
+      use-pkce-with-authorization-code-grant: true
+      client-id: web_app
+      realm: ceremo
+  oauth2:
+    authorization-url: http://localhost:9080/realms/ceremo/protocol/openid-connect/auth

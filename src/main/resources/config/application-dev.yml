@@ -1,0 +1,12 @@
+logging:
+  level:
+    io:
+      ceremo_app:
+        ceremo: DEBUG
+management:
+  endpoints:
+    access:
+      default: unrestricted
+    web:
+      exposure:
+        include: '*'

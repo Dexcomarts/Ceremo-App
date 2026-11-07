@@ -1,0 +1,65 @@
+package io.ceremo.ceremobackend.shared.memoizer.domain;
+
+import static org.assertj.core.api.Assertions.*;
+
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
+import java.util.function.Supplier;
+import org.junit.jupiter.api.Test;
+
+class MemoizersTest {
+
+  @Test
+  void shouldGetFunctionResult() {
+    Function<Double, Double> memoizer = Memoizers.of(d -> d * d);
+
+    assertThat(memoizer.apply(2D)).isEqualTo(4D);
+  }
+
+  @Test
+  void shouldMemoizeFunctionResult() {
+    var result = new AtomicInteger();
+
+    Function<Object, Integer> memoizer = Memoizers.of(d -> result.incrementAndGet());
+
+    assertThat(memoizer.apply(1)).isEqualTo(memoizer.apply(1));
+    assertThat(memoizer.apply(1)).isNotEqualTo(memoizer.apply(2));
+  }
+
+  @Test
+  void shouldMemoizeNullResult() {
+    var factory = new NullFactory();
+    Function<Object, String> memoizer = Memoizers.of(factory);
+
+    memoizer.apply(1);
+    memoizer.apply(1);
+
+    assertThat(factory.callsCount()).isEqualTo(1);
+    assertThat(memoizer.apply(1)).isNull();
+  }
+
+  @Test
+  void shouldMemoizeSupplier() {
+    AtomicInteger calls = new AtomicInteger();
+    Supplier<Integer> supplier = Memoizers.of(calls::incrementAndGet);
+    assertThat(supplier.get()).isEqualTo(1);
+    assertThat(supplier.get()).isEqualTo(1);
+    assertThat(calls).hasValue(1);
+  }
+
+  private static final class NullFactory implements Function<Object, String> {
+
+    private final AtomicInteger callsCount = new AtomicInteger();
+
+    private int callsCount() {
+      return callsCount.get();
+    }
+
+    @Override
+    public String apply(Object input) {
+      callsCount.incrementAndGet();
+
+      return null;
+    }
+  }
+}

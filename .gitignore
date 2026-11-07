@@ -1,0 +1,55 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+# Local development credentials and generated analysis tokens
+.env
+.env.*
+!.env.example
+sonar-token
+
+# Local-only documentation and agent context. Keep these files on this machine.
+/docs/
+/README.md
+AGENTS.md
+CLAUDE.md
+/.github/*.md
+/.github/research/
+/.github/skills/
+/.agents/
+/.codex/
+/.claude/
