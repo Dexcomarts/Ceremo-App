@@ -16,7 +16,7 @@ import org.springframework.security.web.access.intercept.RequestAuthorizationCon
 public final class ActiveAccountAuthorizationManager
     implements AuthorizationManager<RequestAuthorizationContext> {
   private final Accounts accounts;
-  private final AuthorizationManager<RequestAuthorizationContext> authenticated =
+  private final AuthenticatedAuthorizationManager<RequestAuthorizationContext> authenticated =
       AuthenticatedAuthorizationManager.authenticated();
 
   public ActiveAccountAuthorizationManager(Accounts accounts) {

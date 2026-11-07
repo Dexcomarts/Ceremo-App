@@ -8,6 +8,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
 import jakarta.servlet.http.Cookie;
 import java.util.List;
@@ -140,6 +142,20 @@ class SecurityConfigurationTest {
   void acceptsAnExplicitBearerHeaderForApiWritesWithoutACsrfToken() throws Exception {
     mvc.perform(post("/api/v1/providers").header("Authorization", "Bearer customer-token"))
         .andExpect(status().isOk());
+  }
+
+  @Test
+  void missingOrInvalidBearerHeadersCannotAuthenticateWrites() throws Exception {
+    mvc.perform(post("/api/v1/providers"))
+        .andExpect(status().isUnauthorized())
+        .andExpect(header().string("WWW-Authenticate", org.hamcrest.Matchers.matchesPattern("Bearer(?: .+)?")));
+    mvc.perform(post("/api/v1/providers").header("Authorization", "Bearer invalid-token"))
+        .andExpect(status().isUnauthorized());
+    mvc.perform(post("/api/v1/providers").session(adminSession()).with(csrf()))
+        .andExpect(status().isUnauthorized());
+    mvc.perform(post("/api/v1/providers").cookie(new Cookie("access_token", "customer-token")).with(csrf()))
+        .andExpect(status().isUnauthorized());
+    verifyNoInteractions(accounts);
   }
 
   @Test
