@@ -47,7 +47,7 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-security-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
 	testImplementation("org.testcontainers:testcontainers-postgresql")
-	testImplementation("com.tngtech.archunit:archunit:1.4.2")
+	testImplementation("com.tngtech.archunit:archunit:1.5.1")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	testRuntimeOnly("com.h2database:h2")
 }
