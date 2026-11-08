@@ -37,7 +37,7 @@ jobs:
           java-version: '25'
       - name: Test CI reporting
         id: reportTests
-        run: python3 -m unittest discover -s scripts -p test_ci_report.py
+        run: python3 -m unittest discover -s scripts -p 'test_*.py'
       - name: Prepare Linux limits
         id: linux
         run: |
@@ -79,13 +79,16 @@ jobs:
           export SONAR_TOKEN
           # Each run scans its own whole-code project, including PRs. No PR decoration.
           # Prevent the scanner from requesting unsupported Community PR analysis.
-          env -u GITHUB_ACTION -u GITHUB_ACTIONS bash ./gradlew --no-daemon sonar
+          env -u GITHUB_ACTION -u GITHUB_ACTIONS bash ./gradlew --no-daemon sonar --info
       - name: Verify Sonar quality gate
         id: gate
         if: always() && (steps.sonar.outcome == 'success' || steps.sonar.outcome == 'failure')
         run: |
           mkdir -p build/reports/sonar
-          docker compose run --rm --no-deps -T sonar-token report > build/reports/sonar/quality-gate.json
+          result=0
+          docker compose run --rm --no-deps -T sonar-token report > build/reports/sonar/quality-gate.json || result=$?
+          python3 scripts/sonar_test_report.py verify
+          exit "$result"
       - name: Remove temporary services
         id: cleanup
         if: always()

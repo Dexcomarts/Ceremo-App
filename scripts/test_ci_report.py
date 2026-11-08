@@ -66,6 +66,9 @@ class ReportTest(unittest.TestCase):
             path.write_text('<!DOCTYPE x [<!ENTITY secret SYSTEM "file:///private">]><x/>')
             with self.assertRaises(ValueError):
                 report.xml_root(path)
+            path.write_bytes('<!DOCTYPE x [<!ENTITY secret "private">]><x>&secret;</x>'.encode("utf-16"))
+            with self.assertRaises(ValueError):
+                report.xml_root(path)
 
     def test_render_distinguishes_passed_failed_and_skipped_checks(self):
         data = results()
@@ -122,6 +125,29 @@ class ReportTest(unittest.TestCase):
             data["sonar"]["findings"][0]["file"] = file
             with self.subTest(file=file), self.assertRaises(ValueError):
                 report.validate_results(data, SHA)
+
+    def test_passing_gate_still_reports_code_smells_and_keeps_all_locations(self):
+        data = results()
+        data["sonar"] = {"status": "OK", "policyEvaluated": True,
+            "testImportVerified": True,
+            "measures": {"bugs": "0", "vulnerabilities": "0", "code_smells": "12",
+                         "sqale_rating": "1.0", "tests": "10"},
+            "conditions": [{"metric": "sqale_rating", "status": "OK", "value": "1.0", "threshold": "1"}],
+            "findings": [{"rule": "java:S1135", "type": "CODE_SMELL",
+                          "file": "src/main/java/Example.java", "line": n} for n in range(1, 13)]}
+        clean = report.validate_results(data, SHA)
+        self.assertEqual(len(clean["sonar"]["findings"]), 12)
+        body = report.render_comment(run(), {}, clean)
+        self.assertIn("code smells: 12", body)
+        self.assertIn("Maintainability: A (required: A)", body)
+        self.assertIn("Showing 10 of 12", body)
+        self.assertIn("Java test import verified against JUnit: ✅ Yes", body)
+        clean["sonar"]["testImportVerified"] = False
+        body = report.render_comment(run(), {"gate": {"conclusion": "failure"}}, clean)
+        self.assertIn("imported test totals do not match the real JUnit", body)
+        data["sonar"]["measures"]["code_smells"] = "@someone"
+        with self.assertRaises(ValueError):
+            report.validate_results(data, SHA)
 
 
 class PublisherTest(unittest.TestCase):
@@ -242,7 +268,7 @@ class ArtifactTest(unittest.TestCase):
 
     def test_oversized_and_cross_commit_json_are_rejected(self):
         with self.assertRaises(ValueError):
-            self.download({"ci/result.json": " " * 65537})
+            self.download({"ci/result.json": " " * 1_000_001})
         data = results(); data["sha"] = "b" * 40
         with self.assertRaises(ValueError):
             self.download({"ci/result.json": json.dumps(data)})

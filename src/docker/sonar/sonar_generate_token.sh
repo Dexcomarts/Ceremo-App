@@ -49,31 +49,50 @@ report() {
     --data-urlencode "projectKey=$project_key" > "$work_dir/gate.json"
   api --get "$CEREMO_SONAR_URL/api/measures/component" \
     --data-urlencode "component=$project_key" \
-    --data-urlencode 'metricKeys=security_hotspots' > "$work_dir/measures.json"
-  # Public source locations only; never include raw messages or source snippets.
-  if ! api --get "$CEREMO_SONAR_URL/api/issues/search" \
-      --data-urlencode "componentKeys=$project_key" --data-urlencode 'types=BUG,VULNERABILITY' \
-      --data-urlencode 'resolved=false' --data-urlencode 'ps=10' > "$work_dir/issues.json"; then
-    printf '{"issues":[]}' > "$work_dir/issues.json"
-  fi
+    --data-urlencode 'metricKeys=security_hotspots,bugs,vulnerabilities,code_smells,sqale_rating,tests,test_failures,test_errors,skipped_tests' > "$work_dir/measures.json"
+  # Retain every open finding, but never raw messages or source snippets.
+  printf '[]' > "$work_dir/findings.json"
+  local page=1 total
+  while true; do
+    api --get "$CEREMO_SONAR_URL/api/issues/search" \
+      --data-urlencode "componentKeys=$project_key" --data-urlencode 'types=BUG,VULNERABILITY,CODE_SMELL' \
+      --data-urlencode 'resolved=false' --data-urlencode 'ps=500' --data-urlencode "p=$page" > "$work_dir/issues.json"
+    total=$(jq -er '.paging.total | numbers' "$work_dir/issues.json")
+    if ((total > 1000)); then
+      printf 'Issue count exceeds the bounded report limit; complete reporting was not verified.\n' >&2
+      return 1
+    fi
+    jq --slurpfile next "$work_dir/issues.json" --arg prefix "$project_key:" \
+      '. + [$next[0].issues[] | {rule, type, file: (.component | ltrimstr($prefix)), line}]' \
+      "$work_dir/findings.json" > "$work_dir/next.json"
+    mv "$work_dir/next.json" "$work_dir/findings.json"
+    ((page * 500 >= total)) && break
+    page=$((page + 1))
+  done
   # No hotspot measure means no hotspots. Other missing gate conditions fail closed.
   jq -n --slurpfile gate "$work_dir/gate.json" --slurpfile measures "$work_dir/measures.json" \
-    --slurpfile issues "$work_dir/issues.json" --arg prefix "$project_key:" '
+    --slurpfile findings "$work_dir/findings.json" '
     ($gate[0].projectStatus) as $s |
     ([ $measures[0].component.measures[] | select(.metric == "security_hotspots") |
       .value | tonumber ][0] // 0) as $hotspots |
-    ["bugs", "vulnerabilities", "coverage", "duplicated_lines_density"] as $required |
+    [{metric:"bugs",op:"GT",threshold:"0"}, {metric:"vulnerabilities",op:"GT",threshold:"0"},
+     {metric:"coverage",op:"LT",threshold:"100"}, {metric:"duplicated_lines_density",op:"GT",threshold:"3"},
+     {metric:"sqale_rating",op:"GT",threshold:"1"}] as $required |
+    ($measures[0].component.measures | map({key: .metric, value: .value}) | from_entries) as $m |
     {
       status: $s.status,
       scope: "overall code; temporary server, no retained review history",
       hotspots: $hotspots,
-      findings: [($issues[0].issues // [])[] |
-        {rule, file: (.component | ltrimstr($prefix)), line}],
+      findings: $findings[0],
+      measures: ({test_failures:"0", test_errors:"0", skipped_tests:"0", security_hotspots:"0"} + $m),
       conditions: [$s.conditions[] | {metric: .metricKey, status, value: .actualValue, threshold: .errorThreshold}],
       policyEvaluated: (
         ($s.ignoredConditions == false) and
-        (all($required[]; . as $metric | any($s.conditions[]; .metricKey == $metric and .actualValue != null))) and
-        ($hotspots == 0 or any($s.conditions[]; .metricKey == "security_hotspots_reviewed" and .actualValue != null))
+        (all(["bugs","vulnerabilities","code_smells","sqale_rating","tests"][]; . as $metric | $m[$metric] != null)) and
+        (all($required[]; . as $rule | any($s.conditions[]; .metricKey == $rule.metric and
+          .actualValue != null and .comparator == $rule.op and .errorThreshold == $rule.threshold))) and
+        ($hotspots == 0 or any($s.conditions[]; .metricKey == "security_hotspots_reviewed" and
+          .actualValue != null and .comparator == "LT" and .errorThreshold == "100"))
       )
     }' > "$work_dir/summary.json"
   cat "$work_dir/summary.json"
@@ -148,6 +167,7 @@ vulnerabilities GT 0
 coverage LT 100
 duplicated_lines_density GT 3
 security_hotspots_reviewed LT 100
+sqale_rating GT 1
 CONDITIONS
   api --request POST "$CEREMO_SONAR_URL/api/qualitygates/select" \
     --data-urlencode "gateName=$gate_name" --data-urlencode "projectKey=$project_key" > /dev/null

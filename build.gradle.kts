@@ -153,6 +153,14 @@ tasks.named("check") {
     dependsOn(jacocoCombinedCoverageVerification)
 }
 
+val sonarTestReport = tasks.register<Exec>("sonarTestReport") {
+    group = "verification"
+    description = "Maps both JUnit suites to Sonar's generic execution format."
+    dependsOn(tasks.test, integrationTest)
+    val python = providers.environmentVariable("CEREMO_PYTHON").orElse("python3")
+    commandLine(python.get(), "scripts/sonar_test_report.py", "prepare")
+}
+
 sonar {
     properties {
         property("sonar.projectKey", "ceremo_backend")
@@ -162,11 +170,14 @@ sonar {
         property("sonar.qualitygate.wait", true)
         property("sonar.tests", "src/test/java,src/integrationTest/java")
         property("sonar.java.test.binaries", "build/classes/java/test,build/classes/java/integrationTest")
-        property("sonar.junit.reportPaths", "build/test-results/test,build/test-results/integrationTest")
+        // Generic import replaces the duplicate Java/Kotlin JUnit importers.
+        property("sonar.junit.reportPaths", "")
+        property("sonar.testExecutionReportPaths", "build/reports/sonar/test-executions.xml")
         property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/combined/combined.xml")
     }
 }
 
 tasks.named("sonar") {
+    dependsOn(sonarTestReport)
     dependsOn(tasks.named("check"))
 }

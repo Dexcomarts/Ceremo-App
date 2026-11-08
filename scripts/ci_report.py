@@ -25,8 +25,8 @@ STAGES = [
     ("integration", "Run PostgreSQL tests", "Verify database constraints, transactions and security integration."),
     ("coverage", "Verify per-class coverage", "Require zero missed lines and branches in every application class."),
     ("package", "Build application", "Create the executable application JAR."),
-    ("sonar", "Run Sonar analysis", "Analyse the tested revision and wait for the server's quality gate."),
-    ("gate", "Verify Sonar quality gate", "Require completed analysis and evaluated overall-code conditions."),
+    ("sonar", "Run Sonar analysis", "Map both JUnit suites, analyse the tested revision and wait for the server's quality gate."),
+    ("gate", "Verify Sonar quality gate", "Require evaluated overall-code conditions, maintainability A and matching imported test totals."),
     ("cleanup", "Remove temporary services", "Delete containers and all data/credential volumes; check for leftovers."),
     ("collect", "Collect report data", "Collect numeric test, coverage and gate results without raw logs."),
     ("artifacts", "Upload quality reports", "Save the allowlisted reports for seven days."),
@@ -35,6 +35,7 @@ METRICS = {
     "bugs": "Reliability issues", "vulnerabilities": "Vulnerabilities",
     "coverage": "Coverage (%)", "duplicated_lines_density": "Duplication (%)",
     "security_hotspots_reviewed": "Hotspots reviewed (%)",
+    "sqale_rating": "Maintainability rating (1=A, 5=E)",
     "new_coverage": "New-code coverage (%)", "new_violations": "New-code issues",
     "new_duplicated_lines_density": "New-code duplication (%)",
     "new_security_hotspots_reviewed": "New-code hotspots reviewed (%)",
@@ -58,15 +59,15 @@ FAILURES = {
     "integration": "PostgreSQL integration execution failed; inspect the database/container and test results.",
     "coverage": "Required coverage verification failed; inspect missing execution inputs or uncovered lines/branches below.",
     "package": "The application JAR could not be built; inspect packaging and compilation errors.",
-    "sonar": "The scanner or quality-gate wait failed; resolve any listed gate blockers or inspect scanner logs.",
-    "gate": "A completed passing gate was not confirmed; inspect the evaluated conditions below.",
+    "sonar": "Test-report conversion, scanning or quality-gate wait failed; inspect the report task and scanner logs.",
+    "gate": "The required gate or test-import verification failed; inspect the evaluated conditions and imported totals below.",
     "cleanup": "Cleanup or its residual-resource check failed; temporary data/credential volumes may remain.",
     "collect": "Report data could not be collected or validated; detailed measurements are unavailable.",
     "artifacts": "GitHub did not confirm report upload; inspect the artifact-service error.",
 }
 
 
-def read_json(path, limit=65536):
+def read_json(path, limit=1_000_000):
     data = Path(path).read_bytes()
     if len(data) > limit:
         raise ValueError("Report exceeds its size limit")
@@ -75,7 +76,7 @@ def read_json(path, limit=65536):
 
 def xml_root(path):
     data = Path(path).read_bytes()
-    if len(data) > 10_000_000 or b"<!ENTITY" in data:
+    if len(data) > 10_000_000 or b"<!ENTITY" in data or b"\x00" in data:
         raise ValueError("Unsafe or oversized XML report")
     return ET.fromstring(data)
 
@@ -157,20 +158,41 @@ def validate_results(data, sha):
                 item[key] = value
             conditions.append(item)
         findings = []
-        if not isinstance(gate.get("findings", []), list) or len(gate.get("findings", [])) > 10:
+        if not isinstance(gate.get("findings", []), list) or len(gate.get("findings", [])) > 1000:
             raise ValueError("Invalid source findings")
         for finding in gate.get("findings", []):
             if not isinstance(finding, dict) or not re.fullmatch(r"[a-z][a-z0-9_-]*:S[0-9]{1,6}", finding.get("rule", "")):
                 raise ValueError("Invalid rule identifier")
             file = finding.get("file", "")
-            if not isinstance(file, str) or not re.fullmatch(r"(?:(?:src|scripts)/[A-Za-z0-9_./-]{1,300}|(?:build|settings)\.gradle\.kts)", file) or ".." in file.split("/"):
+            if not isinstance(file, str) or not re.fullmatch(r"(?:(?:src|scripts|\.github/workflows)/[A-Za-z0-9_./-]{1,300}|(?:build|settings)\.gradle\.kts)", file) or ".." in file.split("/"):
                 raise ValueError("Invalid source path")
             line = finding.get("line")
             if line is not None and (type(line) is not int or not 1 <= line <= 1_000_000):
                 raise ValueError("Invalid source line")
-            findings.append({"rule": finding["rule"], "file": file, "line": line})
+            item = {"rule": finding["rule"], "file": file, "line": line}
+            if "type" in finding:
+                if finding["type"] not in ("BUG", "VULNERABILITY", "CODE_SMELL"):
+                    raise ValueError("Invalid finding type")
+                item["type"] = finding["type"]
+            findings.append(item)
         clean["sonar"] = {"status": gate["status"], "policyEvaluated": gate["policyEvaluated"],
                           "conditions": conditions, "findings": findings}
+        if "measures" in gate:
+            allowed = {"bugs", "vulnerabilities", "code_smells", "sqale_rating", "tests",
+                       "test_failures", "test_errors", "skipped_tests", "security_hotspots"}
+            if not isinstance(gate["measures"], dict) or set(gate["measures"]) - allowed:
+                raise ValueError("Invalid Sonar measures")
+            for value in gate["measures"].values():
+                if not isinstance(value, str) or not re.fullmatch(r"[0-9]{1,9}(\.[0-9]{1,6})?", value):
+                    raise ValueError("Invalid Sonar measurement")
+            rating = gate["measures"].get("sqale_rating")
+            if rating is not None and rating not in {str(n) for n in range(1, 6)} | {f"{n}.0" for n in range(1, 6)}:
+                raise ValueError("Invalid maintainability rating")
+            clean["sonar"]["measures"] = gate["measures"].copy()
+        if "testImportVerified" in gate:
+            if type(gate["testImportVerified"]) is not bool:
+                raise ValueError("Invalid test import status")
+            clean["sonar"]["testImportVerified"] = gate["testImportVerified"]
     return clean
 
 
@@ -224,14 +246,32 @@ def render_comment(run, steps, results=None, job_id=None):
                 detail += " Gate blockers: " + "; ".join(failed) + "."
             elif gate["status"] == "UNAVAILABLE" or not gate["policyEvaluated"]:
                 detail += " A completed, evaluated gate result is unavailable."
+            if stage == "gate" and gate.get("testImportVerified") is False:
+                detail += " Sonar's imported test totals do not match the real JUnit results."
         log = f"[Logs]({url}/job/{int(job_id)}#step:{int(step['number'])}:1)" if job_id and step.get("number") else "—"
         lines.append(f"| {title} | {STATES.get(state, STATES['unknown'])} | {detail} | {log} |")
-    if results and (results.get("sonar") or {}).get("findings"):
+    gate = (results or {}).get("sonar") or {}
+    measures = gate.get("measures", {})
+    if measures:
+        rating = measures.get("sqale_rating")
+        grade = "ABCDE"[int(float(rating)) - 1] if rating else "unavailable"
+        lines += ["", "**Sonar analysis:** " + "; ".join(
+            f"{label}: {measures.get(key, 'unavailable')}" for key, label in (
+                ("bugs", "bugs"), ("vulnerabilities", "vulnerabilities"),
+                ("code_smells", "code smells"),
+                ("tests", "imported tests"))) + ".",
+            f"Maintainability: {grade} (required: A).",
+            "Java test import verified against JUnit: " +
+            ("✅ Yes" if gate.get("testImportVerified") is True else "⚠️ Not verified") + ".",
+            "A passing A-rating gate can still contain code smells; all reported source locations are retained in the artifact."]
+    if gate.get("findings"):
         lines += ["", "**Source findings:**"]
-        for finding in results["sonar"]["findings"]:
+        for finding in gate["findings"][:10]:
             anchor = f"#L{finding['line']}" if finding["line"] else ""
             lines.append(f"- [{finding['rule']} — {finding['file']}]"
                          f"(https://github.com/{repo}/blob/{sha}/{finding['file']}{anchor})")
+        if len(gate["findings"]) > 10:
+            lines.append(f"Showing 10 of {len(gate['findings'])} open findings. The quality artifact contains the complete list.")
     lines += ["", "**How to investigate:** open the failed stage's logs and the quality report artifact. "
               "A failed test/build may prevent later checks from running. Missing data is not a passing result."]
     if results is None:
@@ -294,7 +334,7 @@ def download_results(repo, run):
     with zipfile.ZipFile(io.BytesIO(archive)) as files:
         # Read a single bounded data entry; never extract or execute artifact files.
         info = files.getinfo("ci/result.json")
-        if info.file_size > 65536:
+        if info.file_size > 1_000_000:
             raise ValueError("Result entry exceeds its size limit")
         return validate_results(json.loads(files.read(info)), run["head_sha"])
 
