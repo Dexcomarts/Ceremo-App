@@ -322,14 +322,17 @@ def render_comment(run, steps, results=None, job_id=None):
     return "\n".join(lines) + "\n"
 
 
-def github_request(path, method="GET", body=None):
+def github_request(path, method="GET", body=None, include_headers=False):
     payload = json.dumps(body).encode() if body is not None else None
     request = urllib.request.Request("https://api.github.com" + path, data=payload, method=method,
         headers={"Authorization": "Bearer " + os.environ["GH_TOKEN"],
                  "Accept": "application/vnd.github+json", "Content-Type": "application/json",
                  "X-GitHub-Api-Version": "2022-11-28"})
     with urllib.request.urlopen(request, timeout=30) as response:
-        return json.load(response)
+        data = json.load(response)
+        if include_headers:
+            return data, {key.lower(): value for key, value in response.headers.items()}
+        return data
 
 
 def pages(path, key=None):
