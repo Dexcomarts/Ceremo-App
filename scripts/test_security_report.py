@@ -11,6 +11,19 @@ def sarif(score):
 
 
 class SecurityReportTest(unittest.TestCase):
+    def test_resolves_guid_references_and_rejects_conflicting_rule_ids(self):
+        data = sarif('8.0')
+        tool = data['runs'][0]['tool']
+        guid = '70369924-bda1-4dad-b87f-45ce09143b29'
+        tool['extensions'] = [{'name': 'codeql/java-queries', 'guid': guid,
+                               'rules': tool['driver'].pop('rules')}]
+        reference = {'id': 'java/example', 'index': 0, 'toolComponent': {'guid': guid}}
+        data['runs'][0]['results'][0]['rule'] = reference
+        self.assertTrue(evaluate_sarif(data, 'CodeQL')['blocked'])
+        reference['id'] = 'java/other'
+        with self.assertRaises(ValueError):
+            evaluate_sarif(data, 'CodeQL')
+
     def test_resolves_rule_metadata_from_the_referenced_extension(self):
         for score, blocked in [('6.0', False), ('8.0', True), ('9.8', True)]:
             data = sarif(score)
