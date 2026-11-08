@@ -10,6 +10,39 @@ import re
 from ci_report import read_json
 
 
+def rule_metadata(tool, result, rule_id):
+    """Resolve a SARIF 2.1 reporting descriptor in its declared tool component."""
+    reference = result.get('rule', {})
+    component_reference = reference.get('toolComponent', {})
+    component = tool['driver']
+    if 'index' in component_reference:
+        index = component_reference['index']
+        extensions = tool.get('extensions', [])
+        if type(index) is not int or not 0 <= index < len(extensions):
+            raise ValueError('Invalid SARIF tool component index')
+        component = extensions[index]
+    elif 'guid' in component_reference:
+        matches = [c for c in [tool['driver'], *tool.get('extensions', [])]
+                   if c.get('guid') == component_reference['guid']]
+        if len(matches) != 1:
+            raise ValueError('Ambiguous SARIF tool component')
+        component = matches[0]
+    if any(component_reference.get(key, component.get(key)) != component.get(key) for key in ('name', 'guid')):
+        raise ValueError('SARIF tool component identity does not match')
+    rules = component.get('rules', [])
+    index = reference.get('index', result.get('ruleIndex'))
+    if index is not None:
+        if type(index) is not int or not 0 <= index < len(rules):
+            raise ValueError('Invalid SARIF rule index')
+        matches = [rules[index]]
+    else:
+        matches = [rule for rule in rules if rule.get('id') == rule_id]
+    if (len(matches) != 1 or matches[0].get('id') != rule_id or
+            reference.get('id', rule_id) != rule_id):
+        raise ValueError('Finding has missing or inconsistent rule metadata')
+    return matches[0]
+
+
 def evaluate_sarif(data, expected_tool):
     runs = data.get('runs')
     if not isinstance(runs, list) or not 1 <= len(runs) <= 20:
@@ -22,9 +55,8 @@ def evaluate_sarif(data, expected_tool):
             raise ValueError('Scanner identity or findings are missing')
         if any(invocation.get('executionSuccessful') is False for invocation in run.get('invocations', [])):
             raise ValueError('Scanner execution did not complete successfully')
-        rules = {rule['id']: rule for rule in driver.get('rules', [])}
         for result in run['results']:
-            rule_id = result.get('ruleId')
+            rule_id = result.get('ruleId', result.get('rule', {}).get('id'))
             if not isinstance(rule_id, str) or not re.fullmatch(r'[A-Za-z0-9_/.-]{1,250}', rule_id):
                 raise ValueError('Invalid scanner rule')
             if result.get('kind', 'fail') in ('pass', 'notApplicable'):
@@ -34,9 +66,8 @@ def evaluate_sarif(data, expected_tool):
                 if severity not in counts:
                     raise ValueError('Missing workflow-security severity')
             else:
-                if rule_id not in rules:
-                    raise ValueError('Finding has no rule metadata')
-                score = rules[rule_id].get('properties', {}).get('security-severity')
+                rule = rule_metadata(run['tool'], result, rule_id)
+                score = rule.get('properties', {}).get('security-severity')
                 if score is None:
                     severity = 'error' if result.get('level') == 'error' else 'informational'
                 else:

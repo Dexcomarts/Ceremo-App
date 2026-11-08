@@ -11,6 +11,24 @@ def sarif(score):
 
 
 class SecurityReportTest(unittest.TestCase):
+    def test_resolves_rule_metadata_from_the_referenced_extension(self):
+        for score, blocked in [('6.0', False), ('8.0', True), ('9.8', True)]:
+            data = sarif(score)
+            tool = data['runs'][0]['tool']
+            tool['extensions'] = [{'name': 'codeql/java-queries', 'rules': tool['driver'].pop('rules')}]
+            data['runs'][0]['results'][0]['rule'] = {'id': 'java/example', 'index': 0,
+                                                   'toolComponent': {'index': 0}}
+            result = evaluate_sarif(data, 'CodeQL')
+            self.assertEqual(result['blocked'], blocked)
+            self.assertEqual(len(result['findings']), 1)
+
+    def test_rejects_mismatched_or_invalid_extension_references(self):
+        for component in (-1, 1, True):
+            data = sarif('8')
+            data['runs'][0]['results'][0]['rule'] = {'index': 0, 'toolComponent': {'index': component}}
+            with self.subTest(component=component), self.assertRaises(ValueError):
+                evaluate_sarif(data, 'CodeQL')
+
     def test_reports_all_severities_and_blocks_only_high_and_critical(self):
         for score, severity, blocked in [('3.0', 'low', False), ('6.0', 'medium', False),
                                           ('8.0', 'high', True), ('9.8', 'critical', True)]:
