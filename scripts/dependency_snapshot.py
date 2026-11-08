@@ -9,7 +9,7 @@ import re
 import time
 import zipfile
 
-from ci_report import download_archive, github_request, pages, read_json
+from ci_report import download_archive, github_request, pages, read_json, workflow_name
 
 LIMIT = 5_000_000
 
@@ -152,7 +152,7 @@ def publication_receipt(repo, sha):
         if artifact['expired'] or artifact['name'] != f'dependency-publication-{sha}':
             continue
         run = github_request(f'/repos/{repo}/actions/runs/{int(artifact["workflow_run"]["id"])}')
-        if (run.get('name') != 'Publish dependency graph' or run.get('event') != 'workflow_run' or
+        if (workflow_name(run) != 'Publish dependency graph' or run.get('event') != 'workflow_run' or
                 run.get('path') != '.github/workflows/dependency-publish.yml' or
                 run.get('repository', {}).get('full_name') != repo or run.get('conclusion') != 'success'):
             continue

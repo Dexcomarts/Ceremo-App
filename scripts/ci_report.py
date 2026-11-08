@@ -26,6 +26,20 @@ WORKFLOW_DESCRIPTIONS = {
     'Publish dependency graph': 'Trusted validation and submission of the generated snapshot.',
     'Dependency review': 'Compare base/head snapshots and reject critical/high vulnerabilities.',
 }
+
+
+def workflow_name(run):
+    """Validate the workflow path even when GitHub exposes a dynamic run name."""
+    expected = next((name for name, path in WORKFLOWS.items() if run.get('path') == path), None)
+    if expected and run.get('name') == expected:
+        return expected
+    if (expected == 'Publish dependency graph' and run.get('event') == 'workflow_run' and
+            run.get('name') == run.get('display_title') and
+            re.fullmatch(r'Dependency publication [1-9][0-9]* attempt [1-9][0-9]*', run.get('name', ''))):
+        return expected
+    return None
+
+
 STAGES = [
     ("source", "Check out application", "Check out the commit under review."),
     ("java", "Set up Java 25", "Configure the Java toolchain."),
@@ -425,7 +439,7 @@ def publish_comment(repo, run_id):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("command", choices=("collect", "summary", "publish"))
+    parser.add_argument("command", choices=("collect", "summary", "publish", "resolve"))
     parser.add_argument("--run-id", type=int)
     args = parser.parse_args()
     sha = os.environ.get("REPORT_SHA", "")
@@ -446,8 +460,9 @@ def main():
     else:
         if args.run_id is None:
             parser.error("--run-id is required for publication")
-        from team_report import publish_team_comment
-        publish_team_comment(os.environ["GITHUB_REPOSITORY"], args.run_id)
+        from team_report import publish_team_comment, resolve_pull_request
+        operation = resolve_pull_request if args.command == 'resolve' else publish_team_comment
+        operation(os.environ["GITHUB_REPOSITORY"], args.run_id)
 
 
 if __name__ == "__main__":

@@ -99,7 +99,8 @@ class DependencySnapshotTest(unittest.TestCase):
 
     def test_accepted_receipt_is_bound_to_a_trusted_publisher_and_source_commit(self):
         artifact = {'id': 1, 'name': 'dependency-publication-' + SHA, 'expired': False, 'workflow_run': {'id': 6}}
-        publisher = {'id': 6, 'name': 'Publish dependency graph', 'event': 'workflow_run',
+        publisher = {'id': 6, 'name': 'Dependency publication 123 attempt 2',
+                     'display_title': 'Dependency publication 123 attempt 2', 'event': 'workflow_run',
                      'path': '.github/workflows/dependency-publish.yml',
                      'repository': {'full_name': REPO}, 'conclusion': 'success'}
         receipt = {'sha': SHA, 'accepted': True, 'sourceRunId': 123, 'sourceAttempt': 2}
