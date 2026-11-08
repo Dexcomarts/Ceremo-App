@@ -4,11 +4,6 @@ name: Backend checks
   push:
   pull_request:
   workflow_dispatch:
-    inputs:
-      runSonar:
-        description: Run analysis against the approved SonarQube server
-        type: boolean
-        default: false
 
 permissions:
   contents: read
@@ -19,44 +14,106 @@ concurrency:
 
 jobs:
   verify:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      COMPOSE_PROJECT_NAME: ceremo-ci-${{ github.run_id }}-${{ github.run_attempt }}
+      COMPOSE_FILE: src/docker/sonar.yml:src/docker/sonar-ci.yml
+      CEREMO_SONAR_CI_PORT: '19001'
+      SONAR_HOST_URL: http://127.0.0.1:19001
+      REPORT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
     steps:
       - name: Check out application
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-        with:
-          persist-credentials: false
-      - name: Set up Java 25
-        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c # v6.0.0
-        with:
-          distribution: temurin
-          java-version: '25'
-      - name: Verify tests, PostgreSQL integration and coverage
-        run: bash ./gradlew --no-daemon check bootJar
-
-  sonar:
-    if: github.event_name == 'workflow_dispatch' && inputs.runSonar
-    needs: verify
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-      - name: Check out application
+        id: source
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           fetch-depth: 0
           persist-credentials: false
       - name: Set up Java 25
+        id: java
         uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c # v6.0.0
         with:
           distribution: temurin
           java-version: '25'
-      - name: Verify and wait for the SonarQube quality gate
-        env:
-          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Test CI reporting
+        id: reportTests
+        run: python3 -m unittest discover -s scripts -p test_ci_report.py
+      - name: Prepare Linux limits
+        id: linux
         run: |
-          if [ -z "$SONAR_HOST_URL" ] || [ -z "$SONAR_TOKEN" ]; then
-            echo "Configure the approved SONAR_HOST_URL variable and SONAR_TOKEN secret."
-            exit 1
-          fi
-          bash ./gradlew --no-daemon sonar
+          sudo sysctl -w vm.max_map_count=524288
+          sudo sysctl -w fs.file-max=131072
+      - name: Build token helper
+        id: helper
+        run: docker compose build sonar-token
+      - name: Test token bootstrap
+        id: bootstrapTests
+        run: |
+          docker compose run --rm --no-deps -T \
+            --volume "$GITHUB_WORKSPACE/scripts/test-sonar-bootstrap.sh:/tmp/test-sonar-bootstrap.sh:ro" \
+            --entrypoint /bin/bash sonar-token /tmp/test-sonar-bootstrap.sh
+      - name: Start SonarQube
+        id: server
+        run: docker compose up --detach --wait --wait-timeout 600 sonar
+      - name: Create analysis token
+        id: bootstrap
+        run: docker compose run --rm --no-deps -T sonar-token
+      - name: Run regular tests
+        id: unit
+        run: bash ./gradlew --no-daemon test
+      - name: Run PostgreSQL tests
+        id: integration
+        run: bash ./gradlew --no-daemon integrationTest
+      - name: Verify per-class coverage
+        id: coverage
+        run: bash ./gradlew --no-daemon jacocoCombinedReport jacocoCombinedCoverageVerification
+      - name: Build application
+        id: package
+        run: bash ./gradlew --no-daemon bootJar
+      - name: Run Sonar analysis
+        id: sonar
+        run: |
+          SONAR_TOKEN="$(docker compose run --rm --no-deps -T --entrypoint /bin/cat sonar-token /tokens/sonar-token)"
+          test -n "$SONAR_TOKEN"
+          echo "::add-mask::$SONAR_TOKEN"
+          export SONAR_TOKEN
+          # Each run scans its own whole-code project, including PRs. No PR decoration.
+          # Prevent the scanner from requesting unsupported Community PR analysis.
+          env -u GITHUB_ACTION -u GITHUB_ACTIONS bash ./gradlew --no-daemon sonar
+      - name: Verify Sonar quality gate
+        id: gate
+        if: always() && (steps.sonar.outcome == 'success' || steps.sonar.outcome == 'failure')
+        run: |
+          mkdir -p build/reports/sonar
+          docker compose run --rm --no-deps -T sonar-token report > build/reports/sonar/quality-gate.json
+      - name: Remove temporary services
+        id: cleanup
+        if: always()
+        run: |
+          docker compose --profile tools down --volumes --remove-orphans --timeout 20
+          test -z "$(docker ps --all --quiet --filter "label=com.docker.compose.project=$COMPOSE_PROJECT_NAME")"
+          test -z "$(docker volume ls --quiet --filter "label=com.docker.compose.project=$COMPOSE_PROJECT_NAME")"
+      - name: Collect report data
+        id: collect
+        if: always()
+        run: python3 scripts/ci_report.py collect
+      - name: Upload quality reports
+        id: artifacts
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: backend-quality-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 7
+          if-no-files-found: warn
+          include-hidden-files: false
+          path: |
+            build/reports/jacoco/combined/combined.xml
+            build/reports/jacoco/combined/html/
+            build/reports/sonar/quality-gate.json
+            build/reports/ci/result.json
+      - name: Write team summary
+        if: always()
+        env:
+          STEP_RESULTS: ${{ toJSON(steps) }}
+          RUN_CANCELLED: ${{ job.status == 'cancelled' }}
+        run: python3 scripts/ci_report.py summary

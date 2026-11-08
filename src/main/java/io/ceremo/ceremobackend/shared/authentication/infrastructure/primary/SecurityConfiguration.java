@@ -24,10 +24,10 @@ import org.springframework.core.annotation.Order;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
+import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
@@ -41,7 +41,10 @@ import org.springframework.security.oauth2.jwt.JwtValidators;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter;
+import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
+import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CsrfException;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.oidc.web.logout.OidcClientInitiatedLogoutSuccessHandler;
 import org.springframework.dao.DataAccessException;
@@ -71,12 +74,22 @@ class SecurityConfiguration {
   @Bean
   @Order(1)
   public SecurityFilterChain filterChain(HttpSecurity http, Accounts accounts) {
+    BearerTokenAuthenticationEntryPoint entryPoint = new BearerTokenAuthenticationEntryPoint();
+    BearerTokenAccessDeniedHandler deniedHandler = new BearerTokenAccessDeniedHandler();
     http.securityMatcher("/api/**", "/management/**")
         .cors(withDefaults())
-        // This chain ignores browser sessions and cookies; clients supply the bearer header.
-        // Keep CSRF enabled in browserFilterChain and reassess this exception if credentials change.
-        .csrf(CsrfConfigurer::disable)
+        // Resource-server defaults exempt bearer headers; all other requests retain CSRF.
+        .csrf(withDefaults())
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        .exceptionHandling(exceptions -> exceptions.accessDeniedHandler((request, response, denied) -> {
+          if (denied instanceof CsrfException) {
+            // This stateless chain cannot authenticate a session or cookie-only request.
+            entryPoint.commence(request, response,
+                new InsufficientAuthenticationException("A bearer token is required"));
+          } else {
+            deniedHandler.handle(request, response, denied);
+          }
+        }))
         .authorizeHttpRequests(auth -> auth
             .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
             .requestMatchers(HttpMethod.GET,

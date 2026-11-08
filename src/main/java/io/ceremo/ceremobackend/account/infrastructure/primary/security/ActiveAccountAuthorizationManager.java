@@ -16,7 +16,7 @@ import org.springframework.security.web.access.intercept.RequestAuthorizationCon
 public final class ActiveAccountAuthorizationManager
     implements AuthorizationManager<RequestAuthorizationContext> {
   private final Accounts accounts;
-  private final AuthorizationManager<RequestAuthorizationContext> authenticated =
+  private final AuthenticatedAuthorizationManager<RequestAuthorizationContext> authenticated =
       AuthenticatedAuthorizationManager.authenticated();
 
   public ActiveAccountAuthorizationManager(Accounts accounts) {
@@ -26,7 +26,8 @@ public final class ActiveAccountAuthorizationManager
   @Override
   public AuthorizationResult authorize(
       Supplier<? extends Authentication> authentication, RequestAuthorizationContext context) {
-    AuthorizationResult result = authenticated.authorize(authentication, context);
+    AuthorizationResult result = Objects.requireNonNull(
+        authenticated.authorize(authentication, context), "Authentication checker must return a decision");
     if (!result.isGranted()) {
       return result;
     }
