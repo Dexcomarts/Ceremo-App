@@ -26,7 +26,8 @@ public final class ActiveAccountAuthorizationManager
   @Override
   public AuthorizationResult authorize(
       Supplier<? extends Authentication> authentication, RequestAuthorizationContext context) {
-    AuthorizationResult result = authenticated.authorize(authentication, context);
+    AuthorizationResult result = Objects.requireNonNull(
+        authenticated.authorize(authentication, context), "Authentication checker must return a decision");
     if (!result.isGranted()) {
       return result;
     }
