@@ -137,7 +137,7 @@ fi
 
 if [[ "$ci_bootstrap" == true ]]; then
   # This mode is explicitly enabled only for a fresh, disposable CI instance.
-  username=admin
+  username='admin'
   authenticate admin
   printf 'Ci_9!%s' "$(od -An -N32 -tx1 /dev/urandom | tr -d ' \n')" > "$admin_password_file"
   api --request POST "$CEREMO_SONAR_URL/api/users/change_password" \

@@ -5,6 +5,17 @@
     <verify-signatures>false</verify-signatures>
   </configuration>
   <components>
+    <component group="org.gradle" name="github-dependency-graph-gradle-plugin" version="1.5.0">
+      <artifact name="github-dependency-graph-gradle-plugin-1.5.0.jar">
+        <sha256 value="b9f22fb63fcf0e06d0b16c2446ea32442e1fdf7ec2570fe41439c5c8ccc2c1c8" origin="Verified 2026-11-08 by hashing a fresh HTTPS download from https://plugins.gradle.org/m2/org/gradle/github-dependency-graph-gradle-plugin/1.5.0/" />
+      </artifact>
+      <artifact name="github-dependency-graph-gradle-plugin-1.5.0.module">
+        <sha256 value="4a7e577689dba205833b01ad8ab90d44ff585b0ced280fc662a1e4a00ecca63b" origin="Verified 2026-11-08 by hashing a fresh HTTPS download from https://plugins.gradle.org/m2/org/gradle/github-dependency-graph-gradle-plugin/1.5.0/" />
+      </artifact>
+      <artifact name="github-dependency-graph-gradle-plugin-1.5.0.pom">
+        <sha256 value="f8555d200cfcebb55af5d6c9222d8b228d06f7a8b8de6dff3fde0c131a120337" origin="Verified 2026-11-08 by hashing a fresh HTTPS download from https://plugins.gradle.org/m2/org/gradle/github-dependency-graph-gradle-plugin/1.5.0/" />
+      </artifact>
+    </component>
     <component group="biz.aQute.bnd" name="biz.aQute.bnd.annotation" version="7.1.0">
       <artifact name="biz.aQute.bnd.annotation-7.1.0.jar">
         <sha256 value="f69c2de3a695c113d125ac8053c92a680a3ce9d02ea25845095cf2d4626a7663" origin="Verified 2026-11-06 against https://repo.maven.apache.org/maven2/biz/aQute/bnd/biz.aQute.bnd.annotation/7.1.0/biz.aQute.bnd.annotation-7.1.0.jar" />

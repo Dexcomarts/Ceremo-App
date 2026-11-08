@@ -12,6 +12,20 @@ import xml.etree.ElementTree as ET
 import zipfile
 
 MARKER = "<!-- ceremo-backend-report -->"
+WORKFLOWS = {
+    'Backend checks': '.github/workflows/backend.yml',
+    'CodeQL': '.github/workflows/codeql.yml',
+    'Dependency graph': '.github/workflows/dependency-submission.yml',
+    'Publish dependency graph': '.github/workflows/dependency-publish.yml',
+    'Dependency review': '.github/workflows/dependency-review.yml',
+}
+WORKFLOW_DESCRIPTIONS = {
+    'Backend checks': 'Workflow validation, redacted secret scan, both Java suites, coverage and Sonar.',
+    'CodeQL': 'Analyse Java, Python and workflow code; enforce critical/high findings.',
+    'Dependency graph': 'Resolve the complete Gradle inventory with strict verification.',
+    'Publish dependency graph': 'Trusted validation and submission of the generated snapshot.',
+    'Dependency review': 'Compare base/head snapshots and reject critical/high vulnerabilities.',
+}
 STAGES = [
     ("source", "Check out application", "Check out the commit under review."),
     ("java", "Set up Java 25", "Configure the Java toolchain."),
@@ -110,14 +124,22 @@ def coverage_totals(path):
 
 
 def validate_results(data, sha):
-    if not isinstance(data, dict) or not re.fullmatch(r"[0-9a-f]{40}", sha) or data.get("schemaVersion") != 1 or data.get("sha") != sha:
+    if not isinstance(data, dict) or not re.fullmatch(r"[0-9a-f]{40}", sha) or data.get("schemaVersion") not in (1, 2) or data.get("sha") != sha:
         raise ValueError("Report version or commit does not match the run")
 
     def count(value):
         if type(value) is not int or not 0 <= value <= 100_000_000:
             raise ValueError("Invalid report counter")
 
-    clean = {"schemaVersion": 1, "sha": sha}
+    clean = {"schemaVersion": data['schemaVersion'], "sha": sha}
+    if data['schemaVersion'] == 2:
+        for key in ('testedSha', 'prHeadSha', 'baseSha'):
+            value = data.get(key)
+            if not isinstance(value, str) or not re.fullmatch(r'[0-9a-f]{40}', value):
+                raise ValueError('Missing or invalid tested revision metadata')
+            clean[key] = value
+        if clean['prHeadSha'] != sha:
+            raise ValueError('Reported PR head does not match the run')
     for suite in ("unit", "integration"):
         clean[suite] = None
         if data.get(suite) is not None:
@@ -201,7 +223,11 @@ def collect_results(sha, root=Path("build")):
     gate = None
     if gate_path.is_file() and gate_path.stat().st_size:
         gate = read_json(gate_path)
-    return validate_results({"schemaVersion": 1, "sha": sha,
+    revision = {'schemaVersion': 1, 'sha': sha}
+    if os.environ.get('TESTED_SHA'):
+        revision.update(schemaVersion=2, testedSha=os.environ['TESTED_SHA'],
+                        prHeadSha=os.environ['PR_HEAD_SHA'], baseSha=os.environ['BASE_SHA'])
+    return validate_results({**revision,
         "unit": test_totals(root / "test-results/test"),
         "integration": test_totals(root / "test-results/integrationTest"),
         "coverage": coverage_totals(root / "reports/jacoco/combined/combined.xml"),
@@ -221,6 +247,8 @@ def render_comment(run, steps, results=None, job_id=None):
         f"## CEREMO backend checks — {STATES.get(run['conclusion'], STATES['unknown'])}",
         f"Commit `{sha[:12]}` · Attempt {attempt} · [Workflow and reports]({url})", "",
         "| Check | Result | Description | Logs |", "| --- | --- | --- | --- |"]
+    if results and results['schemaVersion'] == 2:
+        lines[4:4] = [f"Tested revision `{results['testedSha']}` · PR head `{results['prHeadSha']}` · Base `{results['baseSha']}`", '']
     for stage, title, description in STAGES:
         step = steps.get(stage, {"conclusion": "unknown"})
         state = step.get("conclusion", "unknown")
@@ -248,7 +276,8 @@ def render_comment(run, steps, results=None, job_id=None):
                 detail += " A completed, evaluated gate result is unavailable."
             if stage == "gate" and gate.get("testImportVerified") is False:
                 detail += " Sonar's imported test totals do not match the real JUnit results."
-        log = f"[Logs]({url}/job/{int(job_id)}#step:{int(step['number'])}:1)" if job_id and step.get("number") else "—"
+        stage_job = step.get('jobId', job_id)
+        log = f"[Logs]({url}/job/{int(stage_job)}#step:{int(step['number'])}:1)" if stage_job and step.get("number") else "—"
         lines.append(f"| {title} | {STATES.get(state, STATES['unknown'])} | {detail} | {log} |")
     gate = (results or {}).get("sonar") or {}
     measures = gate.get("measures", {})
@@ -269,7 +298,7 @@ def render_comment(run, steps, results=None, job_id=None):
         for finding in gate["findings"][:10]:
             anchor = f"#L{finding['line']}" if finding["line"] else ""
             lines.append(f"- [{finding['rule']} — {finding['file']}]"
-                         f"(https://github.com/{repo}/blob/{sha}/{finding['file']}{anchor})")
+                         f"(https://github.com/{repo}/blob/{results.get('testedSha', sha)}/{finding['file']}{anchor})")
         if len(gate["findings"]) > 10:
             lines.append(f"Showing 10 of {len(gate['findings'])} open findings. The quality artifact contains the complete list.")
     lines += ["", "**How to investigate:** open the failed stage's logs and the quality report artifact. "
@@ -307,12 +336,25 @@ def download_results(repo, run):
     if len(matches) != 1:
         return None
 
+    archive = download_archive(repo, matches[0]['id'])
+    with zipfile.ZipFile(io.BytesIO(archive)) as files:
+        # Read a single bounded data entry; never extract or execute artifact files.
+        if files.namelist().count('ci/result.json') != 1:
+            raise ValueError('Expected one result entry')
+        info = files.getinfo("ci/result.json")
+        if info.file_size > 1_000_000:
+            raise ValueError("Result entry exceeds its size limit")
+        return validate_results(json.loads(files.read(info)), run["head_sha"])
+
+
+def download_archive(repo, artifact_id):
+    """Download bounded data without forwarding credentials to artifact storage."""
     class NoRedirect(urllib.request.HTTPRedirectHandler):
         def redirect_request(self, request, fp, code, msg, headers, newurl):
             return None
 
     request = urllib.request.Request(
-        f"https://api.github.com/repos/{repo}/actions/artifacts/{int(matches[0]['id'])}/zip",
+        f"https://api.github.com/repos/{repo}/actions/artifacts/{int(artifact_id)}/zip",
         headers={"Authorization": "Bearer " + os.environ["GH_TOKEN"], "Accept": "application/vnd.github+json"})
     try:
         urllib.request.build_opener(NoRedirect()).open(request, timeout=30)
@@ -331,12 +373,7 @@ def download_results(repo, run):
         raise ValueError(f"Artifact download failed with HTTP {error.code}") from None
     if len(archive) > 8_000_000:
         raise ValueError("Artifact exceeds its download limit")
-    with zipfile.ZipFile(io.BytesIO(archive)) as files:
-        # Read a single bounded data entry; never extract or execute artifact files.
-        info = files.getinfo("ci/result.json")
-        if info.file_size > 1_000_000:
-            raise ValueError("Result entry exceeds its size limit")
-        return validate_results(json.loads(files.read(info)), run["head_sha"])
+    return archive
 
 
 def publish_comment(repo, run_id):
@@ -409,7 +446,8 @@ def main():
     else:
         if args.run_id is None:
             parser.error("--run-id is required for publication")
-        publish_comment(os.environ["GITHUB_REPOSITORY"], args.run_id)
+        from team_report import publish_team_comment
+        publish_team_comment(os.environ["GITHUB_REPOSITORY"], args.run_id)
 
 
 if __name__ == "__main__":

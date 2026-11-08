@@ -72,7 +72,7 @@ new_case() {
   export FAKE_SCENARIO=ok
 }
 expect_failure() {
-  if "$helper" "${@}" > "$test_dir/output" 2>&1; then
+  if "$helper" > "$test_dir/output" 2>&1; then
     printf 'Expected rejection, got success.\n' >&2; exit 1
   fi
   [[ ! -s "$CEREMO_SONAR_TOKEN_FILE" ]]
@@ -106,7 +106,10 @@ grep -q 'type=PROJECT_ANALYSIS_TOKEN' "$FAKE_CALLS"
 grep -q 'projectKey=ceremo_backend' "$FAKE_CALLS"
 [[ "$(grep -c '/api/qualitygates/create_condition' "$FAKE_CALLS")" == 6 ]]
 grep -q 'metric=sqale_rating.*op=GT.*error=1' "$FAKE_CALLS"
-! grep -q 'fixture-analysis-token' "$test_dir/output"
+if grep -q 'fixture-analysis-token' "$test_dir/output"; then
+  printf 'Analysis token appeared in helper output.\n' >&2
+  exit 1
+fi
 if "$helper" > /dev/null 2>&1; then exit 1; fi
 printf 'PASS: CI rotates credentials, scopes its token, configures the gate and rejects reuse\n'
 

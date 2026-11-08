@@ -1,22 +1,31 @@
 name: Backend report
 
 'on':
-  workflow_run:
-    workflows: ['Backend checks']
+  # Only trusted default-branch code runs; artifacts are bounded data, never scripts.
+  workflow_run: # zizmor: ignore[dangerous-triggers]
+    workflows: ['Backend checks', 'CodeQL', 'Dependency graph', 'Publish dependency graph', 'Dependency review']
     types: [completed]
   workflow_dispatch:
     inputs:
       runId:
-        description: Completed Backend checks run to report
+        description: Completed allowlisted quality workflow run to report
         required: true
         type: string
   push:
     paths:
       - '.github/workflows/backend-report.yml'
       - 'scripts/ci_report.py'
+      - 'scripts/team_report.py'
+      - 'scripts/test_team_report.py'
       - 'scripts/test_ci_report.py'
       - 'scripts/sonar_test_report.py'
       - 'scripts/test_sonar_test_report.py'
+      - 'scripts/dependency_snapshot.py'
+      - 'scripts/security_report.py'
+      - 'scripts/ci_tools.py'
+      - 'scripts/test_dependency_snapshot.py'
+      - 'scripts/test_security_report.py'
+      - 'scripts/test_ci_tools.py'
 
 permissions: {}
 
@@ -40,7 +49,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     concurrency:
-      group: backend-report-${{ github.event.workflow_run.head_branch || inputs.runId }}
+      group: ceremo-pr-report
       cancel-in-progress: false
     permissions:
       actions: read
