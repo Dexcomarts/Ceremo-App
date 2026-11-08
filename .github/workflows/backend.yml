@@ -2,7 +2,9 @@ name: Backend checks
 
 'on':
   push:
+    branches: [main]
   pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -13,7 +15,78 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  validation:
+    name: Workflow validation
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      COMPOSE_PROJECT_NAME: ceremo-validation-${{ github.run_id }}-${{ github.run_attempt }}
+      COMPOSE_FILE: src/docker/sonar.yml
+    steps:
+      - name: Check out validation code
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - name: Install checksum-pinned validators
+        run: python3 scripts/ci_tools.py actionlint zizmor
+      - name: Validate workflows and shell commands
+        run: |
+          command -v shellcheck
+          actionlint -shellcheck shellcheck
+          shellcheck scripts/test-sonar-bootstrap.sh src/docker/sonar/sonar_generate_token.sh
+      - name: Analyse workflow security
+        run: |
+          mkdir -p build/reports/security
+          zizmor --offline --format sarif --no-exit-codes .github/workflows > build/reports/security/workflows.sarif
+          python3 scripts/security_report.py sarif --input build/reports/security/workflows.sarif --tool zizmor
+      - name: Test CI reporting
+        run: python3 -m unittest discover -s scripts -p 'test_*.py'
+      - name: Build token helper
+        run: docker compose build sonar-token
+      - name: Test token bootstrap
+        run: |
+          docker compose run --rm --no-deps -T \
+            --volume "$GITHUB_WORKSPACE/scripts/test-sonar-bootstrap.sh:/tmp/test-sonar-bootstrap.sh:ro" \
+            --entrypoint /bin/bash sonar-token /tmp/test-sonar-bootstrap.sh
+      - name: Remove validation resources
+        if: always()
+        run: docker compose --profile tools down --volumes --remove-orphans --timeout 20
+      - name: Save workflow findings
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: workflow-security-${{ github.run_id }}-${{ github.run_attempt }}
+          path: build/reports/security/*.summary.json
+          retention-days: 7
+          if-no-files-found: warn
+  secrets:
+    name: Secret scan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out source history
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Install checksum-pinned secret scanner
+        run: python3 scripts/ci_tools.py gitleaks
+      - name: Scan commits with secrets redacted
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          # Use upstream rules; repository ignore files cannot silently exempt secrets.
+          printf '[extend]\nuseDefault = true\n' > "$RUNNER_TEMP/ceremo-gitleaks.toml"
+          : > "$RUNNER_TEMP/ceremo-gitleaksignore"
+          scan_args=(--config "$RUNNER_TEMP/ceremo-gitleaks.toml" --gitleaks-ignore-path "$RUNNER_TEMP/ceremo-gitleaksignore"
+                     --redact=100 --no-banner --ignore-gitleaks-allow)
+          if [[ "$BASE_SHA" =~ ^[0-9a-f]{40}$ && "$BASE_SHA" != 0000000000000000000000000000000000000000 ]]; then
+            gitleaks git "${scan_args[@]}" --log-opts="$BASE_SHA..HEAD" .
+          else
+            gitleaks git "${scan_args[@]}" .
+          fi
   verify:
+    name: Backend verification
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     env:
@@ -35,29 +108,21 @@ jobs:
         with:
           distribution: temurin
           java-version: '25'
-      - name: Test CI reporting
-        id: reportTests
-        run: python3 -m unittest discover -s scripts -p 'test_*.py'
-      - name: Prepare Linux limits
-        id: linux
+      - name: Set up verified Gradle caching
+        uses: gradle/actions/setup-gradle@3f5f9adaf7d9fecd50b5935e54106014257a94e6 # v6.4.0
+        with:
+          cache-provider: basic
+          cache-read-only: ${{ github.event_name == 'pull_request' || github.ref != 'refs/heads/main' }}
+      - name: Record tested revision
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.sha }}
         run: |
-          sudo sysctl -w vm.max_map_count=524288
-          sudo sysctl -w fs.file-max=131072
-      - name: Build token helper
-        id: helper
-        run: docker compose build sonar-token
-      - name: Test token bootstrap
-        id: bootstrapTests
-        run: |
-          docker compose run --rm --no-deps -T \
-            --volume "$GITHUB_WORKSPACE/scripts/test-sonar-bootstrap.sh:/tmp/test-sonar-bootstrap.sh:ro" \
-            --entrypoint /bin/bash sonar-token /tmp/test-sonar-bootstrap.sh
-      - name: Start SonarQube
-        id: server
-        run: docker compose up --detach --wait --wait-timeout 600 sonar
-      - name: Create analysis token
-        id: bootstrap
-        run: docker compose run --rm --no-deps -T sonar-token
+          {
+            echo "TESTED_SHA=$(git rev-parse HEAD)"
+            echo "PR_HEAD_SHA=$PR_HEAD_SHA"
+            echo "BASE_SHA=$BASE_SHA"
+          } >> "$GITHUB_ENV"
       - name: Run regular tests
         id: unit
         run: bash ./gradlew --no-daemon test
@@ -70,6 +135,20 @@ jobs:
       - name: Build application
         id: package
         run: bash ./gradlew --no-daemon bootJar
+      - name: Prepare Linux limits
+        id: linux
+        run: |
+          sudo sysctl -w vm.max_map_count=524288
+          sudo sysctl -w fs.file-max=131072
+      - name: Build token helper
+        id: helper
+        run: docker compose build sonar-token
+      - name: Start SonarQube
+        id: server
+        run: docker compose up --detach --wait --wait-timeout 600 sonar
+      - name: Create analysis token
+        id: bootstrap
+        run: docker compose run --rm --no-deps -T sonar-token
       - name: Run Sonar analysis
         id: sonar
         run: |
@@ -120,3 +199,18 @@ jobs:
           STEP_RESULTS: ${{ toJSON(steps) }}
           RUN_CANCELLED: ${{ job.status == 'cancelled' }}
         run: python3 scripts/ci_report.py summary
+  result:
+    name: Backend result
+    if: always()
+    needs: [validation, secrets, verify]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Check out result validator
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - name: Require every backend job to pass
+        env:
+          JOB_RESULTS: ${{ toJSON(needs) }}
+        run: python3 scripts/security_report.py jobs

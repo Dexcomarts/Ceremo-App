@@ -1,0 +1,46 @@
+name: Publish dependency graph
+run-name: Dependency publication ${{ github.event.workflow_run.id }} attempt ${{ github.event.workflow_run.run_attempt }}
+
+'on':
+  # Trusted default-branch code validates bounded JSON; it never executes PR artifacts.
+  workflow_run: # zizmor: ignore[dangerous-triggers]
+    workflows: [Dependency graph]
+    types: [completed]
+
+permissions: {}
+
+concurrency:
+  group: dependency-publish-${{ github.event.workflow_run.head_sha }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Submit verified dependency snapshot
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      actions: read
+      contents: write
+      pull-requests: read
+    steps:
+      - name: Check out trusted snapshot validator
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          ref: ${{ github.workflow_sha }}
+          persist-credentials: false
+      - name: Validate source and submit dependency data
+        id: snapshot
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN_ID: ${{ github.event.workflow_run.id }}
+          SOURCE_RUN_ATTEMPT: ${{ github.event.workflow_run.run_attempt }}
+        run: python3 scripts/dependency_snapshot.py publish --run-id "$SOURCE_RUN_ID" --attempt "$SOURCE_RUN_ATTEMPT"
+      - name: Save accepted snapshot receipt
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: dependency-publication-${{ steps.snapshot.outputs.sourceSha }}
+          path: build/reports/dependencies/publication.json
+          retention-days: 7
+          if-no-files-found: error
+          overwrite: true

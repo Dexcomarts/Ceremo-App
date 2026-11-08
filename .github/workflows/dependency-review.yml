@@ -1,0 +1,52 @@
+name: Dependency review
+
+'on':
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      baseRef:
+        description: Exact base commit to compare
+        required: true
+        type: string
+      headRef:
+        description: Exact candidate commit to compare
+        required: true
+        type: string
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: dependency-review-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    name: Review dependency vulnerabilities
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out snapshot precondition
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - name: Require accepted base and candidate snapshots
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || inputs.baseRef }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || inputs.headRef }}
+        run: python3 scripts/dependency_snapshot.py ready --base "$BASE_SHA" --head "$HEAD_SHA"
+      - name: Review complete dependency changes
+        uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
+        with:
+          base-ref: ${{ github.event.pull_request.base.sha || inputs.baseRef }}
+          head-ref: ${{ github.event.pull_request.head.sha || inputs.headRef }}
+          fail-on-severity: high
+          fail-on-scopes: runtime, development, unknown
+          license-check: false
+          warn-only: false
+          retry-on-snapshot-warnings: true
+          retry-on-snapshot-warnings-timeout: 60
+          comment-summary-in-pr: never
