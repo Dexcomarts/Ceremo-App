@@ -50,8 +50,15 @@ report() {
   api --get "$CEREMO_SONAR_URL/api/measures/component" \
     --data-urlencode "component=$project_key" \
     --data-urlencode 'metricKeys=security_hotspots' > "$work_dir/measures.json"
+  # Public source locations only; never include raw messages or source snippets.
+  if ! api --get "$CEREMO_SONAR_URL/api/issues/search" \
+      --data-urlencode "componentKeys=$project_key" --data-urlencode 'types=BUG,VULNERABILITY' \
+      --data-urlencode 'resolved=false' --data-urlencode 'ps=10' > "$work_dir/issues.json"; then
+    printf '{"issues":[]}' > "$work_dir/issues.json"
+  fi
   # No hotspot measure means no hotspots. Other missing gate conditions fail closed.
-  jq -n --slurpfile gate "$work_dir/gate.json" --slurpfile measures "$work_dir/measures.json" '
+  jq -n --slurpfile gate "$work_dir/gate.json" --slurpfile measures "$work_dir/measures.json" \
+    --slurpfile issues "$work_dir/issues.json" --arg prefix "$project_key:" '
     ($gate[0].projectStatus) as $s |
     ([ $measures[0].component.measures[] | select(.metric == "security_hotspots") |
       .value | tonumber ][0] // 0) as $hotspots |
@@ -60,6 +67,8 @@ report() {
       status: $s.status,
       scope: "overall code; temporary server, no retained review history",
       hotspots: $hotspots,
+      findings: [($issues[0].issues // [])[] |
+        {rule, file: (.component | ltrimstr($prefix)), line}],
       conditions: [$s.conditions[] | {metric: .metricKey, status, value: .actualValue, threshold: .errorThreshold}],
       policyEvaluated: (
         ($s.ignoredConditions == false) and

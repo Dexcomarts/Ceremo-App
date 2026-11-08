@@ -156,8 +156,21 @@ def validate_results(data, sha):
                     raise ValueError("Invalid gate measurement")
                 item[key] = value
             conditions.append(item)
+        findings = []
+        if not isinstance(gate.get("findings", []), list) or len(gate.get("findings", [])) > 10:
+            raise ValueError("Invalid source findings")
+        for finding in gate.get("findings", []):
+            if not isinstance(finding, dict) or not re.fullmatch(r"[a-z][a-z0-9_-]*:S[0-9]{1,6}", finding.get("rule", "")):
+                raise ValueError("Invalid rule identifier")
+            file = finding.get("file", "")
+            if not isinstance(file, str) or not re.fullmatch(r"(?:(?:src|scripts)/[A-Za-z0-9_./-]{1,300}|(?:build|settings)\.gradle\.kts)", file) or ".." in file.split("/"):
+                raise ValueError("Invalid source path")
+            line = finding.get("line")
+            if line is not None and (type(line) is not int or not 1 <= line <= 1_000_000):
+                raise ValueError("Invalid source line")
+            findings.append({"rule": finding["rule"], "file": file, "line": line})
         clean["sonar"] = {"status": gate["status"], "policyEvaluated": gate["policyEvaluated"],
-                          "conditions": conditions}
+                          "conditions": conditions, "findings": findings}
     return clean
 
 
@@ -213,6 +226,12 @@ def render_comment(run, steps, results=None, job_id=None):
                 detail += " A completed, evaluated gate result is unavailable."
         log = f"[Logs]({url}/job/{int(job_id)}#step:{int(step['number'])}:1)" if job_id and step.get("number") else "—"
         lines.append(f"| {title} | {STATES.get(state, STATES['unknown'])} | {detail} | {log} |")
+    if results and (results.get("sonar") or {}).get("findings"):
+        lines += ["", "**Source findings:**"]
+        for finding in results["sonar"]["findings"]:
+            anchor = f"#L{finding['line']}" if finding["line"] else ""
+            lines.append(f"- [{finding['rule']} — {finding['file']}]"
+                         f"(https://github.com/{repo}/blob/{sha}/{finding['file']}{anchor})")
     lines += ["", "**How to investigate:** open the failed stage's logs and the quality report artifact. "
               "A failed test/build may prevent later checks from running. Missing data is not a passing result."]
     if results is None:

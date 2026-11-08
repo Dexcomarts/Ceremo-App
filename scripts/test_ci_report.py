@@ -112,6 +112,17 @@ class ReportTest(unittest.TestCase):
         self.assertNotIn("rawLog", clean)
         self.assertNotIn("@someone", report.render_comment(run(), {}, clean))
 
+    def test_source_findings_link_to_the_exact_tested_revision(self):
+        data = results()
+        data["sonar"] = {"status": "ERROR", "policyEvaluated": True, "conditions": [],
+            "findings": [{"rule": "java:S2259", "file": "src/main/java/Example.java", "line": 30}]}
+        body = report.render_comment(run(), {}, report.validate_results(data, SHA))
+        self.assertIn(f"/blob/{SHA}/src/main/java/Example.java#L30", body)
+        for file in ("src/../private.txt", "https://untrusted.example", "src/@someone.java"):
+            data["sonar"]["findings"][0]["file"] = file
+            with self.subTest(file=file), self.assertRaises(ValueError):
+                report.validate_results(data, SHA)
+
 
 class PublisherTest(unittest.TestCase):
     def setUp(self):
