@@ -18,6 +18,18 @@ def workflow(name, identifier=1, state='success'):
 
 
 class TeamReportTest(unittest.TestCase):
+    def test_ambiguous_pr_association_never_selects_a_comment_lock(self):
+        first = {'number': 7, 'state': 'open', 'head': {'sha': SHA},
+                 'base': {'ref': 'main', 'repo': {'full_name': REPO}}}
+        second = {**first, 'number': 8}
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / 'outputs'
+            with patch.dict(os.environ, {'GITHUB_OUTPUT': str(output)}), \
+                    patch.object(ci_report, 'github_request', side_effect=[workflow('CodeQL'), first, second]), \
+                    patch.object(ci_report, 'pages', return_value=[first, second]), self.assertRaises(ValueError):
+                team_report.resolve_pull_request(REPO, 123)
+            self.assertFalse(output.exists())
+
     def test_publisher_run_title_requires_the_exact_workflow_path_and_event(self):
         run = workflow('Publish dependency graph')
         run.update({'event': 'workflow_run', 'name': 'Dependency publication 123 attempt 1',
