@@ -1,6 +1,7 @@
 """Aggregate current checks without executing code from the pull request."""
 
 import html
+import os
 import re
 import urllib.error
 import zipfile
@@ -12,7 +13,7 @@ from dependency_snapshot import publication_receipt
 def latest_runs(values, sha):
     result = {}
     for run in values:
-        name = run.get('name')
+        name = ci.workflow_name(run)
         if (name not in ci.WORKFLOWS or run.get('path') != ci.WORKFLOWS[name] or
                 run.get('head_sha') != sha):
             continue
@@ -100,11 +101,11 @@ def measurements(repo, backend, pr, sha):
     return None
 
 
-def publish_team_comment(repo, run_id):
+def reporting_source(repo, run_id):
     if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', repo):
         raise ValueError('Invalid repository')
     trigger = ci.github_request(f'/repos/{repo}/actions/runs/{int(run_id)}')
-    name = trigger.get('name')
+    name = ci.workflow_name(trigger)
     if (name not in ci.WORKFLOWS or trigger.get('path') != ci.WORKFLOWS[name] or
             trigger.get('status') != 'completed' or trigger.get('repository', {}).get('full_name') != repo):
         raise ValueError('Expected a completed allowlisted workflow in this repository')
@@ -123,6 +124,28 @@ def publish_team_comment(repo, run_id):
         sha = producer['head_sha']
     if not re.fullmatch(r'[a-f0-9]{40}', sha):
         raise ValueError('Invalid source revision')
+    return trigger, sha
+
+
+def resolve_pull_request(repo, run_id):
+    _, sha = reporting_source(repo, run_id)
+    matches = []
+    for candidate in ci.pages(f'/repos/{repo}/commits/{sha}/pulls'):
+        number = int(candidate['number'])
+        pr = ci.github_request(f'/repos/{repo}/pulls/{number}')
+        if eligible_pr(pr, repo, sha):
+            matches.append(number)
+    if len(matches) > 1:
+        raise ValueError('Cannot select a unique current pull request')
+    if matches:
+        with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:
+            output.write(f'pullRequest={matches[0]}\n')
+    else:
+        print('No current open PR; no comment job is needed.')
+
+
+def publish_team_comment(repo, run_id):
+    _, sha = reporting_source(repo, run_id)
     for candidate in ci.pages(f'/repos/{repo}/commits/{sha}/pulls'):
         number = int(candidate['number'])
         pr = ci.github_request(f'/repos/{repo}/pulls/{number}')
@@ -135,7 +158,7 @@ def publish_team_comment(repo, run_id):
             title = f'Dependency publication {producer["id"]} attempt {producer["run_attempt"]}'
             publishers = ci.pages(f'/repos/{repo}/actions/workflows/dependency-publish.yml/runs', 'workflow_runs')
             candidates = [r for r in publishers if r.get('display_title') == title and
-                          r.get('name') == 'Publish dependency graph' and r.get('event') == 'workflow_run' and
+                          ci.workflow_name(r) == 'Publish dependency graph' and r.get('event') == 'workflow_run' and
                           r.get('path') == ci.WORKFLOWS['Publish dependency graph'] and
                           r.get('repository', {}).get('full_name') == repo]
             if candidates:

@@ -1,4 +1,7 @@
 import unittest
+import os
+from pathlib import Path
+import tempfile
 from unittest.mock import patch
 
 import ci_report
@@ -15,6 +18,35 @@ def workflow(name, identifier=1, state='success'):
 
 
 class TeamReportTest(unittest.TestCase):
+    def test_publisher_run_title_requires_the_exact_workflow_path_and_event(self):
+        run = workflow('Publish dependency graph')
+        run.update({'event': 'workflow_run', 'name': 'Dependency publication 123 attempt 1',
+                    'display_title': 'Dependency publication 123 attempt 1'})
+        self.assertEqual(ci_report.workflow_name(run), 'Publish dependency graph')
+        for key, value in [('path', '.github/workflows/forged.yml'), ('event', 'pull_request'),
+                           ('name', 'Dependency publication attacker')]:
+            with self.subTest(key=key):
+                self.assertIsNone(ci_report.workflow_name({**run, key: value}))
+
+    def test_read_only_resolver_outputs_only_a_current_verified_pr_number(self):
+        pr = {'number': 7, 'state': 'open', 'head': {'sha': SHA},
+              'base': {'ref': 'main', 'repo': {'full_name': REPO}}}
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / 'outputs'
+            with patch.dict(os.environ, {'GITHUB_OUTPUT': str(output)}), \
+                    patch.object(ci_report, 'github_request', side_effect=[workflow('CodeQL'), pr]) as api, \
+                    patch.object(ci_report, 'pages', return_value=[pr]):
+                team_report.resolve_pull_request(REPO, 123)
+                self.assertEqual(output.read_text(), 'pullRequest=7\n')
+                self.assertTrue(all(len(call.args) == 1 for call in api.call_args_list))
+            pr['head']['sha'] = 'b' * 40
+            output.write_text('')
+            with patch.dict(os.environ, {'GITHUB_OUTPUT': str(output)}), \
+                    patch.object(ci_report, 'github_request', side_effect=[workflow('CodeQL'), pr]), \
+                    patch.object(ci_report, 'pages', return_value=[pr]):
+                team_report.resolve_pull_request(REPO, 123)
+                self.assertEqual(output.read_text(), '')
+
     def test_latest_attempt_is_used_even_when_an_older_workflow_finished_last(self):
         values = [workflow('CodeQL', 1, 'success'), workflow('CodeQL', 2, 'failure')]
         self.assertEqual(team_report.latest_runs(values, SHA)['CodeQL']['id'], 2)

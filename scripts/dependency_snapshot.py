@@ -9,7 +9,7 @@ import re
 import time
 import zipfile
 
-from ci_report import download_archive, github_request, pages, read_json
+from ci_report import download_archive, github_request, pages, read_json, workflow_name
 
 LIMIT = 5_000_000
 
@@ -134,7 +134,8 @@ def publish(run_id, attempt):
     if ref == 'refs/heads/main' and github_request(f'/repos/{repo}/branches/main')['commit']['sha'] != sha:
         raise ValueError('Main changed during validation')
     accepted = github_request(f'/repos/{repo}/dependency-graph/snapshots', 'POST', snapshot)
-    if accepted.get('result') != 'SUCCESS':
+    response_result = accepted.get('result')
+    if response_result not in ('SUCCESS', 'ACCEPTED'):
         raise ValueError('GitHub did not confirm dependency snapshot acceptance')
     receipt = {'sha': sha, 'sourceRunId': run_id, 'sourceAttempt': attempt, 'accepted': True}
     target = Path('build/reports/dependencies/publication.json')
@@ -143,7 +144,7 @@ def publish(run_id, attempt):
     if os.environ.get('GITHUB_OUTPUT'):
         with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:
             output.write(f'sourceSha={sha}\n')
-    print('GitHub accepted the verified dependency snapshot.')
+    print(f'GitHub accepted the verified dependency snapshot ({response_result}).')
 
 
 def publication_receipt(repo, sha):
@@ -152,7 +153,7 @@ def publication_receipt(repo, sha):
         if artifact['expired'] or artifact['name'] != f'dependency-publication-{sha}':
             continue
         run = github_request(f'/repos/{repo}/actions/runs/{int(artifact["workflow_run"]["id"])}')
-        if (run.get('name') != 'Publish dependency graph' or run.get('event') != 'workflow_run' or
+        if (workflow_name(run) != 'Publish dependency graph' or run.get('event') != 'workflow_run' or
                 run.get('path') != '.github/workflows/dependency-publish.yml' or
                 run.get('repository', {}).get('full_name') != repo or run.get('conclusion') != 'success'):
             continue
@@ -174,20 +175,29 @@ def publication_receipt(repo, sha):
     return None
 
 
+def snapshots_indexed(repo, base, head):
+    data, headers = github_request(f'/repos/{repo}/dependency-graph/compare/{base}...{head}', include_headers=True)
+    if not isinstance(data, list):
+        raise ValueError('GitHub dependency comparison returned an invalid result')
+    # The official review action uses this header to detect missing snapshots.
+    # Do not turn its retry exhaustion into a passing review.
+    return not headers.get('x-github-dependency-graph-snapshot-warnings', '')
+
+
 def require_publications(repo, base, head, timeout=600):
     text(repo, r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', 'repository')
     for sha in (base, head):
         text(sha, r'[a-f0-9]{40}', 'snapshot commit')
     deadline = time.monotonic() + timeout
     pending = {base, head}
-    while pending:
+    while True:
         pending = {sha for sha in pending if publication_receipt(repo, sha) is None}
-        if not pending:
-            print('Accepted base and candidate snapshots verified.')
+        if not pending and snapshots_indexed(repo, base, head):
+            print('Accepted base and candidate snapshots verified and available for comparison.')
             return
         if time.monotonic() >= deadline:
             raise ValueError('Required accepted dependency snapshot is unavailable; review cannot pass')
-        print(f'Waiting for {len(pending)} accepted dependency snapshot(s).')
+        print(f'Waiting for accepted/indexed dependency evidence; {len(pending)} receipt(s) unavailable.')
         time.sleep(min(10, max(0, deadline - time.monotonic())))
 
 
