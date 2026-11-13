@@ -93,10 +93,14 @@ management:
       access: read-only
       probes:
         enabled: true
-      show-details: always
+      show-details: when-authorized
+      show-components: when-authorized
+      roles:
+        - ROLE_ADMIN
   endpoints:
     access:
       default: none
+      max-permitted: read-only
     jmx:
       exposure:
         exclude: '*'
@@ -104,13 +108,7 @@ management:
       base-path: /management
       exposure:
         include:
-          - configprops
-          - env
           - health
-          - info
-          - logfile
-          - loggers
-          - threaddump
 server:
   port: 8080
 springdoc:
