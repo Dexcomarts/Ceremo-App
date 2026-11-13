@@ -90,7 +90,7 @@ public final class CeremoPage<T> {
   }
 
   public boolean isNotLast() {
-    return currentPage + 1 < pageCount();
+    return currentPage < pageCount() - 1;
   }
 
   public <R> CeremoPage<R> map(Function<T, R> mapper) {

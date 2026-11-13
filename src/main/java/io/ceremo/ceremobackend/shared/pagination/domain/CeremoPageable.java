@@ -17,7 +17,7 @@ public class CeremoPageable {
 
     this.page = page;
     this.pageSize = pageSize;
-    offset = page * pageSize;
+    offset = Math.multiplyExact(page, pageSize);
   }
 
   public int page() {

@@ -6,6 +6,9 @@ import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validation;
 import jakarta.validation.constraints.NotBlank;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.test.system.CapturedOutput;
+import org.springframework.boot.test.system.OutputCaptureExtension;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,6 +21,31 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 class BeanValidationErrorsHandlerTest {
   private final BeanValidationErrorsHandler handler = new BeanValidationErrorsHandler();
   private final MockHttpServletRequest request = new MockHttpServletRequest("POST", "/api/v1/providers");
+
+  @Test
+  @ExtendWith(OutputCaptureExtension.class)
+  void logsNoRequestControlledTextWhenBodyValidationFails(CapturedOutput output) throws Exception {
+    var forged = new MockHttpServletRequest("POST", "/api/v1/providers\r\nFORGED-ADMIN-LOGIN");
+    var binding = bindingResult();
+    binding.addError(new FieldError("input", "name", "must not be blank"));
+
+    handler.handleMethodArgumentNotValid(exception(binding), forged);
+
+    assertThat(output).contains("Bean validation failed for 1 field(s)").doesNotContain("FORGED-ADMIN-LOGIN");
+  }
+
+  @Test
+  @ExtendWith(OutputCaptureExtension.class)
+  void logsNoRequestControlledTextWhenParameterValidationFails(CapturedOutput output) {
+    var forged = new MockHttpServletRequest("GET", "/api/v1/providers\r\nFORGED-ADMIN-LOGIN");
+    try (var factory = Validation.buildDefaultValidatorFactory()) {
+      var exception = new ConstraintViolationException(factory.getValidator().validate(new BlankMessageInput()));
+
+      handler.handleConstraintViolationException(exception, forged);
+    }
+
+    assertThat(output).contains("Bean validation failed for 1 field(s)").doesNotContain("FORGED-ADMIN-LOGIN");
+  }
 
   @Test
   void keepsObjectLevelValidationErrors() throws Exception {

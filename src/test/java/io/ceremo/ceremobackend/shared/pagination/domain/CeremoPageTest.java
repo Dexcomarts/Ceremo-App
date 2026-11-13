@@ -102,6 +102,18 @@ class CeremoPageTest {
   }
 
   @Test
+  void shouldBeLastBeyondTheFinalPageEvenAtTheLargestPageNumber() {
+    CeremoPage<String> page = CeremoPage.builder(List.<String>of())
+      .currentPage(Integer.MAX_VALUE)
+      .pageSize(1)
+      .totalElementsCount(3)
+      .build();
+
+    assertThat(page.isNotLast()).isFalse();
+    assertThat(page.hasNext()).isFalse();
+  }
+
+  @Test
   void shouldBeLastForLastPage() {
     assertThat(pageBuilder().currentPage(2).build().isNotLast()).isFalse();
   }
