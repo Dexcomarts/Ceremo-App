@@ -7,6 +7,6 @@ public final class UserAlreadyExistsException extends CeremoException {
     public UserAlreadyExistsException() {
         super(CeremoException.builder(UserErrorKey.USER_ALREADY_EXISTS)
             .status(ErrorStatus.CONFLICT)
-            .message("A CEREMO account already exists for this identity."));
+            .message("A ceremo account already exists for this identity."));
     }
 }

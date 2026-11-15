@@ -145,7 +145,7 @@ if [[ "$ci_bootstrap" == true ]]; then
     --data-urlencode "password@$admin_password_file" > /dev/null
   authenticate "$(< "$admin_password_file")"
   api --request POST "$CEREMO_SONAR_URL/api/projects/create" \
-    --data-urlencode "project=$project_key" --data-urlencode 'name=CEREMO Backend' \
+    --data-urlencode "project=$project_key" --data-urlencode 'name=ceremo Backend' \
     --data-urlencode 'visibility=private' > /dev/null
   api --request POST "$CEREMO_SONAR_URL/api/qualitygates/create" \
     --data-urlencode "name=$gate_name" > /dev/null

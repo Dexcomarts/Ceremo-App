@@ -57,5 +57,16 @@ class ApplicationSecurityProperties {
     public void setAudience(@NotNull List<String> audience) {
       this.audience = new ArrayList<>(audience);
     }
+
+    private List<String> offlineClients = List.of();
+
+    /** Client IDs whose offline-session tokens the API accepts (ADR 11.13: the Android client only). */
+    public List<String> getOfflineClients() {
+      return offlineClients;
+    }
+
+    public void setOfflineClients(@NotNull List<String> offlineClients) {
+      this.offlineClients = List.copyOf(offlineClients);
+    }
   }
 }

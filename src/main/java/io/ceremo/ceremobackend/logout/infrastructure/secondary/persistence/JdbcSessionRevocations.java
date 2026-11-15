@@ -34,4 +34,12 @@ public class JdbcSessionRevocations implements SessionRevocations {
         """, CeremoUUID.generate(), session.identity().issuer(), session.identity().subject(),
         session.id(), Timestamp.from(revokedAt));
   }
+
+  @Override
+  @Transactional
+  public int purgeRevokedBefore(Instant cutoff) {
+    // Adapted from Spring Session JDBC DELETE_SESSIONS_BY_EXPIRY_TIME_QUERY: one idempotent, indexed statement.
+    return jdbc.update("delete from revoked_session where revoked_at < ?",
+        Timestamp.from(Objects.requireNonNull(cutoff, "cutoff")));
+  }
 }

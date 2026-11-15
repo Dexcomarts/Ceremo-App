@@ -71,7 +71,12 @@ spring:
 application:
   version: '1.0.0'
   registration:
+    # Unset or blank: the API runs but registration returns 403 registration-closed until terms are published.
     terms-version: ${CEREMO_TERMS_VERSION:}
+  logout:
+    # Must outlive the Android offline-session maximum (90 d, ADR 11.13) + token cap + skew. LogoutProperties enforces P91D to P120D.
+    revocation-retention: P92D
+    revocation-purge-cron: "0 */15 * * * *"
   logging:
     logstash:
       tcp:
@@ -87,6 +92,8 @@ application:
   security:
     oauth2:
       audience: ceremo-api
+      # ADR 11.13: only the Android client may use offline-session tokens.
+      offline-clients: android_app
 management:
   endpoint:
     health:

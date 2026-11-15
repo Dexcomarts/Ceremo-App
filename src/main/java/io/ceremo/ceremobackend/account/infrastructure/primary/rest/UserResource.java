@@ -7,6 +7,7 @@ import io.ceremo.ceremobackend.account.domain.exception.UserErrorKey;
 import io.ceremo.ceremobackend.account.domain.model.User;
 import io.ceremo.ceremobackend.account.infrastructure.primary.rest.dto.request.RestRegisterUserRequest;
 import io.ceremo.ceremobackend.account.infrastructure.primary.rest.dto.response.RestUserResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.net.URI;
 import java.util.Objects;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/api/v1/users/me", produces = MediaType.APPLICATION_JSON_VALUE)
+@Tag(name = "My account", description = "The signed-in person's ceremo account, session and team invitations")
 public class UserResource {
 
     private final UserAccounts accounts;

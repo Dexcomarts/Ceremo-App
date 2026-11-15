@@ -44,15 +44,27 @@ class AccountConfigurationTest {
     }
 
     @Test
-    void rejectsMissingTermsConfiguration() {
-        runner.run(context -> assertThat(context).hasFailed()
-            .getFailure().hasRootCauseInstanceOf(AssertionException.class));
+    void startsWithRegistrationClosedWhenNoTermsAreConfigured() {
+        runner.run(context -> {
+            assertThat(context).hasNotFailed().hasSingleBean(UserAccounts.class);
+            assertThat(context.getBean(UserRegistrationProperties.class).termsVersion()).isNull();
+        });
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", " ", "this-terms-version-is-longer-than-forty-characters"})
-    void rejectsBlankOrOversizedTermsConfiguration(String version) {
+    @ValueSource(strings = {"", " "})
+    void treatsBlankTermsConfigurationAsRegistrationClosed(String version) {
         runner.withPropertyValues("application.registration.terms-version=" + version)
+            .run(context -> {
+                assertThat(context).hasNotFailed().hasSingleBean(UserAccounts.class);
+                assertThat(context.getBean(UserRegistrationProperties.class).termsVersion()).isNull();
+            });
+    }
+
+    @Test
+    void rejectsAnOversizedTermsVersionAsAConfigurationError() {
+        runner.withPropertyValues(
+                "application.registration.terms-version=this-terms-version-is-longer-than-forty-characters")
             .run(context -> assertThat(context).hasFailed()
                 .getFailure().hasRootCauseInstanceOf(AssertionException.class));
     }

@@ -104,8 +104,9 @@ val verifyCoverageInputs = tasks.register("verifyCoverageInputs") {
     group = "verification"
     description = "Rejects absent or empty coverage data from either required test suite."
     dependsOn(tasks.test, integrationTest)
+    val executionDataFiles = combinedExecutionData
     doLast {
-        check(combinedExecutionData.files.all { it.isFile && it.length() > 0 }) {
+        check(executionDataFiles.files.all { it.isFile && it.length() > 0 }) {
             "Both test suites must supply JaCoCo execution data."
         }
     }
@@ -165,7 +166,7 @@ val sonarTestReport = tasks.register<Exec>("sonarTestReport") {
 sonar {
     properties {
         property("sonar.projectKey", "ceremo_backend")
-        property("sonar.projectName", "CEREMO Backend")
+        property("sonar.projectName", "ceremo Backend")
         property("sonar.host.url", providers.environmentVariable("SONAR_HOST_URL")
             .orElse("http://localhost:9001").get())
         property("sonar.qualitygate.wait", true)

@@ -84,6 +84,15 @@ try {
                 # Plugin marker POMs are resolved from the Plugin Portal by Gradle's plugins DSL.
                 $repositories = @('https://plugins.gradle.org/m2/', 'https://repo.maven.apache.org/maven2/')
             }
+            # IDE sync resolves Gradle's own distribution sources (gradle:gradle) from Gradle's distribution
+            # server, the same server the wrapper already pins by SHA-256. Check only that server's published checksum.
+            if ($item.Group -eq 'gradle' -and $item.Name -eq 'gradle') {
+                if ($item.FileName -ne "gradle-$($item.Version)-src.zip") {
+                    throw 'Only the Gradle source distribution may be pinned under gradle:gradle.'
+                }
+                $path = [uri]::EscapeDataString($item.FileName)
+                $repositories = @('https://downloads.gradle.org/distributions/')
+            }
             foreach ($repository in $repositories) {
                 $artifactUrl = $repository + $path
                 $checksumUrl = $artifactUrl + '.sha256'
