@@ -36,7 +36,8 @@ class RevocationPurgeJobTest {
   @Test
   void letsTheSchedulerSeeFailuresSoTheNextRunRetries() {
     when(retention.purgeExpired()).thenThrow(new IllegalStateException("Database unavailable"));
-    assertThatThrownBy(() -> new RevocationPurgeJob(retention, "-").purge()).isInstanceOf(IllegalStateException.class);
+    RevocationPurgeJob job = new RevocationPurgeJob(retention, "-");
+    assertThatThrownBy(job::purge).isInstanceOf(IllegalStateException.class);
   }
 
   @Test
