@@ -12,6 +12,9 @@
       <artifact name="biz.aQute.bnd.annotation-7.1.0.pom">
         <sha256 value="5822df49183df922ba59ae773a2d8cceb86ae1e20f41f19873131dd182494f7a" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/biz/aQute/bnd/biz.aQute.bnd.annotation/7.1.0/biz.aQute.bnd.annotation-7.1.0.pom" />
       </artifact>
+      <artifact name="biz.aQute.bnd.annotation-7.1.0-sources.jar">
+        <sha256 value="a60b7ec93ec278fff28ab8c6792a8fb738e0c7c0a9f8cab22dc3730b776adb36" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/biz/aQute/bnd/biz.aQute.bnd.annotation/7.1.0/biz.aQute.bnd.annotation-7.1.0-sources.jar" />
+      </artifact>
     </component>
     <component group="ch.qos.logback" name="logback-classic" version="1.5.38">
       <artifact name="logback-classic-1.5.38.jar">
@@ -20,6 +23,9 @@
       <artifact name="logback-classic-1.5.38.pom">
         <sha256 value="63313f843b669c60255e66f2c52a9c1d3af3787009d9f389159e35a691b63857" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/ch/qos/logback/logback-classic/1.5.38/logback-classic-1.5.38.pom.sha256" />
       </artifact>
+      <artifact name="logback-classic-1.5.38-sources.jar">
+        <sha256 value="7f0a30657cb7b63379686419924e73851fa7e5159e0c3d7c653646030a142643" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/ch/qos/logback/logback-classic/1.5.38/logback-classic-1.5.38-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="ch.qos.logback" name="logback-core" version="1.5.38">
       <artifact name="logback-core-1.5.38.jar">
@@ -27,6 +33,9 @@
       </artifact>
       <artifact name="logback-core-1.5.38.pom">
         <sha256 value="dba1707f025202fe344052163c3419a0f03d056777ac5c346175e5523c937d60" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/ch/qos/logback/logback-core/1.5.38/logback-core-1.5.38.pom.sha256" />
+      </artifact>
+      <artifact name="logback-core-1.5.38-sources.jar">
+        <sha256 value="682355ce7b96b8c6350ae20df86fe13ea262ef6b5d863833f26da1f700d6800a" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/ch/qos/logback/logback-core/1.5.38/logback-core-1.5.38-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="ch.qos.logback" name="logback-parent" version="1.5.38">
@@ -40,6 +49,9 @@
       </artifact>
       <artifact name="classmate-1.7.3.pom">
         <sha256 value="ba4b3c0bbc05e9069fca3469750d0e222a56c487be715af2edb43218faefdb70" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/fasterxml/classmate/1.7.3/classmate-1.7.3.pom.sha256" />
+      </artifact>
+      <artifact name="classmate-1.7.3-sources.jar">
+        <sha256 value="b0690a771dc54865c3d0ad9ab6abb319633b6b88849900a28f719e792c15fc68" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/fasterxml/classmate/1.7.3/classmate-1.7.3-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="com.fasterxml" name="oss-parent" version="68">
@@ -117,6 +129,9 @@
       <artifact name="jackson-annotations-2.21.pom">
         <sha256 value="71cac5392151e2a528cc9a09179f0a334179f05c52f8e596cf58ddf12bb27f2b" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.21/jackson-annotations-2.21.pom.sha256" />
       </artifact>
+      <artifact name="jackson-annotations-2.21-sources.jar">
+        <sha256 value="71fe6323d91b16d5d1007fd1e1533fa06bb369abde74f68a42a68c0f8f061a8b" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.21/jackson-annotations-2.21-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="com.fasterxml.jackson.core" name="jackson-core" version="2.21.5">
       <artifact name="jackson-core-2.21.5.jar">
@@ -127,6 +142,9 @@
       </artifact>
       <artifact name="jackson-core-2.21.5.pom">
         <sha256 value="37620f59b78916d8be56301c73384d15d545c0e217431bc6d127a8d880df407d" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.21.5/jackson-core-2.21.5.pom.sha256" />
+      </artifact>
+      <artifact name="jackson-core-2.21.5-sources.jar">
+        <sha256 value="e464633f6a2486177e6f891fb6cdd5b2a38162b4e827c0d1709c01023b5dd85c" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.21.5/jackson-core-2.21.5-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="com.fasterxml.jackson.core" name="jackson-databind" version="2.21.5">
@@ -139,6 +157,9 @@
       <artifact name="jackson-databind-2.21.5.pom">
         <sha256 value="72eeec36add46cd7d185fed89265cdb97a7fc05cf3413ce2a59440efe1823a12" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.21.5/jackson-databind-2.21.5.pom.sha256" />
       </artifact>
+      <artifact name="jackson-databind-2.21.5-sources.jar">
+        <sha256 value="2d51897bf8e488d4216d01dc32eb9226dd522fd7fb3ad4fe2f10a81cecd53f02" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.21.5/jackson-databind-2.21.5-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="com.fasterxml.jackson.dataformat" name="jackson-dataformat-yaml" version="2.21.5">
       <artifact name="jackson-dataformat-yaml-2.21.5.jar">
@@ -149,6 +170,9 @@
       </artifact>
       <artifact name="jackson-dataformat-yaml-2.21.5.pom">
         <sha256 value="a5c54010e6519353cb538acf05470b7cf20691137162f8080002ba8d4a1d8e12" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.21.5/jackson-dataformat-yaml-2.21.5.pom.sha256" />
+      </artifact>
+      <artifact name="jackson-dataformat-yaml-2.21.5-sources.jar">
+        <sha256 value="07ba5aa918a25205249e634399a9e5275d4401a4c34fc3fdd3ac1ad1eba98011" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.21.5/jackson-dataformat-yaml-2.21.5-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="com.fasterxml.jackson.dataformat" name="jackson-dataformats-text" version="2.21.5">
@@ -166,6 +190,9 @@
       <artifact name="jackson-datatype-jsr310-2.21.5.pom">
         <sha256 value="8c5be66c8bf205b94ed0f4534d92a5986fe88a0fd3aed12126655730100dff1a" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.21.5/jackson-datatype-jsr310-2.21.5.pom.sha256" />
       </artifact>
+      <artifact name="jackson-datatype-jsr310-2.21.5-sources.jar">
+        <sha256 value="e03ae0ca74f659268e5b2b7489f9c419d750baf3fa1d83a0e11e272787e4b0ac" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.21.5/jackson-datatype-jsr310-2.21.5-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="com.fasterxml.jackson.module" name="jackson-modules-java8" version="2.21.5">
       <artifact name="jackson-modules-java8-2.21.5.pom">
@@ -179,6 +206,9 @@
       <artifact name="java-uuid-generator-5.1.1.pom">
         <sha256 value="3250d4bc6bfd8e2890b0f624e393f212c488c6c7b430e94b6d98f36b9eca85e3" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/fasterxml/uuid/java-uuid-generator/5.1.1/java-uuid-generator-5.1.1.pom.sha256" />
       </artifact>
+      <artifact name="java-uuid-generator-5.1.1-sources.jar">
+        <sha256 value="b23d030161f0835cf1729114c467fcd5f85d21be16c2285377173f0e830415e3" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/fasterxml/uuid/java-uuid-generator/5.1.1/java-uuid-generator-5.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="com.github.docker-java" name="docker-java-api" version="3.7.1">
       <artifact name="docker-java-api-3.7.1.jar">
@@ -186,6 +216,9 @@
       </artifact>
       <artifact name="docker-java-api-3.7.1.pom">
         <sha256 value="8d3586d7080e0787a7212bed4f6fe11a54d52f9abeeca5f89bee208c6308b16c" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/github/docker-java/docker-java-api/3.7.1/docker-java-api-3.7.1.pom.sha256" />
+      </artifact>
+      <artifact name="docker-java-api-3.7.1-sources.jar">
+        <sha256 value="57c9b5bc37d48c256a2a0de556095158f363b10eec58052e58f299c542cf9391" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/github/docker-java/docker-java-api/3.7.1/docker-java-api-3.7.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="com.github.docker-java" name="docker-java-parent" version="3.7.1">
@@ -200,6 +233,9 @@
       <artifact name="docker-java-transport-3.7.1.pom">
         <sha256 value="3baef9998eeea238ef4432fe2ce0ff0eeaf90fe8d3a03fd06a5e224814be4916" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/github/docker-java/docker-java-transport/3.7.1/docker-java-transport-3.7.1.pom.sha256" />
       </artifact>
+      <artifact name="docker-java-transport-3.7.1-sources.jar">
+        <sha256 value="131ed62714d94125f89a3c3ad966e517c8ad48fbbc1905b08bcdafc0d6e9de45" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/github/docker-java/docker-java-transport/3.7.1/docker-java-transport-3.7.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="com.github.docker-java" name="docker-java-transport-zerodep" version="3.7.1">
       <artifact name="docker-java-transport-zerodep-3.7.1.jar">
@@ -207,6 +243,9 @@
       </artifact>
       <artifact name="docker-java-transport-zerodep-3.7.1.pom">
         <sha256 value="d72f69b2f40ba791f3b32cab4f165ccc11836ff1811d0533751cf2dcc57495ed" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/github/docker-java/docker-java-transport-zerodep/3.7.1/docker-java-transport-zerodep-3.7.1.pom.sha256" />
+      </artifact>
+      <artifact name="docker-java-transport-zerodep-3.7.1-sources.jar">
+        <sha256 value="f4d1457f9e2e151d19713e46cf2b49796887d5a9744664a15a4ce07c76660883" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/github/docker-java/docker-java-transport-zerodep/3.7.1/docker-java-transport-zerodep-3.7.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="com.github.stephenc.jcip" name="jcip-annotations" version="1.0-1">
@@ -216,6 +255,9 @@
       <artifact name="jcip-annotations-1.0-1.pom">
         <sha256 value="68c2a5aa6e8f345743093e52b5b9e0190ba4d5a5215c0a59b4d7d33647208cbb" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/github/stephenc/jcip/jcip-annotations/1.0-1/jcip-annotations-1.0-1.pom" />
       </artifact>
+      <artifact name="jcip-annotations-1.0-1-sources.jar">
+        <sha256 value="d60bb3bf4e03a5e405f9b16f4c2625de86089d6ce4f999bcc2548dcac090ae19" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/github/stephenc/jcip/jcip-annotations/1.0-1/jcip-annotations-1.0-1-sources.jar" />
+      </artifact>
     </component>
     <component group="com.google.code.findbugs" name="jsr305" version="3.0.2">
       <artifact name="jsr305-3.0.2.jar">
@@ -224,6 +266,9 @@
       <artifact name="jsr305-3.0.2.pom">
         <sha256 value="19889dbdf1b254b2601a5ee645b8147a974644882297684c798afe5d63d78dfe" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.pom" />
       </artifact>
+      <artifact name="jsr305-3.0.2-sources.jar">
+        <sha256 value="1c9e85e272d0708c6a591dc74828c71603053b48cc75ae83cce56912a2aa063b" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2-sources.jar" />
+      </artifact>
     </component>
     <component group="com.google.errorprone" name="error_prone_annotations" version="2.38.0">
       <artifact name="error_prone_annotations-2.38.0.jar">
@@ -231,6 +276,9 @@
       </artifact>
       <artifact name="error_prone_annotations-2.38.0.pom">
         <sha256 value="3007bef8aff3ae8ea12d81c3feacb4f15979b2cf5c3e38fc9189a98dea141167" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_annotations/2.38.0/error_prone_annotations-2.38.0.pom" />
+      </artifact>
+      <artifact name="error_prone_annotations-2.38.0-sources.jar">
+        <sha256 value="bc4e1535cf5a236ca2e2cfb66d76da4cea99ae52d7447f57a2b05943cac21747" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_annotations/2.38.0/error_prone_annotations-2.38.0-sources.jar" />
       </artifact>
     </component>
     <component group="com.google.errorprone" name="error_prone_parent" version="2.38.0">
@@ -250,6 +298,9 @@
       <artifact name="h2-2.4.240.pom">
         <sha256 value="27af4b7805856b3170d587e0a02caac93d421f875cfc9497dbf5ffd7f3247a4a" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/h2database/h2/2.4.240/h2-2.4.240.pom" />
       </artifact>
+      <artifact name="h2-2.4.240-sources.jar">
+        <sha256 value="a853be74b3f6d63438c53d19e2c368f158ee622499422ba586d1f8bc17b843e2" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/h2database/h2/2.4.240/h2-2.4.240-sources.jar" />
+      </artifact>
     </component>
     <component group="com.jayway.jsonpath" name="json-path" version="2.10.0">
       <artifact name="json-path-2.10.0.jar">
@@ -261,6 +312,9 @@
       <artifact name="json-path-2.10.0.pom">
         <sha256 value="68caa1e4610b9657ca9a3cb8ee6a6f92be3223197dfa1aa4f2a98c2f4f5f04e5" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/jayway/jsonpath/json-path/2.10.0/json-path-2.10.0.pom.sha256" />
       </artifact>
+      <artifact name="json-path-2.10.0-sources.jar">
+        <sha256 value="357f1c52217497c4251fae715ba8ef76ae310b1aae77ea319260bf4c6ad61440" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/jayway/jsonpath/json-path/2.10.0/json-path-2.10.0-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="com.nimbusds" name="content-type" version="2.3">
       <artifact name="content-type-2.3.jar">
@@ -268,6 +322,9 @@
       </artifact>
       <artifact name="content-type-2.3.pom">
         <sha256 value="cb69e6da161f7e51166876b6f5991fd135b46b1118c1b6514aaec8cb2426b7c7" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/nimbusds/content-type/2.3/content-type-2.3.pom" />
+      </artifact>
+      <artifact name="content-type-2.3-sources.jar">
+        <sha256 value="9a154c802659594d8745a0e364bd2e6b418e010268467cd222354445dd77d626" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/nimbusds/content-type/2.3/content-type-2.3-sources.jar" />
       </artifact>
     </component>
     <component group="com.nimbusds" name="lang-tag" version="1.7">
@@ -277,6 +334,9 @@
       <artifact name="lang-tag-1.7.pom">
         <sha256 value="824b0d7de7827abfc6a47e6ef94b0ffaa138fef38af08c56a27f5d3a1522119e" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/nimbusds/lang-tag/1.7/lang-tag-1.7.pom" />
       </artifact>
+      <artifact name="lang-tag-1.7-sources.jar">
+        <sha256 value="8d37da312db366d702bd7254df6bceca0a7814e18da9c32db9cc1d8ca038c468" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/nimbusds/lang-tag/1.7/lang-tag-1.7-sources.jar" />
+      </artifact>
     </component>
     <component group="com.nimbusds" name="nimbus-jose-jwt" version="10.9.1">
       <artifact name="nimbus-jose-jwt-10.9.1.jar">
@@ -285,6 +345,9 @@
       <artifact name="nimbus-jose-jwt-10.9.1.pom">
         <sha256 value="d729b6d5d9efcb6bf54e77a9513c54deb2f1a2d9e9aab5ff3ddffbc1cbf716aa" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/nimbusds/nimbus-jose-jwt/10.9.1/nimbus-jose-jwt-10.9.1.pom.sha256" />
       </artifact>
+      <artifact name="nimbus-jose-jwt-10.9.1-sources.jar">
+        <sha256 value="cead38bc98c18a3f4b6da7157f503e74d8701b9d547d2a722e5fc40c1bdc7c32" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/nimbusds/nimbus-jose-jwt/10.9.1/nimbus-jose-jwt-10.9.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="com.nimbusds" name="oauth2-oidc-sdk" version="11.38.2">
       <artifact name="oauth2-oidc-sdk-11.38.2.jar">
@@ -292,6 +355,9 @@
       </artifact>
       <artifact name="oauth2-oidc-sdk-11.38.2.pom">
         <sha256 value="df062d8bc65a6c7d03e1a1244aa4da6bb0f1418cdb00f6e7d521fb800904db6e" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/nimbusds/oauth2-oidc-sdk/11.38.2/oauth2-oidc-sdk-11.38.2.pom.sha256" />
+      </artifact>
+      <artifact name="oauth2-oidc-sdk-11.38.2-sources.jar">
+        <sha256 value="e4805307c0b569d2491664452e93972c386adb44e7fed3e55f60747cd934f23d" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/nimbusds/oauth2-oidc-sdk/11.38.2/oauth2-oidc-sdk-11.38.2-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="com.querydsl" name="querydsl-bom" version="5.1.0">
@@ -311,6 +377,9 @@
       <artifact name="istack-commons-runtime-4.1.2.pom">
         <sha256 value="1222a290beddb6f6e92bc999bcebc3696fcd6d72215856d224727a7bc2dc3aca" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.pom" />
       </artifact>
+      <artifact name="istack-commons-runtime-4.1.2-sources.jar">
+        <sha256 value="395597030176cf4186495a26c024bbba2f74c1f4b0f1c655063be605862846fd" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2-sources.jar" />
+      </artifact>
     </component>
     <component group="com.tngtech.archunit" name="archunit" version="1.4.2">
       <artifact name="archunit-1.4.2.jar">
@@ -318,6 +387,9 @@
       </artifact>
       <artifact name="archunit-1.4.2.pom">
         <sha256 value="05618298545286d697fa6d066f65aebff7f68e8ec88cbf2c3e7d77ce18f26636" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/tngtech/archunit/archunit/1.4.2/archunit-1.4.2.pom.sha256" />
+      </artifact>
+      <artifact name="archunit-1.4.2-sources.jar">
+        <sha256 value="3af844a5647f02265be43c6e2120514d572569c47d03ccc2eb608f349e9527d5" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/tngtech/archunit/archunit/1.4.2/archunit-1.4.2-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="com.vaadin.external.google" name="android-json" version="0.0.20131108.vaadin1">
@@ -327,6 +399,9 @@
       <artifact name="android-json-0.0.20131108.vaadin1.pom">
         <sha256 value="2ff6c17d9c060b89cd7ef18fa480ae2446eba86855a633f3892837fc3b848fef" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.pom" />
       </artifact>
+      <artifact name="android-json-0.0.20131108.vaadin1-sources.jar">
+        <sha256 value="54c781eea645c450cbbc4a5a1b5a474745465452cec1354cb567b781ea6622c3" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1-sources.jar" />
+      </artifact>
     </component>
     <component group="com.zaxxer" name="HikariCP" version="7.0.2">
       <artifact name="HikariCP-7.0.2.jar">
@@ -334,6 +409,9 @@
       </artifact>
       <artifact name="HikariCP-7.0.2.pom">
         <sha256 value="662a87f80487be89bd77296213e91108ff9f01ed0d9a90f9a4e21263cc49e73e" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/com/zaxxer/HikariCP/7.0.2/HikariCP-7.0.2.pom" />
+      </artifact>
+      <artifact name="HikariCP-7.0.2-sources.jar">
+        <sha256 value="9dfb6005ee47bde701c05481b76a56b6eb0abcabc1c46a602eec4ca7b100c99c" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/com/zaxxer/HikariCP/7.0.2/HikariCP-7.0.2-sources.jar" />
       </artifact>
     </component>
     <component group="commons-codec" name="commons-codec" version="1.17.1">
@@ -343,6 +421,9 @@
       <artifact name="commons-codec-1.17.1.pom">
         <sha256 value="7fa0db4d8150daf932958b8aea89ee24abb4d18e2316a5de535278fc131512a0" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/commons-codec/commons-codec/1.17.1/commons-codec-1.17.1.pom" />
       </artifact>
+      <artifact name="commons-codec-1.17.1-sources.jar">
+        <sha256 value="2283aff7f425dff23ebdb7a8fc0f03ae21b4ced7a43aacba47cedae126dc5d4a" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/commons-codec/commons-codec/1.17.1/commons-codec-1.17.1-sources.jar" />
+      </artifact>
     </component>
     <component group="commons-codec" name="commons-codec" version="1.21.0">
       <artifact name="commons-codec-1.21.0.jar">
@@ -350,6 +431,9 @@
       </artifact>
       <artifact name="commons-codec-1.21.0.pom">
         <sha256 value="b230416ba6f5bf9df8fcb6e7f4a6c26b8fb0fe85ce371d13d5846ed3768309b7" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/commons-codec/commons-codec/1.21.0/commons-codec-1.21.0.pom" />
+      </artifact>
+      <artifact name="commons-codec-1.21.0-sources.jar">
+        <sha256 value="4b4558c13a54afb6461ab795a95b6c349b1fada9cd785defe1f47531853247ec" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/commons-codec/commons-codec/1.21.0/commons-codec-1.21.0-sources.jar" />
       </artifact>
     </component>
     <component group="commons-io" name="commons-io" version="2.16.1">
@@ -359,6 +443,9 @@
       <artifact name="commons-io-2.16.1.pom">
         <sha256 value="5777d292251c7895c04a4c57015683ec3b353a12486c9b3e7178e9b0b3c38fff" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/commons-io/commons-io/2.16.1/commons-io-2.16.1.pom" />
       </artifact>
+      <artifact name="commons-io-2.16.1-sources.jar">
+        <sha256 value="fcfe84e39fb44e38a0ea0ab0815b53adea6fff89c7b72535bc42495f400cb9a1" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/commons-io/commons-io/2.16.1/commons-io-2.16.1-sources.jar" />
+      </artifact>
     </component>
     <component group="commons-io" name="commons-io" version="2.20.0">
       <artifact name="commons-io-2.20.0.jar">
@@ -366,6 +453,9 @@
       </artifact>
       <artifact name="commons-io-2.20.0.pom">
         <sha256 value="bdbdf81072c190ee9a8b181a5c58f5bd917a750fb13a256debbf53f5dbd33a2a" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/commons-io/commons-io/2.20.0/commons-io-2.20.0.pom" />
+      </artifact>
+      <artifact name="commons-io-2.20.0-sources.jar">
+        <sha256 value="7a87277538cce40da6389a7163a4d9458bc7a9c39937a329881b91d144be8e0d" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/commons-io/commons-io/2.20.0/commons-io-2.20.0-sources.jar" />
       </artifact>
     </component>
     <component group="commons-logging" name="commons-logging" version="1.3.5">
@@ -375,6 +465,9 @@
       <artifact name="commons-logging-1.3.5.pom">
         <sha256 value="ccf4a30346f5027b9496abd56290ac26d159abf2be64df1265611dc9400b9d68" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.3.5/commons-logging-1.3.5.pom" />
       </artifact>
+      <artifact name="commons-logging-1.3.5-sources.jar">
+        <sha256 value="496332597187dd32e41cfd1d87e5991a3d77b51bae2cc0bbe9e51496ae54ce5c" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.3.5/commons-logging-1.3.5-sources.jar" />
+      </artifact>
     </component>
     <component group="commons-logging" name="commons-logging" version="1.3.6">
       <artifact name="commons-logging-1.3.6.jar">
@@ -382,6 +475,14 @@
       </artifact>
       <artifact name="commons-logging-1.3.6.pom">
         <sha256 value="49fc185139bdd0c6c4adf440721e3279cb5342906bcd01a7a89399ceeaa78e85" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.3.6/commons-logging-1.3.6.pom" />
+      </artifact>
+      <artifact name="commons-logging-1.3.6-sources.jar">
+        <sha256 value="6e821e03cfc64e509cc162d428af84697b6c4188eb14c0b137c75b69649976ef" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.3.6/commons-logging-1.3.6-sources.jar" />
+      </artifact>
+    </component>
+    <component group="gradle" name="gradle" version="9.8.1">
+      <artifact name="gradle-9.8.1-src.zip">
+        <sha256 value="6c5598a3253d0a61a39b27363aef32780cf235dc07ad50bafb30c7c0f309c49c" origin="Verified 2026-11-14 against https://downloads.gradle.org/distributions/gradle-9.8.1-src.zip.sha256" />
       </artifact>
     </component>
     <component group="io.grpc" name="grpc-bom" version="1.83.1">
@@ -406,6 +507,9 @@
       <artifact name="micrometer-commons-1.17.1.pom">
         <sha256 value="fbe9f83528b2779be9db1a1fb37e41684de24835af6558aaf25d73723d41da5f" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/io/micrometer/micrometer-commons/1.17.1/micrometer-commons-1.17.1.pom.sha256" />
       </artifact>
+      <artifact name="micrometer-commons-1.17.1-sources.jar">
+        <sha256 value="f3502b23ecf825511c5c1fc73374fc7f807ba82ce0e799c186c06b89cdc6e5f7" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/io/micrometer/micrometer-commons/1.17.1/micrometer-commons-1.17.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="io.micrometer" name="micrometer-core" version="1.17.1">
       <artifact name="micrometer-core-1.17.1.jar">
@@ -413,6 +517,9 @@
       </artifact>
       <artifact name="micrometer-core-1.17.1.pom">
         <sha256 value="f4d9d9500382022c56f3f7ef9470eb4edf2a5b90e06a21212115e49a4db602af" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/io/micrometer/micrometer-core/1.17.1/micrometer-core-1.17.1.pom.sha256" />
+      </artifact>
+      <artifact name="micrometer-core-1.17.1-sources.jar">
+        <sha256 value="75cab94be24a4864a620aabd9edc55c26b6d77f0731d76c106566b7a796c6128" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/io/micrometer/micrometer-core/1.17.1/micrometer-core-1.17.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="io.micrometer" name="micrometer-jakarta9" version="1.17.1">
@@ -422,6 +529,9 @@
       <artifact name="micrometer-jakarta9-1.17.1.pom">
         <sha256 value="461f26c3db70e7824e1409e854466f293d213a9431e342d624bbb542f0daae29" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/io/micrometer/micrometer-jakarta9/1.17.1/micrometer-jakarta9-1.17.1.pom.sha256" />
       </artifact>
+      <artifact name="micrometer-jakarta9-1.17.1-sources.jar">
+        <sha256 value="ef72237730ff58b92058341f72088cfc036a7e30ddf76b7a805a74da0421e048" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/io/micrometer/micrometer-jakarta9/1.17.1/micrometer-jakarta9-1.17.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="io.micrometer" name="micrometer-observation" version="1.17.1">
       <artifact name="micrometer-observation-1.17.1.jar">
@@ -429,6 +539,9 @@
       </artifact>
       <artifact name="micrometer-observation-1.17.1.pom">
         <sha256 value="af6167ebad3cf1c2eef590a5e567d5342245b8aa2b0ded93ca04fffc466225cc" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/io/micrometer/micrometer-observation/1.17.1/micrometer-observation-1.17.1.pom.sha256" />
+      </artifact>
+      <artifact name="micrometer-observation-1.17.1-sources.jar">
+        <sha256 value="4784ffbd77b82b4bcc201869bf55c060ddd6b8806047eb506bd622e0d7506dd7" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/io/micrometer/micrometer-observation/1.17.1/micrometer-observation-1.17.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="io.micrometer" name="micrometer-tracing-bom" version="1.6.0">
@@ -543,6 +656,9 @@
       <artifact name="dependency-management-plugin-1.1.7.module">
         <sha256 value="327b1ea8cf089ec12f63d5e087ff19c8cce668856d498fe08d10f7e15c12cc77" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/io/spring/gradle/dependency-management-plugin/1.1.7/dependency-management-plugin-1.1.7.module" />
       </artifact>
+      <artifact name="dependency-management-plugin-1.1.7-sources.jar">
+        <sha256 value="1a366f14f19d3d8a052ed902b4c18ff78c1243b47b22d777716b9df1d588003a" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/io/spring/gradle/dependency-management-plugin/1.1.7/dependency-management-plugin-1.1.7-sources.jar" />
+      </artifact>
     </component>
     <component group="io.swagger.core.v3" name="swagger-annotations-jakarta" version="2.2.38">
       <artifact name="swagger-annotations-jakarta-2.2.38.jar">
@@ -550,6 +666,9 @@
       </artifact>
       <artifact name="swagger-annotations-jakarta-2.2.38.pom">
         <sha256 value="b9df92eb21048098cf391a4f82f27831571364d529a881af966e3fe34ced4459" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/io/swagger/core/v3/swagger-annotations-jakarta/2.2.38/swagger-annotations-jakarta-2.2.38.pom.sha256" />
+      </artifact>
+      <artifact name="swagger-annotations-jakarta-2.2.38-sources.jar">
+        <sha256 value="2d1980395cb81cd88c2c9785a6e5b3d63f3caaa9b38c380c979c0f412ad1b546" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/io/swagger/core/v3/swagger-annotations-jakarta/2.2.38/swagger-annotations-jakarta-2.2.38-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="io.swagger.core.v3" name="swagger-core-jakarta" version="2.2.38">
@@ -559,6 +678,9 @@
       <artifact name="swagger-core-jakarta-2.2.38.pom">
         <sha256 value="137557923648599de8398503f7853a4dcaa4c76f711f12524c727a0415951e92" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/io/swagger/core/v3/swagger-core-jakarta/2.2.38/swagger-core-jakarta-2.2.38.pom.sha256" />
       </artifact>
+      <artifact name="swagger-core-jakarta-2.2.38-sources.jar">
+        <sha256 value="d785120988aabe5281926fa39d5d00a7ac15d26738e31b5b8c1720e868e43a32" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/io/swagger/core/v3/swagger-core-jakarta/2.2.38/swagger-core-jakarta-2.2.38-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="io.swagger.core.v3" name="swagger-models-jakarta" version="2.2.38">
       <artifact name="swagger-models-jakarta-2.2.38.jar">
@@ -566,6 +688,9 @@
       </artifact>
       <artifact name="swagger-models-jakarta-2.2.38.pom">
         <sha256 value="906947f65539d8b05ea513c962c3c8322f40eae801c233c658a515fb16e588e8" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/io/swagger/core/v3/swagger-models-jakarta/2.2.38/swagger-models-jakarta-2.2.38.pom.sha256" />
+      </artifact>
+      <artifact name="swagger-models-jakarta-2.2.38-sources.jar">
+        <sha256 value="c47e971f0daa08580ee89a241b143d9a28950a004762fecb9d03909e6773f046" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/io/swagger/core/v3/swagger-models-jakarta/2.2.38/swagger-models-jakarta-2.2.38-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="io.swagger.core.v3" name="swagger-project-jakarta" version="2.2.38">
@@ -600,6 +725,9 @@
       <artifact name="jakarta.activation-api-2.1.4.pom">
         <sha256 value="7577970dc09f1131a4a42769e1771ed062f08d22f40da3041ff3e16d5b2fdea8" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/jakarta/activation/jakarta.activation-api/2.1.4/jakarta.activation-api-2.1.4.pom.sha256" />
       </artifact>
+      <artifact name="jakarta.activation-api-2.1.4-sources.jar">
+        <sha256 value="2aa5a3ba55059b778a3b467269404d7ac3b9485ed4a23ad26d2e63aa769ec35f" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/jakarta/activation/jakarta.activation-api/2.1.4/jakarta.activation-api-2.1.4-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="jakarta.annotation" name="jakarta.annotation-api" version="3.0.0">
       <artifact name="jakarta.annotation-api-3.0.0.jar">
@@ -607,6 +735,9 @@
       </artifact>
       <artifact name="jakarta.annotation-api-3.0.0.pom">
         <sha256 value="9fc66a87375df8443aba6bdcc1d4ff07f126542583785a482a9262a19bfe8eae" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/jakarta/annotation/jakarta.annotation-api/3.0.0/jakarta.annotation-api-3.0.0.pom" />
+      </artifact>
+      <artifact name="jakarta.annotation-api-3.0.0-sources.jar">
+        <sha256 value="142dfd2343429df2aac3e1cfacfacc21c8393112c0e0280d3628648d9b612470" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/jakarta/annotation/jakarta.annotation-api/3.0.0/jakarta.annotation-api-3.0.0-sources.jar" />
       </artifact>
     </component>
     <component group="jakarta.inject" name="jakarta.inject-api" version="2.0.1">
@@ -616,6 +747,9 @@
       <artifact name="jakarta.inject-api-2.0.1.pom">
         <sha256 value="e7fd7232e96307a575b2494c9367d68cf43ec98244aace3ccc23e1773ffa6fda" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.pom" />
       </artifact>
+      <artifact name="jakarta.inject-api-2.0.1-sources.jar">
+        <sha256 value="44f4c73fda69f8b7d87136f0f789f042f54e8ff506d40aa126199baf3752d1c9" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1-sources.jar" />
+      </artifact>
     </component>
     <component group="jakarta.persistence" name="jakarta.persistence-api" version="3.2.0">
       <artifact name="jakarta.persistence-api-3.2.0.jar">
@@ -623,6 +757,9 @@
       </artifact>
       <artifact name="jakarta.persistence-api-3.2.0.pom">
         <sha256 value="e4381f222d55eb56175c36485264ba81a2fa20cf25341a267f050f3076258ae7" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/jakarta/persistence/jakarta.persistence-api/3.2.0/jakarta.persistence-api-3.2.0.pom" />
+      </artifact>
+      <artifact name="jakarta.persistence-api-3.2.0-sources.jar">
+        <sha256 value="5f0761573be5f70b9d2b6d344f888d7425901f8e177e35497639e7d667ddf07e" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/jakarta/persistence/jakarta.persistence-api/3.2.0/jakarta.persistence-api-3.2.0-sources.jar" />
       </artifact>
     </component>
     <component group="jakarta.platform" name="jakarta.jakartaee-bom" version="9.1.0">
@@ -642,6 +779,9 @@
       <artifact name="jakarta.transaction-api-2.0.1.pom">
         <sha256 value="5fe349981c156fbbe26388d59949fdac16bb8d7879ee61b34c49c7b5ce0f2f23" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.pom" />
       </artifact>
+      <artifact name="jakarta.transaction-api-2.0.1-sources.jar">
+        <sha256 value="fef60299cebc6f83d6ac0d7feb025ba23a0b85cc5908769869cd741f4e482614" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1-sources.jar" />
+      </artifact>
     </component>
     <component group="jakarta.validation" name="jakarta.validation-api" version="3.1.1">
       <artifact name="jakarta.validation-api-3.1.1.jar">
@@ -650,6 +790,9 @@
       <artifact name="jakarta.validation-api-3.1.1.pom">
         <sha256 value="ab19e900abf9030a37f8323e5aceba58d40af88e3b52a058b8e03de48235ca77" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/jakarta/validation/jakarta.validation-api/3.1.1/jakarta.validation-api-3.1.1.pom" />
       </artifact>
+      <artifact name="jakarta.validation-api-3.1.1-sources.jar">
+        <sha256 value="941cc2028fe8f5e6b912954bca360ed347ace453aca4f8e2fd58dc3845a0c792" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/jakarta/validation/jakarta.validation-api/3.1.1/jakarta.validation-api-3.1.1-sources.jar" />
+      </artifact>
     </component>
     <component group="jakarta.xml.bind" name="jakarta.xml.bind-api" version="4.0.5">
       <artifact name="jakarta.xml.bind-api-4.0.5.jar">
@@ -657,6 +800,9 @@
       </artifact>
       <artifact name="jakarta.xml.bind-api-4.0.5.pom">
         <sha256 value="596f65494651b79eb589b2f579a5686fabcd5cbb68f2c928c1cf360341d68c16" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/jakarta/xml/bind/jakarta.xml.bind-api/4.0.5/jakarta.xml.bind-api-4.0.5.pom.sha256" />
+      </artifact>
+      <artifact name="jakarta.xml.bind-api-4.0.5-sources.jar">
+        <sha256 value="5bcf811e6719582ab2be21c84bc48f963ba377dfe1dae5ecb2673c1efa00e422" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/jakarta/xml/bind/jakarta.xml.bind-api/4.0.5/jakarta.xml.bind-api-4.0.5-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="jakarta.xml.bind" name="jakarta.xml.bind-api-parent" version="4.0.5">
@@ -671,6 +817,9 @@
       <artifact name="cache-api-1.1.1.pom">
         <sha256 value="832a04c9f02f1e427f1e433da63b6f74d40a2902a3c7871e1a81c3cc10021a13" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/javax/cache/cache-api/1.1.1/cache-api-1.1.1.pom" />
       </artifact>
+      <artifact name="cache-api-1.1.1-sources.jar">
+        <sha256 value="2387f48682d3475fd214a6b9c2d1ef732ae8ce9313a3b8f69e72449ce33c6068" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/javax/cache/cache-api/1.1.1/cache-api-1.1.1-sources.jar" />
+      </artifact>
     </component>
     <component group="net.bytebuddy" name="byte-buddy" version="1.18.11">
       <artifact name="byte-buddy-1.18.11.jar">
@@ -679,6 +828,9 @@
       <artifact name="byte-buddy-1.18.11.pom">
         <sha256 value="f8b85a4a50bf6d725b6031429ab08110d054917cfb65af4d668b9ddb70691d0d" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/net/bytebuddy/byte-buddy/1.18.11/byte-buddy-1.18.11.pom.sha256" />
       </artifact>
+      <artifact name="byte-buddy-1.18.11-sources.jar">
+        <sha256 value="7f38a50fa7406b61d867a2c81a89610bb816de2fa28696b4a54fcaa8d52530a1" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/net/bytebuddy/byte-buddy/1.18.11/byte-buddy-1.18.11-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="net.bytebuddy" name="byte-buddy-agent" version="1.18.11">
       <artifact name="byte-buddy-agent-1.18.11.jar">
@@ -686,6 +838,9 @@
       </artifact>
       <artifact name="byte-buddy-agent-1.18.11.pom">
         <sha256 value="93960511a5894bcb62d97fa67305f20274eecc39d33fb3ac623c86cee096e5a3" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/net/bytebuddy/byte-buddy-agent/1.18.11/byte-buddy-agent-1.18.11.pom.sha256" />
+      </artifact>
+      <artifact name="byte-buddy-agent-1.18.11-sources.jar">
+        <sha256 value="30bbf5860aa58e4740b352d2c4c15fe2428a2019e81dccd25c8e3937a0a2a0a3" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/net/bytebuddy/byte-buddy-agent/1.18.11/byte-buddy-agent-1.18.11-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="net.bytebuddy" name="byte-buddy-parent" version="1.18.11">
@@ -700,6 +855,9 @@
       <artifact name="jna-5.17.0.pom">
         <sha256 value="501a0ff05d84a4ad10f6de25be94f49398b70a31be8f3a0ed9f4c6b44fbefee4" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/net/java/dev/jna/jna/5.17.0/jna-5.17.0.pom" />
       </artifact>
+      <artifact name="jna-5.17.0-sources.jar">
+        <sha256 value="1e8dd4205deab6eb9d6045ad9e69a8754fc21029d56ede1dcd9f22a5e06571a7" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/net/java/dev/jna/jna/5.17.0/jna-5.17.0-sources.jar" />
+      </artifact>
     </component>
     <component group="net.java.dev.jna" name="jna" version="5.18.1">
       <artifact name="jna-5.18.1.jar">
@@ -707,6 +865,9 @@
       </artifact>
       <artifact name="jna-5.18.1.pom">
         <sha256 value="98b62ae6ff280d747fb359fc42e48fed113d45bc3729a823dc30b8308a806645" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/net/java/dev/jna/jna/5.18.1/jna-5.18.1.pom" />
+      </artifact>
+      <artifact name="jna-5.18.1-sources.jar">
+        <sha256 value="0b9224e215b3c6a464959e3f994ddd64c14d46fb4014facd6afa1cc18e469466" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/net/java/dev/jna/jna/5.18.1/jna-5.18.1-sources.jar" />
       </artifact>
     </component>
     <component group="net.java.dev.jna" name="jna-platform" version="5.17.0">
@@ -716,6 +877,9 @@
       <artifact name="jna-platform-5.17.0.pom">
         <sha256 value="0a30b797adb6822147ef98cb249ef3fbf4a243542aa86bf9f42fad9e68305a44" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/net/java/dev/jna/jna-platform/5.17.0/jna-platform-5.17.0.pom" />
       </artifact>
+      <artifact name="jna-platform-5.17.0-sources.jar">
+        <sha256 value="63f67968e5714f854e8de84330aa371a33221871f8b110917769f15e517a6a24" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/net/java/dev/jna/jna-platform/5.17.0/jna-platform-5.17.0-sources.jar" />
+      </artifact>
     </component>
     <component group="net.logstash.logback" name="logstash-logback-encoder" version="9.0">
       <artifact name="logstash-logback-encoder-9.0.jar">
@@ -723,6 +887,9 @@
       </artifact>
       <artifact name="logstash-logback-encoder-9.0.pom">
         <sha256 value="a42ed5f0af468dc0e4b5ac38adba1f35be2e3438031469058c01e0ee648dc8d6" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/net/logstash/logback/logstash-logback-encoder/9.0/logstash-logback-encoder-9.0.pom.sha256" />
+      </artifact>
+      <artifact name="logstash-logback-encoder-9.0-sources.jar">
+        <sha256 value="3afc349711b9e150d3b5666d408b9958f67afe8b8a2291e939656a0d35da1c00" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/net/logstash/logback/logstash-logback-encoder/9.0/logstash-logback-encoder-9.0-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="net.minidev" name="accessors-smart" version="2.6.0">
@@ -732,6 +899,9 @@
       <artifact name="accessors-smart-2.6.0.pom">
         <sha256 value="268315791ec661e28614f461212c06181c06a042733428d8ba711f0aad56e9f9" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/net/minidev/accessors-smart/2.6.0/accessors-smart-2.6.0.pom.sha256" />
       </artifact>
+      <artifact name="accessors-smart-2.6.0-sources.jar">
+        <sha256 value="10880e44ed732de27ae424a9698a041c398102098b5b1bae3cc597ec62dac43e" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/net/minidev/accessors-smart/2.6.0/accessors-smart-2.6.0-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="net.minidev" name="json-smart" version="2.6.0">
       <artifact name="json-smart-2.6.0.jar">
@@ -739,6 +909,9 @@
       </artifact>
       <artifact name="json-smart-2.6.0.pom">
         <sha256 value="83f193cfaef334ee79a249453042ed5f084db8cd9c916a2387b436e9a8fb73a7" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/net/minidev/json-smart/2.6.0/json-smart-2.6.0.pom.sha256" />
+      </artifact>
+      <artifact name="json-smart-2.6.0-sources.jar">
+        <sha256 value="a4af3f3773286fe3f76f94d38d977611fd2493685f589466b76dd25cf70b400c" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/net/minidev/json-smart/2.6.0/json-smart-2.6.0-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.antlr" name="antlr4-master" version="4.13.2">
@@ -758,6 +931,9 @@
       <artifact name="antlr4-runtime-4.13.2.pom">
         <sha256 value="03ce07a2796c511b0c94dc14fd86ccdd6e3828c57967ad2383de304e0d11ba79" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/antlr/antlr4-runtime/4.13.2/antlr4-runtime-4.13.2.pom" />
       </artifact>
+      <artifact name="antlr4-runtime-4.13.2-sources.jar">
+        <sha256 value="4100b1df2f38152d8502e89195b94654d9aa22f5b6c47aca7b6a7f3194b5fbb0" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/antlr/antlr4-runtime/4.13.2/antlr4-runtime-4.13.2-sources.jar" />
+      </artifact>
     </component>
     <component group="org.antlr" name="antlr4-runtime" version="4.7.2">
       <artifact name="antlr4-runtime-4.7.2.jar">
@@ -765,6 +941,9 @@
       </artifact>
       <artifact name="antlr4-runtime-4.7.2.pom">
         <sha256 value="dc09cba98c25d3c06e4aec516885d4c3af03062ba55f4fe6283fc9cf176a60fb" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/antlr/antlr4-runtime/4.7.2/antlr4-runtime-4.7.2.pom" />
+      </artifact>
+      <artifact name="antlr4-runtime-4.7.2-sources.jar">
+        <sha256 value="6290b44cc5abaae2d747c966704e80cdfd742b4e2e0c8f9597f84a550e0d7f47" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/antlr/antlr4-runtime/4.7.2/antlr4-runtime-4.7.2-sources.jar" />
       </artifact>
     </component>
     <component group="org.apache" name="apache" version="27">
@@ -844,6 +1023,9 @@
       <artifact name="commons-compress-1.27.1.pom">
         <sha256 value="df8cc1a8387d4ce842363b7209fdc6d35df9763839fd3fcab558a0f83f9d841c" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/apache/commons/commons-compress/1.27.1/commons-compress-1.27.1.pom" />
       </artifact>
+      <artifact name="commons-compress-1.27.1-sources.jar">
+        <sha256 value="90839ce19b8afb8ee50db75c84aa7555ebc054ba1bd43fdb2202cbf094c77f81" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/apache/commons/commons-compress/1.27.1/commons-compress-1.27.1-sources.jar" />
+      </artifact>
     </component>
     <component group="org.apache.commons" name="commons-compress" version="1.28.0">
       <artifact name="commons-compress-1.28.0.jar">
@@ -851,6 +1033,9 @@
       </artifact>
       <artifact name="commons-compress-1.28.0.pom">
         <sha256 value="033f4c78d632da88d0eb8ead974fc14a264392cebf12ab6c68d6cea7adf0c64a" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/apache/commons/commons-compress/1.28.0/commons-compress-1.28.0.pom" />
+      </artifact>
+      <artifact name="commons-compress-1.28.0-sources.jar">
+        <sha256 value="6de9de4559f12bba6d41789c72f6a2a424514f2d2a3f7f49e2a3c52414db9632" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/apache/commons/commons-compress/1.28.0/commons-compress-1.28.0-sources.jar" />
       </artifact>
     </component>
     <component group="org.apache.commons" name="commons-lang3" version="3.16.0">
@@ -860,6 +1045,9 @@
       <artifact name="commons-lang3-3.16.0.pom">
         <sha256 value="e280383956c2e72c1deb3a307b3b75f05ee43649b7d43f0215f7b6c7b15eea2c" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.16.0/commons-lang3-3.16.0.pom" />
       </artifact>
+      <artifact name="commons-lang3-3.16.0-sources.jar">
+        <sha256 value="268058f1ce33558da48f07b5f5dae4ae6433357bf07e1bbd0f1d864adda1269c" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.16.0/commons-lang3-3.16.0-sources.jar" />
+      </artifact>
     </component>
     <component group="org.apache.commons" name="commons-lang3" version="3.20.0">
       <artifact name="commons-lang3-3.20.0.jar">
@@ -867,6 +1055,9 @@
       </artifact>
       <artifact name="commons-lang3-3.20.0.pom">
         <sha256 value="7ca83b2709c1e7a9e03b576cd41422190379489a80866e542f8c8b955411a2aa" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.20.0/commons-lang3-3.20.0.pom" />
+      </artifact>
+      <artifact name="commons-lang3-3.20.0-sources.jar">
+        <sha256 value="eec245e820ec2800a1780cf756aefb427c1c6170e06902e67ac15b6910ce6335" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.20.0/commons-lang3-3.20.0-sources.jar" />
       </artifact>
     </component>
     <component group="org.apache.commons" name="commons-parent" version="69">
@@ -945,6 +1136,9 @@
       <artifact name="httpclient5-5.6.4.pom">
         <sha256 value="dbc08440438d5e8a600041a9b61e249f0c7d9d86b998e72a9a03900b4c64aa44" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/apache/httpcomponents/client5/httpclient5/5.6.4/httpclient5-5.6.4.pom" />
       </artifact>
+      <artifact name="httpclient5-5.6.4-sources.jar">
+        <sha256 value="6739ab6a3ef576236c784efd94767248b2aad5549d433ff3562f3df76fabeb83" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/apache/httpcomponents/client5/httpclient5/5.6.4/httpclient5-5.6.4-sources.jar" />
+      </artifact>
     </component>
     <component group="org.apache.httpcomponents.client5" name="httpclient5-parent" version="5.6.4">
       <artifact name="httpclient5-parent-5.6.4.pom">
@@ -958,6 +1152,9 @@
       <artifact name="httpcore5-5.4.3.pom">
         <sha256 value="a483ef99599cc5fe2c6105a91e2aa7ac46c1c357b559beb76c7045326dcbd3d1" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/apache/httpcomponents/core5/httpcore5/5.4.3/httpcore5-5.4.3.pom" />
       </artifact>
+      <artifact name="httpcore5-5.4.3-sources.jar">
+        <sha256 value="1039d1c7d5f09d48fdd684b8268abfd7206648e9939930cccfe88b6b0d36c741" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/apache/httpcomponents/core5/httpcore5/5.4.3/httpcore5-5.4.3-sources.jar" />
+      </artifact>
     </component>
     <component group="org.apache.httpcomponents.core5" name="httpcore5-h2" version="5.4.3">
       <artifact name="httpcore5-h2-5.4.3.jar">
@@ -965,6 +1162,9 @@
       </artifact>
       <artifact name="httpcore5-h2-5.4.3.pom">
         <sha256 value="05a81bab0c695ff79a381e4a1df0a6f582ba556b2d8d60be84c4dc8a9c9f5027" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/apache/httpcomponents/core5/httpcore5-h2/5.4.3/httpcore5-h2-5.4.3.pom" />
+      </artifact>
+      <artifact name="httpcore5-h2-5.4.3-sources.jar">
+        <sha256 value="ca7bc36ef8d56f17fb5455596d9dd38b80f8eb8931f8e4e167868356458625fa" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/apache/httpcomponents/core5/httpcore5-h2/5.4.3/httpcore5-h2-5.4.3-sources.jar" />
       </artifact>
     </component>
     <component group="org.apache.httpcomponents.core5" name="httpcore5-parent" version="5.4.3">
@@ -987,6 +1187,9 @@
       <artifact name="log4j-api-2.25.5.pom">
         <sha256 value="035b3e6057d26535cac74e5333403a797460ebef0b9313b844826140ed36de67" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/apache/logging/log4j/log4j-api/2.25.5/log4j-api-2.25.5.pom" />
       </artifact>
+      <artifact name="log4j-api-2.25.5-sources.jar">
+        <sha256 value="81a4c44718a7af521adc7079c8fd2b955f879f751ef792c0748cffac6156102a" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/apache/logging/log4j/log4j-api/2.25.5/log4j-api-2.25.5-sources.jar" />
+      </artifact>
     </component>
     <component group="org.apache.logging.log4j" name="log4j-bom" version="2.25.2">
       <artifact name="log4j-bom-2.25.2.pom">
@@ -1008,6 +1211,9 @@
       <artifact name="log4j-to-slf4j-2.25.5.pom">
         <sha256 value="3baf24b64811bfc634adf68b1872166f4a696d04ad48e380a7a7e0a8c9818d5a" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/apache/logging/log4j/log4j-to-slf4j/2.25.5/log4j-to-slf4j-2.25.5.pom" />
       </artifact>
+      <artifact name="log4j-to-slf4j-2.25.5-sources.jar">
+        <sha256 value="bc0eda104f34460fbc28655f854d3b6b05c04471c92509d2e0c60fcb5bf582cc" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/apache/logging/log4j/log4j-to-slf4j/2.25.5/log4j-to-slf4j-2.25.5-sources.jar" />
+      </artifact>
     </component>
     <component group="org.apache.pulsar" name="pulsar-bom" version="4.1.1">
       <artifact name="pulsar-bom-4.1.1.pom">
@@ -1026,6 +1232,9 @@
       <artifact name="tomcat-embed-core-11.0.24.pom">
         <sha256 value="b11369a1c7766d659a3cad9dde3717d6bd811c59de9819274f960e87608dc1ef" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/apache/tomcat/embed/tomcat-embed-core/11.0.24/tomcat-embed-core-11.0.24.pom.sha256" />
       </artifact>
+      <artifact name="tomcat-embed-core-11.0.24-sources.jar">
+        <sha256 value="4b999b9c9051bc0510da4365825375185fe89d37909bc98abe0a2703318ceb2a" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/apache/tomcat/embed/tomcat-embed-core/11.0.24/tomcat-embed-core-11.0.24-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.apache.tomcat.embed" name="tomcat-embed-el" version="11.0.24">
       <artifact name="tomcat-embed-el-11.0.24.jar">
@@ -1033,6 +1242,9 @@
       </artifact>
       <artifact name="tomcat-embed-el-11.0.24.pom">
         <sha256 value="c144c7c259fd437b64efd59d718d3aa735c55f6134d80f78fac0c1b3f8fe7336" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/apache/tomcat/embed/tomcat-embed-el/11.0.24/tomcat-embed-el-11.0.24.pom.sha256" />
+      </artifact>
+      <artifact name="tomcat-embed-el-11.0.24-sources.jar">
+        <sha256 value="f45b9db6814b24242ccd18a39a1bb55a4379a4433cb2b3def835552722aaf57e" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/apache/tomcat/embed/tomcat-embed-el/11.0.24/tomcat-embed-el-11.0.24-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.apache.tomcat.embed" name="tomcat-embed-websocket" version="11.0.24">
@@ -1042,6 +1254,9 @@
       <artifact name="tomcat-embed-websocket-11.0.24.pom">
         <sha256 value="853814754b0157c19327fd4af2ac88689adb02011403f06a3033f89bbf40df53" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/apache/tomcat/embed/tomcat-embed-websocket/11.0.24/tomcat-embed-websocket-11.0.24.pom.sha256" />
       </artifact>
+      <artifact name="tomcat-embed-websocket-11.0.24-sources.jar">
+        <sha256 value="84e653ac6d37852e697ddfeb7fce66250aa8f9bcf7d92b7d3d048655e60c4268" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/apache/tomcat/embed/tomcat-embed-websocket/11.0.24/tomcat-embed-websocket-11.0.24-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.apiguardian" name="apiguardian-api" version="1.1.2">
       <artifact name="apiguardian-api-1.1.2.jar">
@@ -1050,6 +1265,9 @@
       <artifact name="apiguardian-api-1.1.2.module">
         <sha256 value="e08028131375b357d1d28734e9a4fb4216da84b240641cb3ef7e7c7d628223fc" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.module.sha256" />
       </artifact>
+      <artifact name="apiguardian-api-1.1.2-sources.jar">
+        <sha256 value="277a7a4315412817beb6655b324dc7276621e95ebff00b8bf65e17a27b685e2d" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.aspectj" name="aspectjweaver" version="1.9.25.1">
       <artifact name="aspectjweaver-1.9.25.1.jar">
@@ -1057,6 +1275,9 @@
       </artifact>
       <artifact name="aspectjweaver-1.9.25.1.pom">
         <sha256 value="261019d2c87dd7cf49c808b46124d9c3d1c5eac8886c9c61734b61f88fdaaa4f" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/aspectj/aspectjweaver/1.9.25.1/aspectjweaver-1.9.25.1.pom" />
+      </artifact>
+      <artifact name="aspectjweaver-1.9.25.1-sources.jar">
+        <sha256 value="06fbde6ef3a83791e70965432b5f1891e493e21cdbc37307c54575ee86752595" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/aspectj/aspectjweaver/1.9.25.1/aspectjweaver-1.9.25.1-sources.jar" />
       </artifact>
     </component>
     <component group="org.assertj" name="assertj-bom" version="3.27.6">
@@ -1076,6 +1297,9 @@
       <artifact name="assertj-core-3.27.7.pom">
         <sha256 value="95a10dcfb3ba9aad4d0b5e9c523a8d583377bee5ecd4ba37e19e55a34667f079" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/assertj/assertj-core/3.27.7/assertj-core-3.27.7.pom.sha256" />
       </artifact>
+      <artifact name="assertj-core-3.27.7-sources.jar">
+        <sha256 value="5ba6de05730cf76021001f8437f35db4cb5b513465d4ace8c3a6fcd68d9a19ee" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/assertj/assertj-core/3.27.7/assertj-core-3.27.7-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.awaitility" name="awaitility" version="4.3.0">
       <artifact name="awaitility-4.3.0.jar">
@@ -1083,6 +1307,9 @@
       </artifact>
       <artifact name="awaitility-4.3.0.pom">
         <sha256 value="ec817516c83141a33f695ff8f4d73ca6df3af268c3ab377e5cee7effccca8140" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/awaitility/awaitility/4.3.0/awaitility-4.3.0.pom" />
+      </artifact>
+      <artifact name="awaitility-4.3.0-sources.jar">
+        <sha256 value="92d209bd0135b04ca6bb7689c6b921819896ec2d517a5357760f598faafee46c" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/awaitility/awaitility/4.3.0/awaitility-4.3.0-sources.jar" />
       </artifact>
     </component>
     <component group="org.awaitility" name="awaitility-parent" version="4.3.0">
@@ -1100,6 +1327,9 @@
       <artifact name="checker-qual-3.55.1.pom">
         <sha256 value="627d92aa92fd4d6bb8c2b56bcbb38543417f49d38b5a62fbdb4aeff551e7b760" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/checkerframework/checker-qual/3.55.1/checker-qual-3.55.1.pom.sha256" />
       </artifact>
+      <artifact name="checker-qual-3.55.1-sources.jar">
+        <sha256 value="2ec5c76038e65365a09b60997cfa790a8e3620571cae9b4d6020e6de2ca09712" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/checkerframework/checker-qual/3.55.1/checker-qual-3.55.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.eclipse.angus" name="angus-activation" version="2.0.3">
       <artifact name="angus-activation-2.0.3.jar">
@@ -1107,6 +1337,9 @@
       </artifact>
       <artifact name="angus-activation-2.0.3.pom">
         <sha256 value="35c9e16209b2721261354e8aea971626648ad9d4201d221bd96901d900372da0" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/eclipse/angus/angus-activation/2.0.3/angus-activation-2.0.3.pom.sha256" />
+      </artifact>
+      <artifact name="angus-activation-2.0.3-sources.jar">
+        <sha256 value="14f863e0d6536e104263ac35f759fa3098bf7c617b66add58a7b8a24e0d58cee" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/eclipse/angus/angus-activation/2.0.3/angus-activation-2.0.3-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.eclipse.angus" name="angus-activation-project" version="2.0.3">
@@ -1164,6 +1397,9 @@
       <artifact name="ehcache-3.12.0.pom">
         <sha256 value="23b5e73205cec4308b83814aeccd360b0e32a504e97c1e06a165b120cbf977c7" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/ehcache/ehcache/3.12.0/ehcache-3.12.0.pom" />
       </artifact>
+      <artifact name="ehcache-3.12.0-sources.jar">
+        <sha256 value="98a3d14755715f7267c318a5a75c75f34bfb37a8550d89c7aee7e6acc84772a8" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/ehcache/ehcache/3.12.0/ehcache-3.12.0-sources.jar" />
+      </artifact>
     </component>
     <component group="org.flywaydb" name="flyway-core" version="12.4.0">
       <artifact name="flyway-core-12.4.0.jar">
@@ -1172,6 +1408,9 @@
       <artifact name="flyway-core-12.4.0.pom">
         <sha256 value="31432b9590cfeaf495603eeb7c86e52061a4a8b9cca1331b4df167ed4b2285be" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/flywaydb/flyway-core/12.4.0/flyway-core-12.4.0.pom.sha256" />
       </artifact>
+      <artifact name="flyway-core-12.4.0-sources.jar">
+        <sha256 value="805518e597ce89b061a8cee566f87844961a26f677f08706debc124befa3c8db" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/flywaydb/flyway-core/12.4.0/flyway-core-12.4.0-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.flywaydb" name="flyway-database-postgresql" version="12.4.0">
       <artifact name="flyway-database-postgresql-12.4.0.jar">
@@ -1179,6 +1418,9 @@
       </artifact>
       <artifact name="flyway-database-postgresql-12.4.0.pom">
         <sha256 value="e61221d4404382f791988a2ccd9bed83a1ea0b4be4d2d3d906ce4485ee7fa658" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/flywaydb/flyway-database-postgresql/12.4.0/flyway-database-postgresql-12.4.0.pom.sha256" />
+      </artifact>
+      <artifact name="flyway-database-postgresql-12.4.0-sources.jar">
+        <sha256 value="b5806651603d08280486b327896f64ce0932269e7ae4fd7f3ec2fdcfda94e5a6" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/flywaydb/flyway-database-postgresql/12.4.0/flyway-database-postgresql-12.4.0-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.flywaydb" name="flyway-parent" version="12.4.0">
@@ -1203,6 +1445,9 @@
       <artifact name="jaxb-core-4.0.9.pom">
         <sha256 value="f900cce43c065ae8f801323c1ad85bfda56fc2a8ea6808c7054b106920b992c4" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/glassfish/jaxb/jaxb-core/4.0.9/jaxb-core-4.0.9.pom.sha256" />
       </artifact>
+      <artifact name="jaxb-core-4.0.9-sources.jar">
+        <sha256 value="98de96578beff3387efb4a37a9b2258e8b6a858380c5fc4023332116e5dcb26a" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/glassfish/jaxb/jaxb-core/4.0.9/jaxb-core-4.0.9-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.glassfish.jaxb" name="jaxb-parent" version="4.0.9">
       <artifact name="jaxb-parent-4.0.9.pom">
@@ -1215,6 +1460,9 @@
       </artifact>
       <artifact name="jaxb-runtime-4.0.9.pom">
         <sha256 value="d6581ad23495b573bbe3b253774b23735c00557a1a0004a3ab7b23f0556a66f4" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/glassfish/jaxb/jaxb-runtime/4.0.9/jaxb-runtime-4.0.9.pom.sha256" />
+      </artifact>
+      <artifact name="jaxb-runtime-4.0.9-sources.jar">
+        <sha256 value="621fd9e5e2be1daffb424a40eaccacba048f7ede1e8230f9e13388970236d580" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/glassfish/jaxb/jaxb-runtime/4.0.9/jaxb-runtime-4.0.9-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.glassfish.jaxb" name="jaxb-runtime-parent" version="4.0.9">
@@ -1233,6 +1481,9 @@
       </artifact>
       <artifact name="txw2-4.0.9.pom">
         <sha256 value="b0f46b869ef5acf9577506ee031f22b00a1f37849c2c71b8a02248f12be7e456" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/glassfish/jaxb/txw2/4.0.9/txw2-4.0.9.pom.sha256" />
+      </artifact>
+      <artifact name="txw2-4.0.9-sources.jar">
+        <sha256 value="70a166df787e28e794d100c04608b49dec47b85edae0372c1e5fb4b1083e3998" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/glassfish/jaxb/txw2/4.0.9/txw2-4.0.9-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.glassfish.jersey" name="jersey-bom" version="4.0.0">
@@ -1255,6 +1506,9 @@
       <artifact name="github-dependency-graph-gradle-plugin-1.5.0.pom">
         <sha256 value="f8555d200cfcebb55af5d6c9222d8b228d06f7a8b8de6dff3fde0c131a120337" origin="Verified 2026-11-13 against https://plugins.gradle.org/m2/org/gradle/github-dependency-graph-gradle-plugin/1.5.0/github-dependency-graph-gradle-plugin-1.5.0.pom" />
       </artifact>
+      <artifact name="github-dependency-graph-gradle-plugin-1.5.0-sources.jar">
+        <sha256 value="7178f58ec8cbe842f1e1cccaebc52de166760b62e886fe221229c60e58b6e143" origin="Verified 2026-11-14 against https://plugins.gradle.org/m2/org/gradle/github-dependency-graph-gradle-plugin/1.5.0/github-dependency-graph-gradle-plugin-1.5.0-sources.jar" />
+      </artifact>
     </component>
     <component group="org.hamcrest" name="hamcrest" version="3.0">
       <artifact name="hamcrest-3.0.jar">
@@ -1266,6 +1520,9 @@
       <artifact name="hamcrest-3.0.pom">
         <sha256 value="4a04a68133bf32461f47b8a53c8ee9df4ce2f49a0dad9794bce8717bee5bac31" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/hamcrest/hamcrest/3.0/hamcrest-3.0.pom.sha256" />
       </artifact>
+      <artifact name="hamcrest-3.0-sources.jar">
+        <sha256 value="7a4050b1898f7e1aa395cf2be78fb6683f9e2766fcb8e1507926b204fa24d1bf" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/hamcrest/hamcrest/3.0/hamcrest-3.0-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.hdrhistogram" name="HdrHistogram" version="2.2.2">
       <artifact name="HdrHistogram-2.2.2.jar">
@@ -1273,6 +1530,9 @@
       </artifact>
       <artifact name="HdrHistogram-2.2.2.pom">
         <sha256 value="2623346537f706f22059b9117209cb0681b0241145b35c75d2c5e3ec41826766" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/hdrhistogram/HdrHistogram/2.2.2/HdrHistogram-2.2.2.pom.sha256" />
+      </artifact>
+      <artifact name="HdrHistogram-2.2.2-sources.jar">
+        <sha256 value="d3933c83a764994930f4477d4199539eaf413b42e32127ec2b68c61d711ac1a9" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/hdrhistogram/HdrHistogram/2.2.2/HdrHistogram-2.2.2-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.hibernate.models" name="hibernate-models" version="1.1.1">
@@ -1285,6 +1545,9 @@
       <artifact name="hibernate-models-1.1.1.pom">
         <sha256 value="9cf525d8a61465b291580aa051ea734637e4fdba21513a634c608a9abee1b66b" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/hibernate/models/hibernate-models/1.1.1/hibernate-models-1.1.1.pom.sha256" />
       </artifact>
+      <artifact name="hibernate-models-1.1.1-sources.jar">
+        <sha256 value="cf00a0c5910ce8e4ff1bfd374c9b495878c5a3bd00ced2584316749ff7778b3d" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/hibernate/models/hibernate-models/1.1.1/hibernate-models-1.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.hibernate.orm" name="hibernate-core" version="7.4.5.Final">
       <artifact name="hibernate-core-7.4.5.Final.jar">
@@ -1296,6 +1559,9 @@
       <artifact name="hibernate-core-7.4.5.Final.pom">
         <sha256 value="9859b4a53126118840ea08014a0527a5c105085e0bffe005e0224c14fb968849" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/hibernate/orm/hibernate-core/7.4.5.Final/hibernate-core-7.4.5.Final.pom.sha256" />
       </artifact>
+      <artifact name="hibernate-core-7.4.5.Final-sources.jar">
+        <sha256 value="b4e475b8121632c9650fd4868ac5cf2ef6f1e0cf16f512cf1a3310a440827e30" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/hibernate/orm/hibernate-core/7.4.5.Final/hibernate-core-7.4.5.Final-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.hibernate.orm" name="hibernate-jcache" version="7.4.5.Final">
       <artifact name="hibernate-jcache-7.4.5.Final.jar">
@@ -1306,6 +1572,9 @@
       </artifact>
       <artifact name="hibernate-jcache-7.4.5.Final.pom">
         <sha256 value="a4f80321e1ba08dd20d8b7a078436f3887b086ab223c83ca105318837450c484" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/hibernate/orm/hibernate-jcache/7.4.5.Final/hibernate-jcache-7.4.5.Final.pom.sha256" />
+      </artifact>
+      <artifact name="hibernate-jcache-7.4.5.Final-sources.jar">
+        <sha256 value="dec2493ddc8e1913174cc13021cb921bd14d1eddf1b0c92231484a0bd8e26d83" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/hibernate/orm/hibernate-jcache/7.4.5.Final/hibernate-jcache-7.4.5.Final-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.hibernate.orm" name="hibernate-platform" version="7.4.5.Final">
@@ -1322,6 +1591,9 @@
       </artifact>
       <artifact name="hibernate-validator-9.1.3.Final.pom">
         <sha256 value="fb2bf999664f3da0ab4911feb3cad500f1b730f94a6861850bb8bf73f7d3b45d" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/hibernate/validator/hibernate-validator/9.1.3.Final/hibernate-validator-9.1.3.Final.pom.sha256" />
+      </artifact>
+      <artifact name="hibernate-validator-9.1.3.Final-sources.jar">
+        <sha256 value="bbbdbc5103fb73f1067a35e46e3896cc443f676641593797ee4ccd5c8040f809" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/hibernate/validator/hibernate-validator/9.1.3.Final/hibernate-validator-9.1.3.Final-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.infinispan" name="infinispan-bom" version="15.2.6.Final">
@@ -1346,6 +1618,9 @@
       <artifact name="org.jacoco.agent-0.8.15.pom">
         <sha256 value="47eb24b1577e473cbba634399bc56fe7b366b18401bf911d0d8771f56f228966" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/jacoco/org.jacoco.agent/0.8.15/org.jacoco.agent-0.8.15.pom" />
       </artifact>
+      <artifact name="org.jacoco.agent-0.8.15-sources.jar">
+        <sha256 value="237a8ba4e97253113027b068bd501b4cbbb58aee36cf43382be6c013e53eff40" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/jacoco/org.jacoco.agent/0.8.15/org.jacoco.agent-0.8.15-sources.jar" />
+      </artifact>
     </component>
     <component group="org.jacoco" name="org.jacoco.ant" version="0.8.15">
       <artifact name="org.jacoco.ant-0.8.15.jar">
@@ -1353,6 +1628,9 @@
       </artifact>
       <artifact name="org.jacoco.ant-0.8.15.pom">
         <sha256 value="96d1688a3e8723539de36eaeb3f0789ec05914585d69eae0f453c2924b559a0a" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/jacoco/org.jacoco.ant/0.8.15/org.jacoco.ant-0.8.15.pom" />
+      </artifact>
+      <artifact name="org.jacoco.ant-0.8.15-sources.jar">
+        <sha256 value="b05f8956549a6d91a42258cc6d2a6a73d3d1629a4b20b3ddcc1b31e274360164" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/jacoco/org.jacoco.ant/0.8.15/org.jacoco.ant-0.8.15-sources.jar" />
       </artifact>
     </component>
     <component group="org.jacoco" name="org.jacoco.build" version="0.8.15">
@@ -1367,6 +1645,9 @@
       <artifact name="org.jacoco.core-0.8.15.pom">
         <sha256 value="7b283b35bb2bda3b827b4da89ce968d257d1d98dd8594d7c8cb5b2f6d8cd9b15" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/jacoco/org.jacoco.core/0.8.15/org.jacoco.core-0.8.15.pom" />
       </artifact>
+      <artifact name="org.jacoco.core-0.8.15-sources.jar">
+        <sha256 value="deba4e12cf893073b3ed81801eacc87245782fa5838e3e7e0ffbd6794ba617d4" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/jacoco/org.jacoco.core/0.8.15/org.jacoco.core-0.8.15-sources.jar" />
+      </artifact>
     </component>
     <component group="org.jacoco" name="org.jacoco.report" version="0.8.15">
       <artifact name="org.jacoco.report-0.8.15.jar">
@@ -1374,6 +1655,9 @@
       </artifact>
       <artifact name="org.jacoco.report-0.8.15.pom">
         <sha256 value="a1ea901ca04547f1dc24e75dde104b3a7171ff9d0c2b8f43b3153be09ac3c08a" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/jacoco/org.jacoco.report/0.8.15/org.jacoco.report-0.8.15.pom" />
+      </artifact>
+      <artifact name="org.jacoco.report-0.8.15-sources.jar">
+        <sha256 value="95c8a8cbaef0cf046c424056240e95b2a7debbaa424abf41cac50078952d0009" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/jacoco/org.jacoco.report/0.8.15/org.jacoco.report-0.8.15-sources.jar" />
       </artifact>
     </component>
     <component group="org.jboss" name="jboss-parent" version="52">
@@ -1388,6 +1672,20 @@
       <artifact name="jboss-logging-3.6.3.Final.pom">
         <sha256 value="e673490683b352b79e85c22df13b396e4b39e5f25cfef9c1b9e835ed123c0ca4" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/jboss/logging/jboss-logging/3.6.3.Final/jboss-logging-3.6.3.Final.pom.sha256" />
       </artifact>
+      <artifact name="jboss-logging-3.6.3.Final-sources.jar">
+        <sha256 value="e8a2b9aaac82b0082aa040e6bdf6cd7f225cdbc75d2bd1a79fa7b17007ec1b15" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/jboss/logging/jboss-logging/3.6.3.Final/jboss-logging-3.6.3.Final-sources.jar.sha256" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains" name="annotations" version="13.0">
+      <artifact name="annotations-13.0.jar">
+        <sha256 value="ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/jetbrains/annotations/13.0/annotations-13.0.jar" />
+      </artifact>
+      <artifact name="annotations-13.0.pom">
+        <sha256 value="965aeb2bedff369819bdde1bf7a0b3b89b8247dd69c88b86375d76163bb8c397" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/jetbrains/annotations/13.0/annotations-13.0.pom" />
+      </artifact>
+      <artifact name="annotations-13.0-sources.jar">
+        <sha256 value="42a5e144b8e81d50d6913d1007b695e62e614705268d8cf9f13dbdc478c2c68e" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/jetbrains/annotations/13.0/annotations-13.0-sources.jar" />
+      </artifact>
     </component>
     <component group="org.jetbrains" name="annotations" version="17.0.0">
       <artifact name="annotations-17.0.0.jar">
@@ -1395,6 +1693,9 @@
       </artifact>
       <artifact name="annotations-17.0.0.pom">
         <sha256 value="8390ee0b4dff7f568b1336e061f694e77d761a505169aed8964e75482c990eed" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/jetbrains/annotations/17.0.0/annotations-17.0.0.pom" />
+      </artifact>
+      <artifact name="annotations-17.0.0-sources.jar">
+        <sha256 value="b2c0d02e0a32c56d359e99634e7d769f9b1a8cd6e25061995abad1c1baf86f56" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/jetbrains/annotations/17.0.0/annotations-17.0.0-sources.jar" />
       </artifact>
     </component>
     <component group="org.jetbrains.kotlin" name="kotlin-bom" version="2.2.21">
@@ -1405,6 +1706,31 @@
     <component group="org.jetbrains.kotlin" name="kotlin-bom" version="2.3.21">
       <artifact name="kotlin-bom-2.3.21.pom">
         <sha256 value="950704bad04c5143656cfca1d2c574f25fcad9cac33905ab22a57e9fdf7bfd88" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-bom/2.3.21/kotlin-bom-2.3.21.pom" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-reflect" version="2.4.10">
+      <artifact name="kotlin-reflect-2.4.10.jar">
+        <sha256 value="25a1aef7454d46548ecaaf51021b0e52e38141a62ed75af124da109b7324c4e5" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-reflect/2.4.10/kotlin-reflect-2.4.10.jar" />
+      </artifact>
+      <artifact name="kotlin-reflect-2.4.10.pom">
+        <sha256 value="4258f0212f4bd72e3047f7daace38e0de2ebff3f7e923e836431fd8f5b19189d" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-reflect/2.4.10/kotlin-reflect-2.4.10.pom" />
+      </artifact>
+      <artifact name="kotlin-reflect-2.4.10-sources.jar">
+        <sha256 value="ff246d790aad39f55779f44e410b477228999cd3c352585c73b56ea5df36549e" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-reflect/2.4.10/kotlin-reflect-2.4.10-sources.jar" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-stdlib" version="2.4.10">
+      <artifact name="kotlin-stdlib-2.4.10.jar">
+        <sha256 value="4ec0293bc3751423b203f1d8493251c57c42e73eb6377a6b8560d0974ff0a6df" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.4.10/kotlin-stdlib-2.4.10.jar" />
+      </artifact>
+      <artifact name="kotlin-stdlib-2.4.10.module">
+        <sha256 value="1c04a98f1200c8705d015df08977211589eecbc87cf1c4c6d28a92682fe8446e" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.4.10/kotlin-stdlib-2.4.10.module" />
+      </artifact>
+      <artifact name="kotlin-stdlib-2.4.10.pom">
+        <sha256 value="9f81f25e96b919153392ded53bd33216e76624909cfd080a3edb278d44fc34f0" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.4.10/kotlin-stdlib-2.4.10.pom" />
+      </artifact>
+      <artifact name="kotlin-stdlib-2.4.10-sources.jar">
+        <sha256 value="5c4fa84ec945a63453e64bc0141c222ece806a2026c2961fe76b0be483896323" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.4.10/kotlin-stdlib-2.4.10-sources.jar" />
       </artifact>
     </component>
     <component group="org.jetbrains.kotlinx" name="kotlinx-coroutines-bom" version="1.10.2">
@@ -1444,6 +1770,9 @@
       <artifact name="jspecify-1.0.0.module">
         <sha256 value="d307ca77a54e18ac1ef1aaed4e5bbe014bd2f49f29e1d2f813e47c278283195b" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.module.sha256" />
       </artifact>
+      <artifact name="jspecify-1.0.0-sources.jar">
+        <sha256 value="adf0898191d55937fb3192ba971826f4f294292c4a960740f3c27310e7b70296" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/jspecify/jspecify/1.0.0/jspecify-1.0.0-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.jspecify" name="jspecify" version="1.0.1">
       <artifact name="jspecify-1.0.1.jar">
@@ -1454,6 +1783,9 @@
       </artifact>
       <artifact name="jspecify-1.0.1.pom">
         <sha256 value="55b38bf1a7b1d8ea518cf2f4f3ae9aaa236e61bbf0b6bd31ffb49753a059dd5e" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/jspecify/jspecify/1.0.1/jspecify-1.0.1.pom" />
+      </artifact>
+      <artifact name="jspecify-1.0.1-sources.jar">
+        <sha256 value="230c491aac6d2a2b7e66b68d4331b1d2626f1bf3a372c33bbe2b077297e46c45" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/jspecify/jspecify/1.0.1/jspecify-1.0.1-sources.jar" />
       </artifact>
     </component>
     <component group="org.junit" name="junit-bom" version="5.10.2">
@@ -1554,6 +1886,9 @@
       <artifact name="junit-jupiter-6.0.3.pom">
         <sha256 value="bced20e91aaa5677f1ba96fa6f718100ab83e894a52e9961b6004c056a1845ec" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter/6.0.3/junit-jupiter-6.0.3.pom.sha256" />
       </artifact>
+      <artifact name="junit-jupiter-6.0.3-sources.jar">
+        <sha256 value="402f86a4fdce930bb68b592f2ed5a9d57dc4d1b2747aa2d66c0b3cb7a2adceeb" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter/6.0.3/junit-jupiter-6.0.3-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.junit.jupiter" name="junit-jupiter-api" version="6.0.3">
       <artifact name="junit-jupiter-api-6.0.3.jar">
@@ -1564,6 +1899,9 @@
       </artifact>
       <artifact name="junit-jupiter-api-6.0.3.pom">
         <sha256 value="766c80fb318e1600ebf6c9a921de801887b1548aa282d6ad69188b7608d56d47" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter-api/6.0.3/junit-jupiter-api-6.0.3.pom.sha256" />
+      </artifact>
+      <artifact name="junit-jupiter-api-6.0.3-sources.jar">
+        <sha256 value="8266d8da51d0c7d6a2ed4895a3cb76e0ec22194907f24364f2a4f3efd05f00a5" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter-api/6.0.3/junit-jupiter-api-6.0.3-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.junit.jupiter" name="junit-jupiter-engine" version="6.0.3">
@@ -1576,6 +1914,9 @@
       <artifact name="junit-jupiter-engine-6.0.3.pom">
         <sha256 value="bafbc099326c1883f0ee1cb056d31b4222e26165f9f9aa9b896f3d3f78a31538" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter-engine/6.0.3/junit-jupiter-engine-6.0.3.pom.sha256" />
       </artifact>
+      <artifact name="junit-jupiter-engine-6.0.3-sources.jar">
+        <sha256 value="35706a9edf1b580bf22d6eca9d6a9165f478f75b0108840ad6f31481cd662d6c" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter-engine/6.0.3/junit-jupiter-engine-6.0.3-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.junit.jupiter" name="junit-jupiter-params" version="6.0.3">
       <artifact name="junit-jupiter-params-6.0.3.jar">
@@ -1586,6 +1927,9 @@
       </artifact>
       <artifact name="junit-jupiter-params-6.0.3.pom">
         <sha256 value="995b64ecaa2227c4b55f3eb8e77735f544434a2ec2cfeed0605e8baf108263de" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter-params/6.0.3/junit-jupiter-params-6.0.3.pom.sha256" />
+      </artifact>
+      <artifact name="junit-jupiter-params-6.0.3-sources.jar">
+        <sha256 value="f0dcf217100b06b98cd36c2e74fb919c74e3024faad868bac9eba6ff00c7c263" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter-params/6.0.3/junit-jupiter-params-6.0.3-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.junit.platform" name="junit-platform-commons" version="6.0.3">
@@ -1598,6 +1942,9 @@
       <artifact name="junit-platform-commons-6.0.3.pom">
         <sha256 value="bdb8e24be97e0e59769f2164b5361f55227958df4103d68682f8779ad2ca8d7d" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-commons/6.0.3/junit-platform-commons-6.0.3.pom.sha256" />
       </artifact>
+      <artifact name="junit-platform-commons-6.0.3-sources.jar">
+        <sha256 value="06cbe4a4bbd79339c3817983510cf3adc3d6a88a8a556c80c5b84eeb1ebd13dc" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-commons/6.0.3/junit-platform-commons-6.0.3-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.junit.platform" name="junit-platform-engine" version="6.0.3">
       <artifact name="junit-platform-engine-6.0.3.jar">
@@ -1609,6 +1956,9 @@
       <artifact name="junit-platform-engine-6.0.3.pom">
         <sha256 value="7a87d8c6a0a7db0260b00ce303180f6f41d040562895d6804619d5db6ee232be" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-engine/6.0.3/junit-platform-engine-6.0.3.pom.sha256" />
       </artifact>
+      <artifact name="junit-platform-engine-6.0.3-sources.jar">
+        <sha256 value="89a893566a97557dbbcb0706d9b5565c4e7a402050841753dc527f3e9139c9ac" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-engine/6.0.3/junit-platform-engine-6.0.3-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.junit.platform" name="junit-platform-launcher" version="6.0.3">
       <artifact name="junit-platform-launcher-6.0.3.jar">
@@ -1619,6 +1969,9 @@
       </artifact>
       <artifact name="junit-platform-launcher-6.0.3.pom">
         <sha256 value="4d39e03f2093776f4193071c8cdf198136b96166c7b43b5e37e7d6156b9d98ed" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/6.0.3/junit-platform-launcher-6.0.3.pom.sha256" />
+      </artifact>
+      <artifact name="junit-platform-launcher-6.0.3-sources.jar">
+        <sha256 value="4fcbdb81cc882c0c3e73f742878db5884d3d2f86facc08369ca953e32796d144" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/6.0.3/junit-platform-launcher-6.0.3-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.mockito" name="mockito-bom" version="4.11.0">
@@ -1643,6 +1996,9 @@
       <artifact name="mockito-core-5.23.0.pom">
         <sha256 value="c02e2900b9277adbfe12756d7d0b9472e6b9e5972ae1f28d19a41aa6513777e3" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/mockito/mockito-core/5.23.0/mockito-core-5.23.0.pom.sha256" />
       </artifact>
+      <artifact name="mockito-core-5.23.0-sources.jar">
+        <sha256 value="38f869a12a1168ca8dc2a4acd090d8129a7f81afc8f1fc61582701894755fefd" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/mockito/mockito-core/5.23.0/mockito-core-5.23.0-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.mockito" name="mockito-junit-jupiter" version="5.23.0">
       <artifact name="mockito-junit-jupiter-5.23.0.jar">
@@ -1650,6 +2006,9 @@
       </artifact>
       <artifact name="mockito-junit-jupiter-5.23.0.pom">
         <sha256 value="b66d0df81aab2ed2fa53c990ea90c2f1f915031bc85e418602de4cfb8d2ad7e8" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/mockito/mockito-junit-jupiter/5.23.0/mockito-junit-jupiter-5.23.0.pom.sha256" />
+      </artifact>
+      <artifact name="mockito-junit-jupiter-5.23.0-sources.jar">
+        <sha256 value="0c9e34937d567e0b784b5a335150c59d31604cceedc10440dba001770c033ed1" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/mockito/mockito-junit-jupiter/5.23.0/mockito-junit-jupiter-5.23.0-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.mongodb" name="mongodb-driver-bom" version="5.6.1">
@@ -1689,6 +2048,9 @@
       <artifact name="objenesis-3.3.pom">
         <sha256 value="ba0c40da2669a048b6e24ef7066a471f0fbcbfcc509e6a3e856ca4ddfa614ad3" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/objenesis/objenesis/3.3/objenesis-3.3.pom" />
       </artifact>
+      <artifact name="objenesis-3.3-sources.jar">
+        <sha256 value="d06164f8ca002c8ef193cef2d682822014dd330505616af93a3fb64226fc131d" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/objenesis/objenesis/3.3/objenesis-3.3-sources.jar" />
+      </artifact>
     </component>
     <component group="org.objenesis" name="objenesis-parent" version="3.3">
       <artifact name="objenesis-parent-3.3.pom">
@@ -1705,6 +2067,9 @@
       <artifact name="opentest4j-1.3.0.pom">
         <sha256 value="9bf7cffc410f3e8372c2522578df9ca56d9d43bd937e30948706c232a943b355" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.pom.sha256" />
       </artifact>
+      <artifact name="opentest4j-1.3.0-sources.jar">
+        <sha256 value="724a24e3a68267d5ebac9411389a15638a71e50c62448ffa58f59c34d5c1ebb2" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.osgi" name="org.osgi.annotation.bundle" version="2.0.0">
       <artifact name="org.osgi.annotation.bundle-2.0.0.jar">
@@ -1712,6 +2077,9 @@
       </artifact>
       <artifact name="org.osgi.annotation.bundle-2.0.0.pom">
         <sha256 value="8b9cf8a4129ebf5278f2634d3509c372283961ad0fdcc85a245bb35d7a22a5c8" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/osgi/org.osgi.annotation.bundle/2.0.0/org.osgi.annotation.bundle-2.0.0.pom" />
+      </artifact>
+      <artifact name="org.osgi.annotation.bundle-2.0.0-sources.jar">
+        <sha256 value="e6721114ac9c07c66b81cf917656b591aeccd42a23fb1942742b760546723d6b" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/osgi/org.osgi.annotation.bundle/2.0.0/org.osgi.annotation.bundle-2.0.0-sources.jar" />
       </artifact>
     </component>
     <component group="org.osgi" name="org.osgi.annotation.versioning" version="1.1.2">
@@ -1721,6 +2089,9 @@
       <artifact name="org.osgi.annotation.versioning-1.1.2.pom">
         <sha256 value="b1d3012abffa2b7fc4a3d0baee8784494c073986b000d655a788fa617aaa2bc8" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/osgi/org.osgi.annotation.versioning/1.1.2/org.osgi.annotation.versioning-1.1.2.pom" />
       </artifact>
+      <artifact name="org.osgi.annotation.versioning-1.1.2-sources.jar">
+        <sha256 value="9dd6798709f0c1a4108951153ce43d96777b1bcd5ea27a1d510bb60e5177e9bf" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/osgi/org.osgi.annotation.versioning/1.1.2/org.osgi.annotation.versioning-1.1.2-sources.jar" />
+      </artifact>
     </component>
     <component group="org.osgi" name="org.osgi.resource" version="1.0.0">
       <artifact name="org.osgi.resource-1.0.0.jar">
@@ -1729,6 +2100,9 @@
       <artifact name="org.osgi.resource-1.0.0.pom">
         <sha256 value="83acdf225ffb9a4a7bc582f53a4145a1f2c3bdbb428e033c00966f63c610e820" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/osgi/org.osgi.resource/1.0.0/org.osgi.resource-1.0.0.pom" />
       </artifact>
+      <artifact name="org.osgi.resource-1.0.0-sources.jar">
+        <sha256 value="4de0a3a5f81b5f9635bf8dcaac1227ba011ffedd33d3d3961038a55d98762042" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/osgi/org.osgi.resource/1.0.0/org.osgi.resource-1.0.0-sources.jar" />
+      </artifact>
     </component>
     <component group="org.osgi" name="org.osgi.service.serviceloader" version="1.0.0">
       <artifact name="org.osgi.service.serviceloader-1.0.0.jar">
@@ -1736,6 +2110,9 @@
       </artifact>
       <artifact name="org.osgi.service.serviceloader-1.0.0.pom">
         <sha256 value="755751ab6c37a1a31afb5b9e4a595c0dd2efd2b50d703b21255b827c50ed6153" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/osgi/org.osgi.service.serviceloader/1.0.0/org.osgi.service.serviceloader-1.0.0.pom" />
+      </artifact>
+      <artifact name="org.osgi.service.serviceloader-1.0.0-sources.jar">
+        <sha256 value="7d4783b570cd118263bc6a807c0a7c183b1db451442ffcb8a36310ad24a91743" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/osgi/org.osgi.service.serviceloader/1.0.0/org.osgi.service.serviceloader-1.0.0-sources.jar" />
       </artifact>
     </component>
     <component group="org.ow2" name="ow2" version="1.5.1">
@@ -1750,6 +2127,9 @@
       <artifact name="asm-9.10.1.pom">
         <sha256 value="e1b1c3832ca3ac0a9e563c405f4c760118b5556a4920daee14058886197e094d" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.10.1/asm-9.10.1.pom.sha256" />
       </artifact>
+      <artifact name="asm-9.10.1-sources.jar">
+        <sha256 value="cb29bf42b4008972c566944d377192aa1b2d90275b9cfa9a7fa86de669fde11c" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.10.1/asm-9.10.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.ow2.asm" name="asm" version="9.7.1">
       <artifact name="asm-9.7.1.jar">
@@ -1757,6 +2137,9 @@
       </artifact>
       <artifact name="asm-9.7.1.pom">
         <sha256 value="7229b03b30a73ee91008072d9e4569a51d8547fae8c50f527841aef4c1b0baa8" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.7.1/asm-9.7.1.pom.sha256" />
+      </artifact>
+      <artifact name="asm-9.7.1-sources.jar">
+        <sha256 value="22e9507b0c494daaedb33b8148c30cd618c6dacc3992be8b50eaaafeb6a8ba8d" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.7.1/asm-9.7.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.ow2.asm" name="asm-bom" version="9.10.1">
@@ -1771,6 +2154,9 @@
       <artifact name="asm-commons-9.10.1.pom">
         <sha256 value="ceb2c43f3a273db88af8652d89ed6312f3e91a1a1e0ffc6f7823169278cf795c" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/ow2/asm/asm-commons/9.10.1/asm-commons-9.10.1.pom.sha256" />
       </artifact>
+      <artifact name="asm-commons-9.10.1-sources.jar">
+        <sha256 value="a26e55103e094a0f6df75a7b5e578bd7b4ad73abd2641b0fa2ac97db70641906" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/ow2/asm/asm-commons/9.10.1/asm-commons-9.10.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.ow2.asm" name="asm-tree" version="9.10.1">
       <artifact name="asm-tree-9.10.1.jar">
@@ -1778,6 +2164,9 @@
       </artifact>
       <artifact name="asm-tree-9.10.1.pom">
         <sha256 value="963eebdea6e2e1ff25c9068b64a238e1585c99f8acd455595ac159a7f52b6c41" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/ow2/asm/asm-tree/9.10.1/asm-tree-9.10.1.pom.sha256" />
+      </artifact>
+      <artifact name="asm-tree-9.10.1-sources.jar">
+        <sha256 value="93a9406bb68abff43f491891625e0d3c7edce87b70d2370ec1ea4627c9ead090" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/ow2/asm/asm-tree/9.10.1/asm-tree-9.10.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.postgresql" name="postgresql" version="42.7.13">
@@ -1787,6 +2176,9 @@
       <artifact name="postgresql-42.7.13.pom">
         <sha256 value="3957417ecaee342521b61310fdc21bd37fcb8bba3f7547ece9b78fd03cd53f26" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/postgresql/postgresql/42.7.13/postgresql-42.7.13.pom" />
       </artifact>
+      <artifact name="postgresql-42.7.13-sources.jar">
+        <sha256 value="47914c21e0866a23de859041b2e6ecf921fdf68efbd9c7cb42c090ed5e944bab" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/postgresql/postgresql/42.7.13/postgresql-42.7.13-sources.jar" />
+      </artifact>
     </component>
     <component group="org.rnorth.duct-tape" name="duct-tape" version="1.0.8">
       <artifact name="duct-tape-1.0.8.jar">
@@ -1794,6 +2186,9 @@
       </artifact>
       <artifact name="duct-tape-1.0.8.pom">
         <sha256 value="2636f66debe6e12437632f23a67b9bc961b03633009e52527a3bbc871f4069b4" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/rnorth/duct-tape/duct-tape/1.0.8/duct-tape-1.0.8.pom" />
+      </artifact>
+      <artifact name="duct-tape-1.0.8-sources.jar">
+        <sha256 value="b385fd2c2b435c313b3f02988d351503230c9631bfb432261cbd8ce9765d2a26" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/rnorth/duct-tape/duct-tape/1.0.8/duct-tape-1.0.8-sources.jar" />
       </artifact>
     </component>
     <component group="org.seleniumhq.selenium" name="selenium-bom" version="4.37.0">
@@ -1813,6 +2208,9 @@
       <artifact name="jsonassert-1.5.3.pom">
         <sha256 value="c6a880737b6b3c8a27d9a05c6048536a7a70bb350cb91dce2336b6710a2ba628" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.pom" />
       </artifact>
+      <artifact name="jsonassert-1.5.3-sources.jar">
+        <sha256 value="a825c29f8cc40f85ea4e7a431a55d4278a785c34acdeef4cd1be7367f70ea6bb" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3-sources.jar" />
+      </artifact>
     </component>
     <component group="org.slf4j" name="jul-to-slf4j" version="2.0.18">
       <artifact name="jul-to-slf4j-2.0.18.jar">
@@ -1820,6 +2218,9 @@
       </artifact>
       <artifact name="jul-to-slf4j-2.0.18.pom">
         <sha256 value="eae8e0ffbd8b31fa8f8a610d62d387b4e10295ba74d0e14d66404560b74d8295" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/slf4j/jul-to-slf4j/2.0.18/jul-to-slf4j-2.0.18.pom.sha256" />
+      </artifact>
+      <artifact name="jul-to-slf4j-2.0.18-sources.jar">
+        <sha256 value="b6dd2138f3e83d876bf07206d09f2b48ca655bc36a8e80b0c2a32ad19ab8f1d5" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/slf4j/jul-to-slf4j/2.0.18/jul-to-slf4j-2.0.18-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.slf4j" name="slf4j-api" version="1.7.36">
@@ -1829,6 +2230,9 @@
       <artifact name="slf4j-api-1.7.36.pom">
         <sha256 value="fb046a9c229437928bb11c2d27c8b5d773eb8a25e60cbd253d985210dedc2684" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.pom" />
       </artifact>
+      <artifact name="slf4j-api-1.7.36-sources.jar">
+        <sha256 value="15bc04357a3725b7a5153f132db71379f95e83b7b8590a86cc6d4ad77bfc150a" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36-sources.jar" />
+      </artifact>
     </component>
     <component group="org.slf4j" name="slf4j-api" version="2.0.18">
       <artifact name="slf4j-api-2.0.18.jar">
@@ -1836,6 +2240,9 @@
       </artifact>
       <artifact name="slf4j-api-2.0.18.pom">
         <sha256 value="6c2c7f2c02774cc2b7b619fbd2df7873cdad29718926e44754b87f70d1eb43cb" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/2.0.18/slf4j-api-2.0.18.pom.sha256" />
+      </artifact>
+      <artifact name="slf4j-api-2.0.18-sources.jar">
+        <sha256 value="192e007cf7f2be41d40574e44521fc0b7ce55e01f13dbe0fa8707c8ae3329075" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/2.0.18/slf4j-api-2.0.18-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.slf4j" name="slf4j-bom" version="2.0.18">
@@ -1870,6 +2277,9 @@
       <artifact name="sonarqube-gradle-plugin-7.5.0.8588.module">
         <sha256 value="08ea302626504789e9bdbe9b9ad22fb78337e61c892dd89dee0b02896e3d66f8" origin="Verified 2026-11-13 against https://plugins.gradle.org/m2/org/sonarsource/scanner/gradle/sonarqube-gradle-plugin/7.5.0.8588/sonarqube-gradle-plugin-7.5.0.8588.module" />
       </artifact>
+      <artifact name="sonarqube-gradle-plugin-7.5.0.8588-sources.jar">
+        <sha256 value="2c75e366e3dec7ce5744341556804b16c3ac0ca11f1cf4bf6cb7fc11e3ddb62a" origin="Verified 2026-11-14 against https://plugins.gradle.org/m2/org/sonarsource/scanner/gradle/sonarqube-gradle-plugin/7.5.0.8588/sonarqube-gradle-plugin-7.5.0.8588-sources.jar" />
+      </artifact>
     </component>
     <component group="org.sonarsource.scanner.lib" name="sonar-scanner-java-library-parent" version="4.2.1.1698">
       <artifact name="sonar-scanner-java-library-parent-4.2.1.1698.pom">
@@ -1882,6 +2292,9 @@
       </artifact>
       <artifact name="sonar-scanner-java-library-shaded-4.2.1.1698.pom">
         <sha256 value="26d637e3b4d0ea3a874417ada4c81e9052be95aae6a5188996cb4707ab5aed6c" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/sonarsource/scanner/lib/sonar-scanner-java-library-shaded/4.2.1.1698/sonar-scanner-java-library-shaded-4.2.1.1698.pom.sha256" />
+      </artifact>
+      <artifact name="sonar-scanner-java-library-shaded-4.2.1.1698-sources.jar">
+        <sha256 value="5f28ef4f5cd4ac42931317cf2ee031c6dd29e4865d00dd5b788e6cdb8ef48855" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/sonarsource/scanner/lib/sonar-scanner-java-library-shaded/4.2.1.1698/sonar-scanner-java-library-shaded-4.2.1.1698-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.sonatype.oss" name="oss-parent" version="7">
@@ -1906,6 +2319,9 @@
       <artifact name="springdoc-openapi-starter-common-3.0.0.pom">
         <sha256 value="5dd3266d1f63a149e0077d15d768018d3cf375cdf0ea6d5639f6790dd34712f5" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springdoc/springdoc-openapi-starter-common/3.0.0/springdoc-openapi-starter-common-3.0.0.pom.sha256" />
       </artifact>
+      <artifact name="springdoc-openapi-starter-common-3.0.0-sources.jar">
+        <sha256 value="86d0b92b5133b767c0acfddb3419f39e7637f439851ceba1c09ae1a485b10bd5" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springdoc/springdoc-openapi-starter-common/3.0.0/springdoc-openapi-starter-common-3.0.0-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springdoc" name="springdoc-openapi-starter-webmvc-api" version="3.0.0">
       <artifact name="springdoc-openapi-starter-webmvc-api-3.0.0.jar">
@@ -1914,6 +2330,9 @@
       <artifact name="springdoc-openapi-starter-webmvc-api-3.0.0.pom">
         <sha256 value="6443090423b7efac6a254a601e0b2d09570693d9ba49d0a985b419a0ae6d2001" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springdoc/springdoc-openapi-starter-webmvc-api/3.0.0/springdoc-openapi-starter-webmvc-api-3.0.0.pom.sha256" />
       </artifact>
+      <artifact name="springdoc-openapi-starter-webmvc-api-3.0.0-sources.jar">
+        <sha256 value="d94ed4d0d88de845c6c2fc94813a354716a16b140e4c4b864355f1bff2458563" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springdoc/springdoc-openapi-starter-webmvc-api/3.0.0/springdoc-openapi-starter-webmvc-api-3.0.0-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springdoc" name="springdoc-openapi-starter-webmvc-ui" version="3.0.0">
       <artifact name="springdoc-openapi-starter-webmvc-ui-3.0.0.jar">
@@ -1921,6 +2340,9 @@
       </artifact>
       <artifact name="springdoc-openapi-starter-webmvc-ui-3.0.0.pom">
         <sha256 value="fb9a748af8fdcec4f161419252696496606b79c0c91ae03a5ff3025f2cddf2ab" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springdoc/springdoc-openapi-starter-webmvc-ui/3.0.0/springdoc-openapi-starter-webmvc-ui-3.0.0.pom.sha256" />
+      </artifact>
+      <artifact name="springdoc-openapi-starter-webmvc-ui-3.0.0-sources.jar">
+        <sha256 value="ce77ac7eb5c8421858d04c7bb5950159ff03024e2fc3a648ac0c64902219666a" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springdoc/springdoc-openapi-starter-webmvc-ui/3.0.0/springdoc-openapi-starter-webmvc-ui-3.0.0-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework" name="spring-aop" version="7.0.9">
@@ -1933,6 +2355,9 @@
       <artifact name="spring-aop-7.0.9.pom">
         <sha256 value="3d92b6a5afb119e6a0bfe0f0c2eef71961e01cd120b676b59c1d39ad7e320aca" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/spring-aop/7.0.9/spring-aop-7.0.9.pom.sha256" />
       </artifact>
+      <artifact name="spring-aop-7.0.9-sources.jar">
+        <sha256 value="580610d9e5e2418ea48f64850673ed1d1fdc2d9c8e5cf6e9cfaece1e61b70522" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/spring-aop/7.0.9/spring-aop-7.0.9-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework" name="spring-aspects" version="7.0.9">
       <artifact name="spring-aspects-7.0.9.jar">
@@ -1943,6 +2368,9 @@
       </artifact>
       <artifact name="spring-aspects-7.0.9.pom">
         <sha256 value="56eed3315c8613e156d3219aa21fc97c2343574afe995e932cd8d3dd1c207d27" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/spring-aspects/7.0.9/spring-aspects-7.0.9.pom.sha256" />
+      </artifact>
+      <artifact name="spring-aspects-7.0.9-sources.jar">
+        <sha256 value="3521bb68a93ccbd31f866af9caaf83a80b4fb25fce52c2dadebb396ec058588e" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/spring-aspects/7.0.9/spring-aspects-7.0.9-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework" name="spring-beans" version="7.0.9">
@@ -1955,6 +2383,9 @@
       <artifact name="spring-beans-7.0.9.pom">
         <sha256 value="5d16df49927351da326714c3dfa3e1dd53fd271057e34265b9256377d1fe6d16" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/spring-beans/7.0.9/spring-beans-7.0.9.pom.sha256" />
       </artifact>
+      <artifact name="spring-beans-7.0.9-sources.jar">
+        <sha256 value="a3d2fa23ade849b4f9f9e7f7d4a5c86b55757aed2e105a8cfc4ccf3031423551" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/spring-beans/7.0.9/spring-beans-7.0.9-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework" name="spring-context" version="7.0.9">
       <artifact name="spring-context-7.0.9.jar">
@@ -1965,6 +2396,9 @@
       </artifact>
       <artifact name="spring-context-7.0.9.pom">
         <sha256 value="2acb4ac44a7ffac104c2b8eb9b595ad342459acd503806588e7e2f7ac73df5e0" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/spring-context/7.0.9/spring-context-7.0.9.pom.sha256" />
+      </artifact>
+      <artifact name="spring-context-7.0.9-sources.jar">
+        <sha256 value="746a8f24104b4b916ff7fa5075918aba7c79344a1b99067b2b90c333ad311c13" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/spring-context/7.0.9/spring-context-7.0.9-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework" name="spring-context-support" version="7.0.9">
@@ -1977,6 +2411,9 @@
       <artifact name="spring-context-support-7.0.9.pom">
         <sha256 value="96a783ed9c909171eed1d1c45f8bfc140abcc888b38de4f2a46b2084cd5a3d9f" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/spring-context-support/7.0.9/spring-context-support-7.0.9.pom.sha256" />
       </artifact>
+      <artifact name="spring-context-support-7.0.9-sources.jar">
+        <sha256 value="83ee3f11249103d063d714fed8c0488f4c9ab4f77f8b6b42d1158006bde98349" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/spring-context-support/7.0.9/spring-context-support-7.0.9-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework" name="spring-core" version="7.0.9">
       <artifact name="spring-core-7.0.9.jar">
@@ -1988,6 +2425,9 @@
       <artifact name="spring-core-7.0.9.pom">
         <sha256 value="2e706b82c4dfbf3ad2a7a59176821550baba49a4b1f791136842d224ab7757ff" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/spring-core/7.0.9/spring-core-7.0.9.pom.sha256" />
       </artifact>
+      <artifact name="spring-core-7.0.9-sources.jar">
+        <sha256 value="eea5b41d1b885b3f7bed1cc019e74bb325f5ee924744eebd5ac4320bae938ff5" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/spring-core/7.0.9/spring-core-7.0.9-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework" name="spring-expression" version="7.0.9">
       <artifact name="spring-expression-7.0.9.jar">
@@ -1998,6 +2438,9 @@
       </artifact>
       <artifact name="spring-expression-7.0.9.pom">
         <sha256 value="d0ac675cf4da02b56a5cb3140f533ba7dd7d95b9f1c6d69ad49492b17c83584e" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/spring-expression/7.0.9/spring-expression-7.0.9.pom.sha256" />
+      </artifact>
+      <artifact name="spring-expression-7.0.9-sources.jar">
+        <sha256 value="91d0ca88bf62d7f84f06d01188c11d355650bdfb694161817ac91d2911dea310" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/spring-expression/7.0.9/spring-expression-7.0.9-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework" name="spring-framework-bom" version="5.3.39">
@@ -2034,6 +2477,9 @@
       <artifact name="spring-jdbc-7.0.9.pom">
         <sha256 value="f29554e6fb1a353aaf83efab35b84f49405eb499f89bab03af1ff8e17381b5f0" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/spring-jdbc/7.0.9/spring-jdbc-7.0.9.pom.sha256" />
       </artifact>
+      <artifact name="spring-jdbc-7.0.9-sources.jar">
+        <sha256 value="7dd78f9d227747a14d721cd4ab979b72e3b07e46c90c8b2383b2a3df6f8b6934" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/spring-jdbc/7.0.9/spring-jdbc-7.0.9-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework" name="spring-orm" version="7.0.9">
       <artifact name="spring-orm-7.0.9.jar">
@@ -2044,6 +2490,9 @@
       </artifact>
       <artifact name="spring-orm-7.0.9.pom">
         <sha256 value="5fbb41cf457267894db59d26c3b4c71f8affbff8825f026382b8b4180c6cdd66" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/spring-orm/7.0.9/spring-orm-7.0.9.pom.sha256" />
+      </artifact>
+      <artifact name="spring-orm-7.0.9-sources.jar">
+        <sha256 value="d379a4d830a12d0163b59bf7335c682ee0a903cafee82aba8fd8b46226931bc3" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/spring-orm/7.0.9/spring-orm-7.0.9-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework" name="spring-test" version="7.0.9">
@@ -2056,6 +2505,9 @@
       <artifact name="spring-test-7.0.9.pom">
         <sha256 value="cb24a320511fed8bfdc113c6230cfcbcef3f4c241c77a1e150b2f3b1849ee799" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/spring-test/7.0.9/spring-test-7.0.9.pom.sha256" />
       </artifact>
+      <artifact name="spring-test-7.0.9-sources.jar">
+        <sha256 value="4d7e442efd11405462211a506a2091ca45cbf074590bc03ed250234e41dc1742" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/spring-test/7.0.9/spring-test-7.0.9-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework" name="spring-tx" version="7.0.9">
       <artifact name="spring-tx-7.0.9.jar">
@@ -2066,6 +2518,9 @@
       </artifact>
       <artifact name="spring-tx-7.0.9.pom">
         <sha256 value="c5a36e0f99c40608fa3a6d308b983d04f4a8a5802d005c0c42f8ad1650b83fe3" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/spring-tx/7.0.9/spring-tx-7.0.9.pom.sha256" />
+      </artifact>
+      <artifact name="spring-tx-7.0.9-sources.jar">
+        <sha256 value="7887541d74a7221ca92e21d1a2ecc13e8f98767b1603b3b6bb81d7bbd5aede48" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/spring-tx/7.0.9/spring-tx-7.0.9-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework" name="spring-web" version="7.0.9">
@@ -2078,6 +2533,9 @@
       <artifact name="spring-web-7.0.9.pom">
         <sha256 value="d4dcffdbbf8714ace6304c6d12bfe0e2ccd365809e98ba6288763dd933bb0962" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/spring-web/7.0.9/spring-web-7.0.9.pom.sha256" />
       </artifact>
+      <artifact name="spring-web-7.0.9-sources.jar">
+        <sha256 value="fff879de733e4ec752ffe4925dd830d0f3656e321b6c4e48bf9886e5322a8b0d" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/spring-web/7.0.9/spring-web-7.0.9-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework" name="spring-webmvc" version="7.0.9">
       <artifact name="spring-webmvc-7.0.9.jar">
@@ -2088,6 +2546,9 @@
       </artifact>
       <artifact name="spring-webmvc-7.0.9.pom">
         <sha256 value="86549176d6579a496881dac41308c3673d8975a7cc7b3d92e6e6453fbbc3f402" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/spring-webmvc/7.0.9/spring-webmvc-7.0.9.pom.sha256" />
+      </artifact>
+      <artifact name="spring-webmvc-7.0.9-sources.jar">
+        <sha256 value="c22ef47b861c6b9dffc9c57e425fe3f7391171b75dda4de11597b36cd306d39f" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/spring-webmvc/7.0.9/spring-webmvc-7.0.9-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.amqp" name="spring-amqp-bom" version="4.0.0">
@@ -2131,6 +2592,9 @@
       <artifact name="spring-boot-4.1.1.pom">
         <sha256 value="9f154863aaa9a3dfc98de4c6be59feb68fa3a594a305dd6591b2ed9cc4b9a80b" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot/4.1.1/spring-boot-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-4.1.1-sources.jar">
+        <sha256 value="a78a966552406fb8a67860d760cf41e49ff2b2095f6de74f4d448e3e7e00fe91" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot/4.1.1/spring-boot-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-actuator" version="4.1.1">
       <artifact name="spring-boot-actuator-4.1.1.jar">
@@ -2141,6 +2605,9 @@
       </artifact>
       <artifact name="spring-boot-actuator-4.1.1.pom">
         <sha256 value="37dd5bed903f1c41ade4e58fd6e6004366d4a4bfcc08a61f408ab976786debe8" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-actuator/4.1.1/spring-boot-actuator-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-actuator-4.1.1-sources.jar">
+        <sha256 value="c25f4cf324d5f18bd43927bdb1d4254c12e9e4690c3786e0561d5faf20946ef0" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-actuator/4.1.1/spring-boot-actuator-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-actuator-autoconfigure" version="4.1.1">
@@ -2153,6 +2620,9 @@
       <artifact name="spring-boot-actuator-autoconfigure-4.1.1.pom">
         <sha256 value="e7dac34d1a42791a509592adf4f60e0c41c1f0ecf7e6f2032a33e4e227d0c884" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-actuator-autoconfigure/4.1.1/spring-boot-actuator-autoconfigure-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-actuator-autoconfigure-4.1.1-sources.jar">
+        <sha256 value="164bed23226000658b9a40c564f4330c1ac7254135f3af5abc9a20ebd4926c63" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-actuator-autoconfigure/4.1.1/spring-boot-actuator-autoconfigure-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-autoconfigure" version="4.1.1">
       <artifact name="spring-boot-autoconfigure-4.1.1.jar">
@@ -2164,6 +2634,9 @@
       <artifact name="spring-boot-autoconfigure-4.1.1.pom">
         <sha256 value="4296618022d0b939d1e526ab401b43660f34953530b414dd74743c3b1fb4ee82" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-autoconfigure/4.1.1/spring-boot-autoconfigure-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-autoconfigure-4.1.1-sources.jar">
+        <sha256 value="9973bcef6d7662261604141fea8f43d5c53aed08c470d9b5d108a89c1729284f" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-autoconfigure/4.1.1/spring-boot-autoconfigure-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-buildpack-platform" version="4.1.1">
       <artifact name="spring-boot-buildpack-platform-4.1.1.jar">
@@ -2171,6 +2644,9 @@
       </artifact>
       <artifact name="spring-boot-buildpack-platform-4.1.1.module">
         <sha256 value="fbc7110a1b937e911cafc7c7e160bebb7ec1f2ac1389e65d868593cf166e802b" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-buildpack-platform/4.1.1/spring-boot-buildpack-platform-4.1.1.module.sha256" />
+      </artifact>
+      <artifact name="spring-boot-buildpack-platform-4.1.1-sources.jar">
+        <sha256 value="38729fe5de90e2f04a227153a5f55a2daf2f5e498ea7dea909144382042e39e0" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-buildpack-platform/4.1.1/spring-boot-buildpack-platform-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-cache" version="4.1.1">
@@ -2183,6 +2659,9 @@
       <artifact name="spring-boot-cache-4.1.1.pom">
         <sha256 value="58f8a51e1c974f453e3c5aa3ee516d9d0cde26c9d72fbe35e871622d34e68b24" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-cache/4.1.1/spring-boot-cache-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-cache-4.1.1-sources.jar">
+        <sha256 value="cf6e5247ab882cbf6d8c69c66db9b928b4e70a79ae0c4eb9bf780a8ad0dce2ac" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-cache/4.1.1/spring-boot-cache-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-data-commons" version="4.1.1">
       <artifact name="spring-boot-data-commons-4.1.1.jar">
@@ -2193,6 +2672,9 @@
       </artifact>
       <artifact name="spring-boot-data-commons-4.1.1.pom">
         <sha256 value="4fcf3ba63908fdf1a645f2452e647f7a0fcfa9ebc4fd4550491d46a3eb7834fc" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-data-commons/4.1.1/spring-boot-data-commons-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-data-commons-4.1.1-sources.jar">
+        <sha256 value="1d406db0338f152a8822350d4a2bcf23085db8891bcc08e03a45b2d5ee997911" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-data-commons/4.1.1/spring-boot-data-commons-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-data-jpa" version="4.1.1">
@@ -2205,6 +2687,9 @@
       <artifact name="spring-boot-data-jpa-4.1.1.pom">
         <sha256 value="3ed7cc9068c7d972f49541b8cb95adf06b3e27bfed903af2c7d9b26abae85c83" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-data-jpa/4.1.1/spring-boot-data-jpa-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-data-jpa-4.1.1-sources.jar">
+        <sha256 value="11d44d4b43c264d63bda72d04e620e0f6c7d757d048b56bb14916b3482a08cb5" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-data-jpa/4.1.1/spring-boot-data-jpa-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-data-jpa-test" version="4.1.1">
       <artifact name="spring-boot-data-jpa-test-4.1.1.jar">
@@ -2215,6 +2700,9 @@
       </artifact>
       <artifact name="spring-boot-data-jpa-test-4.1.1.pom">
         <sha256 value="c702c07339ef7ebb0b749477d0241286d56b68b0024741931dd39bbf60780cd8" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-data-jpa-test/4.1.1/spring-boot-data-jpa-test-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-data-jpa-test-4.1.1-sources.jar">
+        <sha256 value="553fa5f6963ae964327dd7ff840da1d9c265b60f0e7fcd5fa26223db8adcf13e" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-data-jpa-test/4.1.1/spring-boot-data-jpa-test-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-dependencies" version="4.0.0">
@@ -2237,6 +2725,9 @@
       <artifact name="spring-boot-flyway-4.1.1.pom">
         <sha256 value="663ffdb1eb8c74da80c8c2c261482a38357bba9521929ab427dff19efad88151" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-flyway/4.1.1/spring-boot-flyway-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-flyway-4.1.1-sources.jar">
+        <sha256 value="a79e61cda927aab81b3b34e705b9e63dc15155f1af746fca8f91c9e448b2b32d" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-flyway/4.1.1/spring-boot-flyway-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-gradle-plugin" version="4.1.1">
       <artifact name="spring-boot-gradle-plugin-4.1.1.jar">
@@ -2244,6 +2735,9 @@
       </artifact>
       <artifact name="spring-boot-gradle-plugin-4.1.1.module">
         <sha256 value="c1e7938bbff8f1723d898296053c0937e17d79002ba08d45d35bae41e793cd99" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-gradle-plugin/4.1.1/spring-boot-gradle-plugin-4.1.1.module.sha256" />
+      </artifact>
+      <artifact name="spring-boot-gradle-plugin-4.1.1-sources.jar">
+        <sha256 value="237a26b55f7109874bbe44896f1ed9cc6e60db59c436e7c0ffa525188febe1e0" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-gradle-plugin/4.1.1/spring-boot-gradle-plugin-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-health" version="4.1.1">
@@ -2256,6 +2750,9 @@
       <artifact name="spring-boot-health-4.1.1.pom">
         <sha256 value="7128ed84569df4f5ecccfbda6c03da33aa4f7dc72f858d4ebd9920be4ecb70f3" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-health/4.1.1/spring-boot-health-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-health-4.1.1-sources.jar">
+        <sha256 value="4027a51be397f339cb4cfe87a09e355330beadeb5e73594ead011500593ffba8" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-health/4.1.1/spring-boot-health-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-hibernate" version="4.1.1">
       <artifact name="spring-boot-hibernate-4.1.1.jar">
@@ -2266,6 +2763,9 @@
       </artifact>
       <artifact name="spring-boot-hibernate-4.1.1.pom">
         <sha256 value="635dd3a7397ef9a8ea1764aed2c08405356f44e63e3c32351cd5fa31ee32371c" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-hibernate/4.1.1/spring-boot-hibernate-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-hibernate-4.1.1-sources.jar">
+        <sha256 value="66b5581a07383796828b2c027166a38de13b5e251e4468c0eed9930ff7eaac70" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-hibernate/4.1.1/spring-boot-hibernate-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-http-client" version="4.1.1">
@@ -2278,6 +2778,9 @@
       <artifact name="spring-boot-http-client-4.1.1.pom">
         <sha256 value="915efc45b5c1772ec55cd23ea2bf13c57b6485a832fc4d9b8bd3b66b851fc924" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-http-client/4.1.1/spring-boot-http-client-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-http-client-4.1.1-sources.jar">
+        <sha256 value="2ea3e9263e4073e9a2ca0717cd4412a1ece6429bd4ec825770c3a41a54e041bb" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-http-client/4.1.1/spring-boot-http-client-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-http-converter" version="4.1.1">
       <artifact name="spring-boot-http-converter-4.1.1.jar">
@@ -2288,6 +2791,9 @@
       </artifact>
       <artifact name="spring-boot-http-converter-4.1.1.pom">
         <sha256 value="5cc2393869b9ebcc7b5f69dfbcaaa689f0bebc1bc73b7c68f5848807a837a73a" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-http-converter/4.1.1/spring-boot-http-converter-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-http-converter-4.1.1-sources.jar">
+        <sha256 value="8508e02bc0eac21abef8e2f4659c1f1be29c48dc0215bbea98a6788808442219" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-http-converter/4.1.1/spring-boot-http-converter-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-jackson" version="4.1.1">
@@ -2300,6 +2806,9 @@
       <artifact name="spring-boot-jackson-4.1.1.pom">
         <sha256 value="8eb9beb669e93a47483f3410b6146a20045c0026246e194250938d4f5892c259" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-jackson/4.1.1/spring-boot-jackson-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-jackson-4.1.1-sources.jar">
+        <sha256 value="abf8edb5fd82d9c47fe131a17c2f18f5af13ca3fbb12e42f4098c4b91a9529dd" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-jackson/4.1.1/spring-boot-jackson-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-jdbc" version="4.1.1">
       <artifact name="spring-boot-jdbc-4.1.1.jar">
@@ -2310,6 +2819,9 @@
       </artifact>
       <artifact name="spring-boot-jdbc-4.1.1.pom">
         <sha256 value="ed5f6bbc6a2faf7c659e0433e45f4c5b2490767129dc7a6d37211b7b4882f27f" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-jdbc/4.1.1/spring-boot-jdbc-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-jdbc-4.1.1-sources.jar">
+        <sha256 value="d9041aa907cdbbb3379b395c402b1c17fb40224fd0a8835fd75c0d9302a2013e" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-jdbc/4.1.1/spring-boot-jdbc-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-jdbc-test" version="4.1.1">
@@ -2322,6 +2834,9 @@
       <artifact name="spring-boot-jdbc-test-4.1.1.pom">
         <sha256 value="a5f8dfd517e46f2df57e75c832e745d1d6da2c0d2281472973ee163ce3045db6" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-jdbc-test/4.1.1/spring-boot-jdbc-test-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-jdbc-test-4.1.1-sources.jar">
+        <sha256 value="edd1f6020ec59c28034460ee19c26b624f00b0087cc1ddb0d1626e226466f9f8" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-jdbc-test/4.1.1/spring-boot-jdbc-test-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-jpa" version="4.1.1">
       <artifact name="spring-boot-jpa-4.1.1.jar">
@@ -2332,6 +2847,9 @@
       </artifact>
       <artifact name="spring-boot-jpa-4.1.1.pom">
         <sha256 value="2bd4423b5e36fbfec32151cdfd523343efc07b4b460173ce0724be4e47ae304f" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-jpa/4.1.1/spring-boot-jpa-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-jpa-4.1.1-sources.jar">
+        <sha256 value="433b8a5eed5af4f2de0f1a030d589de63523235259eec664a0666cda99b98397" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-jpa/4.1.1/spring-boot-jpa-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-jpa-test" version="4.1.1">
@@ -2344,6 +2862,9 @@
       <artifact name="spring-boot-jpa-test-4.1.1.pom">
         <sha256 value="33e6b664d65574a14522b778aac6a08dec265dec27ace958f40e3c24469a394d" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-jpa-test/4.1.1/spring-boot-jpa-test-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-jpa-test-4.1.1-sources.jar">
+        <sha256 value="1eac2905a880c71eb7f8b6203f381f1c0b06ce3b9e1fdf41d1f0e73fe2212c82" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-jpa-test/4.1.1/spring-boot-jpa-test-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-loader-tools" version="4.1.1">
       <artifact name="spring-boot-loader-tools-4.1.1.jar">
@@ -2351,6 +2872,9 @@
       </artifact>
       <artifact name="spring-boot-loader-tools-4.1.1.module">
         <sha256 value="bb2eaec89e0711e314791f9b70df7f9c6b62e1f17c51aab720021407a224661f" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-loader-tools/4.1.1/spring-boot-loader-tools-4.1.1.module.sha256" />
+      </artifact>
+      <artifact name="spring-boot-loader-tools-4.1.1-sources.jar">
+        <sha256 value="e8640e467b745646110ecdca48b9d3e57e4f86fde336a9a7b3fed5a37827d32b" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-loader-tools/4.1.1/spring-boot-loader-tools-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-micrometer-metrics" version="4.1.1">
@@ -2363,6 +2887,9 @@
       <artifact name="spring-boot-micrometer-metrics-4.1.1.pom">
         <sha256 value="0bb8eaaaac873ea85183e8115ef41881f5e95c1056e81fb186cc6613715f8177" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-micrometer-metrics/4.1.1/spring-boot-micrometer-metrics-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-micrometer-metrics-4.1.1-sources.jar">
+        <sha256 value="2aef78d5ead4540fbb1a457f91842358f121cc01807dcbe2279620d130e8ee66" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-micrometer-metrics/4.1.1/spring-boot-micrometer-metrics-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-micrometer-observation" version="4.1.1">
       <artifact name="spring-boot-micrometer-observation-4.1.1.jar">
@@ -2373,6 +2900,9 @@
       </artifact>
       <artifact name="spring-boot-micrometer-observation-4.1.1.pom">
         <sha256 value="796538081c12fc9a1ba86ac2ce201608b4f8831d58bcefffe940a9bfad69797a" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-micrometer-observation/4.1.1/spring-boot-micrometer-observation-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-micrometer-observation-4.1.1-sources.jar">
+        <sha256 value="f52b30f640bfcf28bf6fc153a91d2cb3315f2997e08e53f6dcbf3cd60ffedfa3" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-micrometer-observation/4.1.1/spring-boot-micrometer-observation-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-persistence" version="4.1.1">
@@ -2385,6 +2915,9 @@
       <artifact name="spring-boot-persistence-4.1.1.pom">
         <sha256 value="8246b9c60c05e54189eae307326c99f11dd039b3d35d6bc05af3098f5ffaf405" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-persistence/4.1.1/spring-boot-persistence-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-persistence-4.1.1-sources.jar">
+        <sha256 value="7789c17b81e0b8045b2b06d2a3261b948429599253b298c68c0fec3ee1c6ccb6" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-persistence/4.1.1/spring-boot-persistence-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-restclient" version="4.1.1">
       <artifact name="spring-boot-restclient-4.1.1.jar">
@@ -2395,6 +2928,9 @@
       </artifact>
       <artifact name="spring-boot-restclient-4.1.1.pom">
         <sha256 value="9eae131345057d3a189eba7e96721efea16ebe75bdd88ea823d6f0589763e105" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-restclient/4.1.1/spring-boot-restclient-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-restclient-4.1.1-sources.jar">
+        <sha256 value="da1cc676bbc9f46e884644504e35126d5256e36dca65598de9e21ac7dc7c6434" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-restclient/4.1.1/spring-boot-restclient-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-resttestclient" version="4.1.1">
@@ -2407,6 +2943,9 @@
       <artifact name="spring-boot-resttestclient-4.1.1.pom">
         <sha256 value="254551f3146f01c37acdadd046df171ae501a0f8d3ebff0d51e41e0a757060cc" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-resttestclient/4.1.1/spring-boot-resttestclient-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-resttestclient-4.1.1-sources.jar">
+        <sha256 value="118f4798f7966788779f999403df5d8b37444f5edb24fbdf0d86b2d633883d4c" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-resttestclient/4.1.1/spring-boot-resttestclient-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-security" version="4.1.1">
       <artifact name="spring-boot-security-4.1.1.jar">
@@ -2417,6 +2956,9 @@
       </artifact>
       <artifact name="spring-boot-security-4.1.1.pom">
         <sha256 value="51a0d7306d5bb8612716a45303b2a2288efae842ff2f17d0a570618bb4b32b69" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-security/4.1.1/spring-boot-security-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-security-4.1.1-sources.jar">
+        <sha256 value="3d9480d725193aeb93a095b286357cf9c59ea12e712fb962e121b6f18f14656e" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-security/4.1.1/spring-boot-security-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-security-oauth2-client" version="4.1.1">
@@ -2429,6 +2971,9 @@
       <artifact name="spring-boot-security-oauth2-client-4.1.1.pom">
         <sha256 value="7b26040a3430ae08ec88844c79ddd5e98a9dd88c922461a150f12e6e27c42659" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-security-oauth2-client/4.1.1/spring-boot-security-oauth2-client-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-security-oauth2-client-4.1.1-sources.jar">
+        <sha256 value="8c74f3d5f27fd699dc3fd9e73d0765483d4d48d3b7b1d169c830a9d14631028e" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-security-oauth2-client/4.1.1/spring-boot-security-oauth2-client-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-security-oauth2-resource-server" version="4.1.1">
       <artifact name="spring-boot-security-oauth2-resource-server-4.1.1.jar">
@@ -2439,6 +2984,9 @@
       </artifact>
       <artifact name="spring-boot-security-oauth2-resource-server-4.1.1.pom">
         <sha256 value="f91003cfd37a215fad9f461b6563c8146765ae8bba70c01add97a5352a160150" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-security-oauth2-resource-server/4.1.1/spring-boot-security-oauth2-resource-server-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-security-oauth2-resource-server-4.1.1-sources.jar">
+        <sha256 value="1bb141545ae67750a8a62842398f7d6473d32980e8bb6c18378705f4f66231f6" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-security-oauth2-resource-server/4.1.1/spring-boot-security-oauth2-resource-server-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-security-test" version="4.1.1">
@@ -2451,6 +2999,9 @@
       <artifact name="spring-boot-security-test-4.1.1.pom">
         <sha256 value="c56e0f3866255d84c44c58a195669ac8fb5a72e448d0c2ea893a6591c74f17a2" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-security-test/4.1.1/spring-boot-security-test-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-security-test-4.1.1-sources.jar">
+        <sha256 value="b261802ffff47a8adfe79e4974d08deeba6f14e64e70772125bef4175b1f845c" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-security-test/4.1.1/spring-boot-security-test-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-servlet" version="4.1.1">
       <artifact name="spring-boot-servlet-4.1.1.jar">
@@ -2461,6 +3012,9 @@
       </artifact>
       <artifact name="spring-boot-servlet-4.1.1.pom">
         <sha256 value="290d5fd2aacc45b28a477cfc03620791bc2d82f5cdcdcc9614f3168a06f0dfe8" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-servlet/4.1.1/spring-boot-servlet-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-servlet-4.1.1-sources.jar">
+        <sha256 value="2fbbcff4e9a555ed8cf148aadd5df5f69fe83ca98f3f1d93fd75f5669ed4b850" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-servlet/4.1.1/spring-boot-servlet-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-sql" version="4.1.1">
@@ -2473,6 +3027,9 @@
       <artifact name="spring-boot-sql-4.1.1.pom">
         <sha256 value="5fb51c61e2c6dbfbbc5bf634794eef0061812d499c48ae67eb9b5a936cec7750" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-sql/4.1.1/spring-boot-sql-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-sql-4.1.1-sources.jar">
+        <sha256 value="ae137f3b72c220fd119737544cfac0a612330c0de9b55e3930166e614a900a70" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-sql/4.1.1/spring-boot-sql-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter" version="4.1.1">
       <artifact name="spring-boot-starter-4.1.1.jar">
@@ -2483,6 +3040,9 @@
       </artifact>
       <artifact name="spring-boot-starter-4.1.1.pom">
         <sha256 value="ac8d3998f63e729d9d811d0ba2b2d07c1e9687aa202ba33d203f41b6ba4721b6" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter/4.1.1/spring-boot-starter-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-starter-4.1.1-sources.jar">
+        <sha256 value="de5b2dd28400eda20914fd4a6054d0c201e68d2e4de35a25a4d89f054ccc2e63" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter/4.1.1/spring-boot-starter-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-actuator" version="4.1.1">
@@ -2495,6 +3055,9 @@
       <artifact name="spring-boot-starter-actuator-4.1.1.pom">
         <sha256 value="c0bbc625994f60293d79ca34c04ea94fb277ee2ed1367739117d37ab75cb5646" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-actuator/4.1.1/spring-boot-starter-actuator-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-starter-actuator-4.1.1-sources.jar">
+        <sha256 value="d26bb8461ccc417c97a869fbd2e9f0067ce8a56a9ab6058093097ca16e4cc128" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-actuator/4.1.1/spring-boot-starter-actuator-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-cache" version="4.1.1">
       <artifact name="spring-boot-starter-cache-4.1.1.jar">
@@ -2505,6 +3068,9 @@
       </artifact>
       <artifact name="spring-boot-starter-cache-4.1.1.pom">
         <sha256 value="8a806d8b34528e7b66ad7b72b7fcbb5653be3875ca77ca1eeeb236a1e9e43c95" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-cache/4.1.1/spring-boot-starter-cache-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-starter-cache-4.1.1-sources.jar">
+        <sha256 value="1141a122b931b36a846412037171221f8606285803a8d138a7562d31a8bae63a" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-cache/4.1.1/spring-boot-starter-cache-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-data-jpa" version="4.1.1">
@@ -2517,6 +3083,9 @@
       <artifact name="spring-boot-starter-data-jpa-4.1.1.pom">
         <sha256 value="f59fbf46933a246e7904d42a534e5418f548ea2f427cc81ae9a436a9b7abe77c" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-data-jpa/4.1.1/spring-boot-starter-data-jpa-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-starter-data-jpa-4.1.1-sources.jar">
+        <sha256 value="88eb7c8a4d1af4333f40e9c8d53835fd306600ae8a078d633b673f491fcba79a" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-data-jpa/4.1.1/spring-boot-starter-data-jpa-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-data-jpa-test" version="4.1.1">
       <artifact name="spring-boot-starter-data-jpa-test-4.1.1.jar">
@@ -2527,6 +3096,9 @@
       </artifact>
       <artifact name="spring-boot-starter-data-jpa-test-4.1.1.pom">
         <sha256 value="6264db9d897bdb0ab2212e8175898bebd2a3640524bdc39742ecbd4452e137e9" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-data-jpa-test/4.1.1/spring-boot-starter-data-jpa-test-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-starter-data-jpa-test-4.1.1-sources.jar">
+        <sha256 value="f22fa6418214a16a41857653b2a00195b479f2dee5890714130d2e32eb65f839" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-data-jpa-test/4.1.1/spring-boot-starter-data-jpa-test-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-flyway" version="4.1.1">
@@ -2539,6 +3111,9 @@
       <artifact name="spring-boot-starter-flyway-4.1.1.pom">
         <sha256 value="9df409ce25ab14579ee362608c382e30cd1844f34d8260e7b51ac082f7c36cb4" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-flyway/4.1.1/spring-boot-starter-flyway-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-starter-flyway-4.1.1-sources.jar">
+        <sha256 value="d9a454f49cc844b1c2940f645f659c506322d02444912422a19ba619de60e6c7" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-flyway/4.1.1/spring-boot-starter-flyway-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-jackson" version="4.1.1">
       <artifact name="spring-boot-starter-jackson-4.1.1.jar">
@@ -2549,6 +3124,9 @@
       </artifact>
       <artifact name="spring-boot-starter-jackson-4.1.1.pom">
         <sha256 value="772fe20da73cdf4482f98751ee9bb8396a47cedc231777e783e17de14f96288a" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-jackson/4.1.1/spring-boot-starter-jackson-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-starter-jackson-4.1.1-sources.jar">
+        <sha256 value="d30e594a3e0f3a090438fc22000a87ab577a3b80c674180a10544ca331207f24" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-jackson/4.1.1/spring-boot-starter-jackson-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-jackson-test" version="4.1.1">
@@ -2561,6 +3139,9 @@
       <artifact name="spring-boot-starter-jackson-test-4.1.1.pom">
         <sha256 value="19d4892b6e0e25be71d4eb2bf423f31fbed5486d878bd116f5af42da6018319d" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-jackson-test/4.1.1/spring-boot-starter-jackson-test-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-starter-jackson-test-4.1.1-sources.jar">
+        <sha256 value="21c1ad3c8d0a04fdaef819559b1c405a0a9719076560bb4b0e3c4adf3ddb796a" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-jackson-test/4.1.1/spring-boot-starter-jackson-test-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-jdbc" version="4.1.1">
       <artifact name="spring-boot-starter-jdbc-4.1.1.jar">
@@ -2571,6 +3152,9 @@
       </artifact>
       <artifact name="spring-boot-starter-jdbc-4.1.1.pom">
         <sha256 value="42a3b91926ff6e95824d93e7e02b536cd979c43c0e64f68c09ce4a4405fb45e8" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-jdbc/4.1.1/spring-boot-starter-jdbc-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-starter-jdbc-4.1.1-sources.jar">
+        <sha256 value="c51b28a3793168bff837eea90b1ae641efc3a28d6cdb980dd2b0b230914e93ee" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-jdbc/4.1.1/spring-boot-starter-jdbc-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-jdbc-test" version="4.1.1">
@@ -2583,6 +3167,9 @@
       <artifact name="spring-boot-starter-jdbc-test-4.1.1.pom">
         <sha256 value="b7a760d7fb00e7334bd4232a7d96ad8c9080f3acf09d16e5a9685d51bfa26952" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-jdbc-test/4.1.1/spring-boot-starter-jdbc-test-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-starter-jdbc-test-4.1.1-sources.jar">
+        <sha256 value="ff290ab2ffedb9257654aaf7b43d4d228720d270af9a3a0585021d8b34683d9a" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-jdbc-test/4.1.1/spring-boot-starter-jdbc-test-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-logging" version="4.1.1">
       <artifact name="spring-boot-starter-logging-4.1.1.jar">
@@ -2593,6 +3180,9 @@
       </artifact>
       <artifact name="spring-boot-starter-logging-4.1.1.pom">
         <sha256 value="c058557e43629ced77ca8e215202d9b8889e8c5a3c1c2b63ef3afc358456a360" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-logging/4.1.1/spring-boot-starter-logging-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-starter-logging-4.1.1-sources.jar">
+        <sha256 value="8eca7d72c8434f5c3b935385c656cd5337f473434bdbcb4913b3b3a34897d178" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-logging/4.1.1/spring-boot-starter-logging-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-micrometer-metrics" version="4.1.1">
@@ -2605,6 +3195,9 @@
       <artifact name="spring-boot-starter-micrometer-metrics-4.1.1.pom">
         <sha256 value="89ef270344663163adb4cc89a45fbefb1dfa23f7bdd372d656ab0bf4a77da232" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-micrometer-metrics/4.1.1/spring-boot-starter-micrometer-metrics-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-starter-micrometer-metrics-4.1.1-sources.jar">
+        <sha256 value="ad34ce3535a82b3920efea7f9c5d6322de484969f3ab5fa6da05030edd7c14d4" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-micrometer-metrics/4.1.1/spring-boot-starter-micrometer-metrics-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-oauth2-client" version="4.1.1">
       <artifact name="spring-boot-starter-oauth2-client-4.1.1.jar">
@@ -2616,6 +3209,9 @@
       <artifact name="spring-boot-starter-oauth2-client-4.1.1.pom">
         <sha256 value="4a93ad54e5ea6fcd212aadc11e253eb8edbdb9557bbc2bb9d26952df024ba443" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-oauth2-client/4.1.1/spring-boot-starter-oauth2-client-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-starter-oauth2-client-4.1.1-sources.jar">
+        <sha256 value="38d0ed03316db125a5122742495c90393e6cb0e22aac68064efba8543c3eac75" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-oauth2-client/4.1.1/spring-boot-starter-oauth2-client-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-oauth2-resource-server" version="4.1.1">
       <artifact name="spring-boot-starter-oauth2-resource-server-4.1.1.jar">
@@ -2626,6 +3222,9 @@
       </artifact>
       <artifact name="spring-boot-starter-oauth2-resource-server-4.1.1.pom">
         <sha256 value="f693f7ed65a15894b69c4181f8649915e281d5c5dabae375db1c5285057b7e89" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-oauth2-resource-server/4.1.1/spring-boot-starter-oauth2-resource-server-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-starter-oauth2-resource-server-4.1.1-sources.jar">
+        <sha256 value="f2deafebcbc7fbd00b005c59875b5c062a5bef2b3f2f1369b75306bb423e320d" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-oauth2-resource-server/4.1.1/spring-boot-starter-oauth2-resource-server-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-parent" version="4.0.0">
@@ -2643,6 +3242,9 @@
       <artifact name="spring-boot-starter-restclient-4.1.1.pom">
         <sha256 value="2e12e208c08960a762c7a5f94e56648d7822bab7d5118e263798acaae7aa482d" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-restclient/4.1.1/spring-boot-starter-restclient-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-starter-restclient-4.1.1-sources.jar">
+        <sha256 value="453502f3b357b98257d38220f1a89768e75a157d305499b1425b0620956e72e1" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-restclient/4.1.1/spring-boot-starter-restclient-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-security" version="4.1.1">
       <artifact name="spring-boot-starter-security-4.1.1.jar">
@@ -2653,6 +3255,9 @@
       </artifact>
       <artifact name="spring-boot-starter-security-4.1.1.pom">
         <sha256 value="37ec153c9b2ab4dd9e962035863ec2f1538611c11be91389821e6415d69786bd" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-security/4.1.1/spring-boot-starter-security-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-starter-security-4.1.1-sources.jar">
+        <sha256 value="38628875b75cbed6ba4642f3b0a4baf4735bd4f82b49450e4ae5a5e4d1b7b4a9" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-security/4.1.1/spring-boot-starter-security-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-security-test" version="4.1.1">
@@ -2665,6 +3270,9 @@
       <artifact name="spring-boot-starter-security-test-4.1.1.pom">
         <sha256 value="1cb5afff16b138cfb66d2b597d24225f0722f52831d961c572a0a5402a469df3" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-security-test/4.1.1/spring-boot-starter-security-test-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-starter-security-test-4.1.1-sources.jar">
+        <sha256 value="469d3f75e83567d6af5ff86cf80a6cfa9527858dbea4e1dcf02c69d87f72d909" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-security-test/4.1.1/spring-boot-starter-security-test-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-test" version="4.1.1">
       <artifact name="spring-boot-starter-test-4.1.1.jar">
@@ -2675,6 +3283,9 @@
       </artifact>
       <artifact name="spring-boot-starter-test-4.1.1.pom">
         <sha256 value="fc61e7c04ede189353d80a8fc296837d6c97031ecac8f1107aa55dd9d6c2a5b7" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-test/4.1.1/spring-boot-starter-test-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-starter-test-4.1.1-sources.jar">
+        <sha256 value="37baecb7fdf6bd5ffc1f88320b04ea166da0e0af0b22b35bca17d48bbc7a5d1e" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-test/4.1.1/spring-boot-starter-test-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-tomcat" version="4.1.1">
@@ -2687,6 +3298,9 @@
       <artifact name="spring-boot-starter-tomcat-4.1.1.pom">
         <sha256 value="cae74c3615a2504d089cbc8fb05b87154dbece21a44a14e18002314515ce910d" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-tomcat/4.1.1/spring-boot-starter-tomcat-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-starter-tomcat-4.1.1-sources.jar">
+        <sha256 value="f224d8504be3b413825ee85ef549a7b1598ee8512e062c6bd5ddce1043cd388a" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-tomcat/4.1.1/spring-boot-starter-tomcat-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-tomcat-runtime" version="4.1.1">
       <artifact name="spring-boot-starter-tomcat-runtime-4.1.1.jar">
@@ -2697,6 +3311,9 @@
       </artifact>
       <artifact name="spring-boot-starter-tomcat-runtime-4.1.1.pom">
         <sha256 value="d3a6146c7d15443e44a1ebbb6bd0dccf98c490150df2d9213b55c5cc64968b26" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-tomcat-runtime/4.1.1/spring-boot-starter-tomcat-runtime-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-starter-tomcat-runtime-4.1.1-sources.jar">
+        <sha256 value="580f0d9a9d02a1a6e387640e422af42f9dbdf302836d562ec595fdb2b31a1c29" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-tomcat-runtime/4.1.1/spring-boot-starter-tomcat-runtime-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-validation" version="4.1.1">
@@ -2709,6 +3326,9 @@
       <artifact name="spring-boot-starter-validation-4.1.1.pom">
         <sha256 value="50fb6c697062f9e658b7e4bef640380594a0098b519d130b643578548da68737" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-validation/4.1.1/spring-boot-starter-validation-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-starter-validation-4.1.1-sources.jar">
+        <sha256 value="f86edd0ba377e67f1549359d936756e727d23944b4399d7682462b6717d0ded6" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-validation/4.1.1/spring-boot-starter-validation-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-webmvc" version="4.1.1">
       <artifact name="spring-boot-starter-webmvc-4.1.1.jar">
@@ -2719,6 +3339,9 @@
       </artifact>
       <artifact name="spring-boot-starter-webmvc-4.1.1.pom">
         <sha256 value="b7fe43b5610b0b3dd5521cf42d7ba3e8eabd6ad3e785462da250338b62ba1455" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-webmvc/4.1.1/spring-boot-starter-webmvc-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-starter-webmvc-4.1.1-sources.jar">
+        <sha256 value="4aec3edbdf6317fefe23db1b989d8bba143a45a51c1fc32346146ecebf67d625" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-webmvc/4.1.1/spring-boot-starter-webmvc-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-starter-webmvc-test" version="4.1.1">
@@ -2731,6 +3354,9 @@
       <artifact name="spring-boot-starter-webmvc-test-4.1.1.pom">
         <sha256 value="1df071a4a4301181a51b07b05c057f45d853815dd4517fbea673e656c4386070" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-webmvc-test/4.1.1/spring-boot-starter-webmvc-test-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-starter-webmvc-test-4.1.1-sources.jar">
+        <sha256 value="4b700275ae7ecae7cfb76944df08543370f311c349ed2f3ef3365317fecfb16b" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-webmvc-test/4.1.1/spring-boot-starter-webmvc-test-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-test" version="4.1.1">
       <artifact name="spring-boot-test-4.1.1.jar">
@@ -2741,6 +3367,9 @@
       </artifact>
       <artifact name="spring-boot-test-4.1.1.pom">
         <sha256 value="77ca57958c253cfe4a9304c79faa3717d7c943dce8a1e84bac9ece3470b48ee6" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-test/4.1.1/spring-boot-test-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-test-4.1.1-sources.jar">
+        <sha256 value="2d0f39f0aaaba5e5ee5d3145c59c11f600614657f5f3df904837994c621bb6ac" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-test/4.1.1/spring-boot-test-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-test-autoconfigure" version="4.1.1">
@@ -2753,6 +3382,9 @@
       <artifact name="spring-boot-test-autoconfigure-4.1.1.pom">
         <sha256 value="61e70da47fdf1baf854b7ab9198c6bcabab26e1a766b8ae3c2b648362d1dea89" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-test-autoconfigure/4.1.1/spring-boot-test-autoconfigure-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-test-autoconfigure-4.1.1-sources.jar">
+        <sha256 value="ebaefe0153617993a81cabb6cbedb0127b9dd0004ed9e423f7dd1f3072321ab5" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-test-autoconfigure/4.1.1/spring-boot-test-autoconfigure-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-tomcat" version="4.1.1">
       <artifact name="spring-boot-tomcat-4.1.1.jar">
@@ -2763,6 +3395,9 @@
       </artifact>
       <artifact name="spring-boot-tomcat-4.1.1.pom">
         <sha256 value="8ec7f7939e8d7cbd993a5175eaa1609672fe01040daa92e11623ae608c6afc49" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-tomcat/4.1.1/spring-boot-tomcat-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-tomcat-4.1.1-sources.jar">
+        <sha256 value="79464ee14214f1e2ddb3fe88e649dcacc28ac629c35dfe8abeb44e687b8cf99c" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-tomcat/4.1.1/spring-boot-tomcat-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-transaction" version="4.1.1">
@@ -2775,6 +3410,9 @@
       <artifact name="spring-boot-transaction-4.1.1.pom">
         <sha256 value="37363be2775566c8f70fe0e6446bd43f73736f94a6917b2f47a51d47aa4eaaa8" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-transaction/4.1.1/spring-boot-transaction-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-transaction-4.1.1-sources.jar">
+        <sha256 value="a19f23e616e98088994c9c6f53aca117372409184b40f5b81e69f66116399ad2" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-transaction/4.1.1/spring-boot-transaction-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-validation" version="4.1.1">
       <artifact name="spring-boot-validation-4.1.1.jar">
@@ -2785,6 +3423,9 @@
       </artifact>
       <artifact name="spring-boot-validation-4.1.1.pom">
         <sha256 value="855813e6f2939ec2c5cca2667deb22241684fb18614a73c38ec60d1ea9243056" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-validation/4.1.1/spring-boot-validation-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-validation-4.1.1-sources.jar">
+        <sha256 value="199c35c52e62ba16b9733e131172497ae54d1e43dbda98ef3cc252ee2face83b" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-validation/4.1.1/spring-boot-validation-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-web-server" version="4.1.1">
@@ -2797,6 +3438,9 @@
       <artifact name="spring-boot-web-server-4.1.1.pom">
         <sha256 value="a604dca8459f591df53e4bf9e06611b280cbe3df94b83ccb723f27e568646598" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-web-server/4.1.1/spring-boot-web-server-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-web-server-4.1.1-sources.jar">
+        <sha256 value="564fd546fc065c5563dd6f9d3ff3b1a15bb676d1104d7e2183b6bc37a2dab147" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-web-server/4.1.1/spring-boot-web-server-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-webmvc" version="4.1.1">
       <artifact name="spring-boot-webmvc-4.1.1.jar">
@@ -2808,6 +3452,9 @@
       <artifact name="spring-boot-webmvc-4.1.1.pom">
         <sha256 value="534076d67e8dc7ff9392cd9951badf98dbcf1e95442d38971c4ef52b8e0ed4c1" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-webmvc/4.1.1/spring-boot-webmvc-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-boot-webmvc-4.1.1-sources.jar">
+        <sha256 value="1b22bf74b3baa31d9fe824d3a54a8a148ae8ee9222302d8bfc64ab7a0f224911" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-webmvc/4.1.1/spring-boot-webmvc-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.boot" name="spring-boot-webmvc-test" version="4.1.1">
       <artifact name="spring-boot-webmvc-test-4.1.1.jar">
@@ -2818,6 +3465,9 @@
       </artifact>
       <artifact name="spring-boot-webmvc-test-4.1.1.pom">
         <sha256 value="56c690d091439fb4b8ac894fe60aed9bf69cfeefdb9d2607959d1123bab3e1f8" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-webmvc-test/4.1.1/spring-boot-webmvc-test-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-boot-webmvc-test-4.1.1-sources.jar">
+        <sha256 value="40277eb7d90a188b05e580d92005861b95d3457f8b10cddf9d2b4abb57252a11" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-webmvc-test/4.1.1/spring-boot-webmvc-test-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.cloud" name="spring-cloud-dependencies-parent" version="5.0.0-M1">
@@ -2847,6 +3497,9 @@
       <artifact name="spring-data-commons-4.1.1.pom">
         <sha256 value="7a78343a1c62827ffeaf5696814e844128ba5462d95cf78838f6f4a98007ee57" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/data/spring-data-commons/4.1.1/spring-data-commons-4.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-data-commons-4.1.1-sources.jar">
+        <sha256 value="6e9eb53b144f73cb75b76b9b963dd6cfa7afc0c61dd40755a24cf484202cda16" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/data/spring-data-commons/4.1.1/spring-data-commons-4.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.data" name="spring-data-jpa" version="4.1.1">
       <artifact name="spring-data-jpa-4.1.1.jar">
@@ -2854,6 +3507,9 @@
       </artifact>
       <artifact name="spring-data-jpa-4.1.1.pom">
         <sha256 value="36b9aac715ce3c06378e350dc1a69214ba3b58a8a8917995eaa07ccf9b10f8be" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/data/spring-data-jpa/4.1.1/spring-data-jpa-4.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-data-jpa-4.1.1-sources.jar">
+        <sha256 value="acd0c74e78255897dd7483a4dccbfb358492f7463a28c6becf593992d796e48d" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/data/spring-data-jpa/4.1.1/spring-data-jpa-4.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.data" name="spring-data-jpa-parent" version="4.1.1">
@@ -2939,6 +3595,9 @@
       <artifact name="spring-security-config-7.1.1.pom">
         <sha256 value="897ddd133b4d030a4cde109bd5a93a6c32c07446f530068cf48b0626891e2765" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/security/spring-security-config/7.1.1/spring-security-config-7.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-security-config-7.1.1-sources.jar">
+        <sha256 value="2674581781d685573d067733d75ddc9cf378785c47ea45e59f04b31275a3b4e9" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/security/spring-security-config/7.1.1/spring-security-config-7.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.security" name="spring-security-core" version="7.1.1">
       <artifact name="spring-security-core-7.1.1.jar">
@@ -2949,6 +3608,9 @@
       </artifact>
       <artifact name="spring-security-core-7.1.1.pom">
         <sha256 value="ace492a3cd6802f4af8009af31a8582f1973d96aee4e7848823359d93bc08ac7" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/security/spring-security-core/7.1.1/spring-security-core-7.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-security-core-7.1.1-sources.jar">
+        <sha256 value="038cadc1140bbb96de65d38109844e7e03d0425fc1897586eb23820ea74e43f7" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/security/spring-security-core/7.1.1/spring-security-core-7.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.security" name="spring-security-crypto" version="7.1.1">
@@ -2961,6 +3623,9 @@
       <artifact name="spring-security-crypto-7.1.1.pom">
         <sha256 value="1424b8fd27fd47ac9f644cda0b7467a6eee136c22cddf689cd2fb250518f7d93" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/security/spring-security-crypto/7.1.1/spring-security-crypto-7.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-security-crypto-7.1.1-sources.jar">
+        <sha256 value="805d843181057b2ed368f7882979c2295c62076359f017b91a90b88d8a270f5c" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/security/spring-security-crypto/7.1.1/spring-security-crypto-7.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.security" name="spring-security-oauth2-client" version="7.1.1">
       <artifact name="spring-security-oauth2-client-7.1.1.jar">
@@ -2971,6 +3636,9 @@
       </artifact>
       <artifact name="spring-security-oauth2-client-7.1.1.pom">
         <sha256 value="5d63846be9b8f8f3fd2fb3ff0dd3affdce82ab224ed600b4ed425b8346d12ca3" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/security/spring-security-oauth2-client/7.1.1/spring-security-oauth2-client-7.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-security-oauth2-client-7.1.1-sources.jar">
+        <sha256 value="a1f7f53897507fb5a3aedbe268080aecd35865e5a02f121ef445a7dd9a490245" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/security/spring-security-oauth2-client/7.1.1/spring-security-oauth2-client-7.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.security" name="spring-security-oauth2-core" version="7.1.1">
@@ -2983,6 +3651,9 @@
       <artifact name="spring-security-oauth2-core-7.1.1.pom">
         <sha256 value="4545f9186487f4d99581020d470f26858de7f23ecf24525db145fc1376ea231e" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/security/spring-security-oauth2-core/7.1.1/spring-security-oauth2-core-7.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-security-oauth2-core-7.1.1-sources.jar">
+        <sha256 value="9fd6eb13354cf6eee6860f6369b5b78b7df16c5ca54cc145d3adcc9430023164" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/security/spring-security-oauth2-core/7.1.1/spring-security-oauth2-core-7.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.security" name="spring-security-oauth2-jose" version="7.1.1">
       <artifact name="spring-security-oauth2-jose-7.1.1.jar">
@@ -2993,6 +3664,9 @@
       </artifact>
       <artifact name="spring-security-oauth2-jose-7.1.1.pom">
         <sha256 value="6157142bb4720ee555a41075f9ddfbeb9b5c12607ffcbda53944de59f1ec9e4e" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/security/spring-security-oauth2-jose/7.1.1/spring-security-oauth2-jose-7.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-security-oauth2-jose-7.1.1-sources.jar">
+        <sha256 value="81617661e7ea571646e6b7005f1cf6b4996fdba7c6b67908fead81d4b99b1459" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/security/spring-security-oauth2-jose/7.1.1/spring-security-oauth2-jose-7.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.security" name="spring-security-oauth2-resource-server" version="7.1.1">
@@ -3005,6 +3679,9 @@
       <artifact name="spring-security-oauth2-resource-server-7.1.1.pom">
         <sha256 value="89b71372ae57a6e81f570b28bf493cda6a3dc9dd8a3e0b5de6edd5e90a965233" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/security/spring-security-oauth2-resource-server/7.1.1/spring-security-oauth2-resource-server-7.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-security-oauth2-resource-server-7.1.1-sources.jar">
+        <sha256 value="4d0d8dff0d3b7b1fa06617c36a117f1f6306792b7404834e7cd9ff21c574bf88" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/security/spring-security-oauth2-resource-server/7.1.1/spring-security-oauth2-resource-server-7.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.security" name="spring-security-test" version="7.1.1">
       <artifact name="spring-security-test-7.1.1.jar">
@@ -3016,6 +3693,9 @@
       <artifact name="spring-security-test-7.1.1.pom">
         <sha256 value="6a73bf120e9fa80a0f03fba135c3973e95a4649fd7ff223532b25574006f6408" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/security/spring-security-test/7.1.1/spring-security-test-7.1.1.pom.sha256" />
       </artifact>
+      <artifact name="spring-security-test-7.1.1-sources.jar">
+        <sha256 value="65daf039719f5b2e4ccb6ce2b161cf4cba29fb7fc0725ea7716f4a7408c55eb4" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/security/spring-security-test/7.1.1/spring-security-test-7.1.1-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.springframework.security" name="spring-security-web" version="7.1.1">
       <artifact name="spring-security-web-7.1.1.jar">
@@ -3026,6 +3706,9 @@
       </artifact>
       <artifact name="spring-security-web-7.1.1.pom">
         <sha256 value="c2973fb16cdab4e3a58b230bdc8d9cb5e022a3d09c2efc4ec0cadd1fca03a2e1" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/springframework/security/spring-security-web/7.1.1/spring-security-web-7.1.1.pom.sha256" />
+      </artifact>
+      <artifact name="spring-security-web-7.1.1-sources.jar">
+        <sha256 value="eb520d0386c0119d903baa915dd6999c7361cbdd779b9b698e5a369b58fd6606" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/springframework/security/spring-security-web/7.1.1/spring-security-web-7.1.1-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.springframework.session" name="spring-session-bom" version="4.0.0">
@@ -3061,6 +3744,9 @@
       <artifact name="testcontainers-2.0.5.pom">
         <sha256 value="78839aaa8e34da1c483deb57e4f383a8045abacda5549bc79840f25794963103" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/testcontainers/testcontainers/2.0.5/testcontainers-2.0.5.pom.sha256" />
       </artifact>
+      <artifact name="testcontainers-2.0.5-sources.jar">
+        <sha256 value="b4dfdb7d0f8dadc6bfa6d817df703b5c6881b83b6d0452148fd9a00434387e24" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/testcontainers/testcontainers/2.0.5/testcontainers-2.0.5-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.testcontainers" name="testcontainers-bom" version="2.0.2">
       <artifact name="testcontainers-bom-2.0.2.pom">
@@ -3079,6 +3765,9 @@
       <artifact name="testcontainers-database-commons-2.0.5.pom">
         <sha256 value="1be61fe838a86a0eacf6d52adcd0564ea728d6add53ac76daaf874ea3e19fff2" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/testcontainers/testcontainers-database-commons/2.0.5/testcontainers-database-commons-2.0.5.pom.sha256" />
       </artifact>
+      <artifact name="testcontainers-database-commons-2.0.5-sources.jar">
+        <sha256 value="017efc160847bf209b3fdfa3561fa6eb1a5b5b5b82d2214f965caabe9c2cf9ab" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/testcontainers/testcontainers-database-commons/2.0.5/testcontainers-database-commons-2.0.5-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.testcontainers" name="testcontainers-jdbc" version="2.0.5">
       <artifact name="testcontainers-jdbc-2.0.5.jar">
@@ -3086,6 +3775,9 @@
       </artifact>
       <artifact name="testcontainers-jdbc-2.0.5.pom">
         <sha256 value="aeaac6dcd5b8a128e2ae5d723f4f7b460b656937a30ce7caac0b0091569a8f66" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/testcontainers/testcontainers-jdbc/2.0.5/testcontainers-jdbc-2.0.5.pom.sha256" />
+      </artifact>
+      <artifact name="testcontainers-jdbc-2.0.5-sources.jar">
+        <sha256 value="dbfe476c0702f82ee9c13f7d37a8b6f20fe62baa00e9d071e6c7d53cfda613a0" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/testcontainers/testcontainers-jdbc/2.0.5/testcontainers-jdbc-2.0.5-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.testcontainers" name="testcontainers-postgresql" version="2.0.5">
@@ -3095,6 +3787,9 @@
       <artifact name="testcontainers-postgresql-2.0.5.pom">
         <sha256 value="8f68c9fbec5a242dffbb01ea6a2d3a99104f1f0af6fd54d10cbdf7e5a47e1a10" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/testcontainers/testcontainers-postgresql/2.0.5/testcontainers-postgresql-2.0.5.pom.sha256" />
       </artifact>
+      <artifact name="testcontainers-postgresql-2.0.5-sources.jar">
+        <sha256 value="7770843c5e8bf608b8f13f3f2c85889574b3812fa5523411389ddfdf031a1f93" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/testcontainers/testcontainers-postgresql/2.0.5/testcontainers-postgresql-2.0.5-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.tomlj" name="tomlj" version="1.0.0">
       <artifact name="tomlj-1.0.0.jar">
@@ -3102,6 +3797,9 @@
       </artifact>
       <artifact name="tomlj-1.0.0.pom">
         <sha256 value="ad8192007f73450c51c880305f14dd22ac551449b721b585fc51231422cb0913" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/tomlj/tomlj/1.0.0/tomlj-1.0.0.pom" />
+      </artifact>
+      <artifact name="tomlj-1.0.0-sources.jar">
+        <sha256 value="86f80f119535d0f04a6e9e452de00dbd120c08b304682164df96ba18c9944177" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/tomlj/tomlj/1.0.0/tomlj-1.0.0-sources.jar" />
       </artifact>
     </component>
     <component group="org.webjars" name="swagger-ui" version="5.30.1">
@@ -3119,6 +3817,9 @@
       <artifact name="webjars-locator-lite-1.1.4.pom">
         <sha256 value="8f26d5ca7d7ecae23183a777a09f84f7b927bead250482847dd0f6c4f7a5124c" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/webjars/webjars-locator-lite/1.1.4/webjars-locator-lite-1.1.4.pom.sha256" />
       </artifact>
+      <artifact name="webjars-locator-lite-1.1.4-sources.jar">
+        <sha256 value="9689561c2a087619600e3c79f2f3d7d5bb746ad7b0d334542bc396419b1c3305" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/webjars/webjars-locator-lite/1.1.4/webjars-locator-lite-1.1.4-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="org.xmlunit" name="xmlunit-core" version="2.11.0">
       <artifact name="xmlunit-core-2.11.0.jar">
@@ -3126,6 +3827,9 @@
       </artifact>
       <artifact name="xmlunit-core-2.11.0.pom">
         <sha256 value="b6ba473c8f8e98baee71963949ec47538f696fdd206289e4962f5eb4ecfe7640" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/xmlunit/xmlunit-core/2.11.0/xmlunit-core-2.11.0.pom.sha256" />
+      </artifact>
+      <artifact name="xmlunit-core-2.11.0-sources.jar">
+        <sha256 value="3fcc2f5d6dc72125bf85c1257f3bc2779475d1d7985d97e23696daa12eb38325" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/xmlunit/xmlunit-core/2.11.0/xmlunit-core-2.11.0-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="org.xmlunit" name="xmlunit-parent" version="2.11.0">
@@ -3139,6 +3843,9 @@
       </artifact>
       <artifact name="snakeyaml-2.6.pom">
         <sha256 value="2773b0e948964d21e37b0e1dcf39025e627b873e0ce6aa2a47e23c374303e0c4" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/org/yaml/snakeyaml/2.6/snakeyaml-2.6.pom.sha256" />
+      </artifact>
+      <artifact name="snakeyaml-2.6-sources.jar">
+        <sha256 value="cd719ff3e52eec48ef7c541ba4f178c2eff0f6719fd0abe4f4e44bde41138ca2" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/org/yaml/snakeyaml/2.6/snakeyaml-2.6-sources.jar.sha256" />
       </artifact>
     </component>
     <component group="tools.jackson" name="jackson-base" version="3.1.5">
@@ -3166,6 +3873,9 @@
       <artifact name="jackson-core-3.1.5.pom">
         <sha256 value="d05c1f9f436866306d26b8f482ce49507d2a5f5e0816e3a07f35096b9f83e1ba" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/tools/jackson/core/jackson-core/3.1.5/jackson-core-3.1.5.pom.sha256" />
       </artifact>
+      <artifact name="jackson-core-3.1.5-sources.jar">
+        <sha256 value="a2d65efe5d675802d737d200e4d256db98b2ef7d27ae81fb216759bde90b2a4d" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/tools/jackson/core/jackson-core/3.1.5/jackson-core-3.1.5-sources.jar.sha256" />
+      </artifact>
     </component>
     <component group="tools.jackson.core" name="jackson-databind" version="3.1.5">
       <artifact name="jackson-databind-3.1.5.jar">
@@ -3176,6 +3886,9 @@
       </artifact>
       <artifact name="jackson-databind-3.1.5.pom">
         <sha256 value="936e8997b549de56212543c2abf9e91fba0946be514afa956d714c2dc29ea2c8" origin="Verified 2026-11-13 against https://repo.maven.apache.org/maven2/tools/jackson/core/jackson-databind/3.1.5/jackson-databind-3.1.5.pom.sha256" />
+      </artifact>
+      <artifact name="jackson-databind-3.1.5-sources.jar">
+        <sha256 value="9040ab36a4b8ff6a39b1e647558897ab4c8723c2df57fe7f76884d7fc9e0c220" origin="Verified 2026-11-14 against https://repo.maven.apache.org/maven2/tools/jackson/core/jackson-databind/3.1.5/jackson-databind-3.1.5-sources.jar.sha256" />
       </artifact>
     </component>
   </components>

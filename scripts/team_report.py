@@ -36,7 +36,7 @@ def state(item):
 
 
 def render_team_report(repo, sha, runs, jobs, results):
-    lines = [ci.MARKER, '## CEREMO pull request checks', f'PR head `{sha}`', '',
+    lines = [ci.MARKER, '## ceremo pull request checks', f'PR head `{sha}`', '',
              '| Check | Result | Purpose |', '| --- | --- | --- |']
     for name, description in ci.WORKFLOW_DESCRIPTIONS.items():
         run = runs.get(name)

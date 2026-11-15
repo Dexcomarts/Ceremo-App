@@ -12,8 +12,8 @@
   "ssoSessionIdleTimeoutRememberMe": 0,
   "ssoSessionMaxLifespanRememberMe": 0,
   "offlineSessionIdleTimeout": 2592000,
-  "offlineSessionMaxLifespanEnabled": false,
-  "offlineSessionMaxLifespan": 5184000,
+  "offlineSessionMaxLifespanEnabled": true,
+  "offlineSessionMaxLifespan": 7776000,
   "clientSessionIdleTimeout": 0,
   "clientSessionMaxLifespan": 0,
   "clientOfflineSessionIdleTimeout": 0,
@@ -1148,6 +1148,52 @@
           }
         }
       ]
+    },
+    {
+      "clientId": "android_app",
+      "name": "ceremo Android app",
+      "description": "Public native client (ADR 11.13): PKCE S256, system browser, offline tokens allowed",
+      "enabled": true,
+      "publicClient": true,
+      "protocol": "openid-connect",
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "frontchannelLogout": false,
+      "fullScopeAllowed": true,
+      "redirectUris": [
+        "io.ceremo.android:/oauth2redirect"
+      ],
+      "webOrigins": [],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "io.ceremo.android:/logout"
+      },
+      "defaultClientScopes": [
+        "web-origins",
+        "ceremo",
+        "openid",
+        "roles",
+        "profile",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "offline_access"
+      ],
+      "protocolMappers": [
+        {
+          "name": "ceremo-api audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "included.custom.audience": "ceremo-api"
+          }
+        }
+      ]
     }
   ],
   "clientScopes": [
@@ -1743,7 +1789,6 @@
     "role_list"
   ],
   "defaultOptionalClientScopes": [
-    "offline_access",
     "phone",
     "address",
     "microprofile-jwt"

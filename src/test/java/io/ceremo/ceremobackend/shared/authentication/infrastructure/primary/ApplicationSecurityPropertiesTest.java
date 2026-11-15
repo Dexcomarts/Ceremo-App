@@ -30,6 +30,7 @@ class ApplicationSecurityPropertiesTest {
 
     assertThat(properties.getContentSecurityPolicy()).isEqualTo(DEFAULT_CONTENT_SECURITY_POLICY);
     assertThat(properties.getOauth2().getAudience()).isEmpty();
+    assertThat(properties.getOauth2().getOfflineClients()).isEmpty();
   }
 
   @Test
@@ -40,6 +41,10 @@ class ApplicationSecurityPropertiesTest {
 
     assertThat(properties.getContentSecurityPolicy()).isEqualTo("policy");
     assertThat(properties.getOauth2().getAudience()).containsExactly("audience");
+    properties.getOauth2().setOfflineClients(List.of("android_app"));
+    assertThat(properties.getOauth2().getOfflineClients()).containsExactly("android_app");
+    assertThatThrownBy(() -> properties.getOauth2().getOfflineClients().add("web_app"))
+        .isInstanceOf(UnsupportedOperationException.class);
   }
 
   @Test

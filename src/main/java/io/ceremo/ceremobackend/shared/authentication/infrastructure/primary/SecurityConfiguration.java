@@ -168,7 +168,7 @@ class SecurityConfiguration {
     decoder.setJwtValidator(new DelegatingOAuth2TokenValidator<>(
         JwtValidators.createDefaultWithIssuer(issuerUri),
         new AudienceValidator(properties.getOauth2().getAudience()),
-        new KeycloakAccessTokenValidator(clock)));
+        new KeycloakAccessTokenValidator(clock, properties.getOauth2().getOfflineClients())));
     // Read signed token claims locally; do not fetch/cache userinfo while decoding a token.
     return token -> {
       Jwt jwt = decoder.decode(token);

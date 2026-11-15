@@ -1,12 +1,14 @@
 package io.ceremo.ceremobackend.logout.infrastructure.primary.rest;
 
 import io.ceremo.ceremobackend.logout.application.port.in.Logout;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Tag(name = "My account", description = "The signed-in person's ceremo account, session and team invitations")
 public class LogoutResource {
   private final Logout logout;
 

@@ -24,7 +24,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.testcontainers.postgresql.PostgreSQLContainer;
 
-/** Original CEREMO checks; evidence and API versions are in the database research memory. */
+/** Original ceremo checks; evidence and API versions are in the database research memory. */
 class UserSchemaIntegrationTest {
 
     private static final String ISSUER = "https://identity.example/realms/ceremo";

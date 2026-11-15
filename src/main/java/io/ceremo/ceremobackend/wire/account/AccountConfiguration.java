@@ -15,6 +15,8 @@ import io.ceremo.ceremobackend.account.infrastructure.secondary.security.SpringS
 import io.ceremo.ceremobackend.shared.generation.domain.CeremoUUID;
 import jakarta.persistence.EntityManagerFactory;
 import java.time.Clock;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +26,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(UserRegistrationProperties.class)
 public class AccountConfiguration {
+  private static final Logger log = LoggerFactory.getLogger(AccountConfiguration.class);
+
   @Bean
   Clock clock() {
     return Clock.systemUTC();
@@ -49,6 +53,10 @@ public class AccountConfiguration {
       Clock clock,
       UserRegistrationProperties registration,
       PlatformTransactionManager transactionManager) {
+    if (registration.termsVersion() == null) {
+      // Not silent: the API still runs, so operators must see why every registration returns 403.
+      log.warn("application.registration.terms-version is not set: registration is closed until it is configured");
+    }
     UserService service = new UserService(users, currentUser, clock, registration.termsVersion());
     return new TransactionalUserAccounts(service, transactionManager);
   }

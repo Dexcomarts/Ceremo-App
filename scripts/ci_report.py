@@ -258,7 +258,7 @@ def render_comment(run, steps, results=None, job_id=None):
     run_id, attempt = int(run["id"]), int(run.get("run_attempt", 1))
     url = f"https://github.com/{repo}/actions/runs/{run_id}"
     lines = [MARKER, f"<!-- ceremo-run:{run_id}:{attempt} -->",
-        f"## CEREMO backend checks — {STATES.get(run['conclusion'], STATES['unknown'])}",
+        f"## ceremo backend checks — {STATES.get(run['conclusion'], STATES['unknown'])}",
         f"Commit `{sha[:12]}` · Attempt {attempt} · [Workflow and reports]({url})", "",
         "| Check | Result | Description | Logs |", "| --- | --- | --- | --- |"]
     if results and results['schemaVersion'] == 2:

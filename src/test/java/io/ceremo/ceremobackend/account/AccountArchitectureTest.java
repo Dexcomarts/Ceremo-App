@@ -17,7 +17,7 @@ class AccountArchitectureTest {
         noClasses().that().resideInAnyPackage(
                 "..account.domain..", "..account.application..",
                 "..logout.domain..", "..logout.application..",
-                "..tenant.domain..", "..tenant.application..")
+                "..providerbusiness.domain..", "..providerbusiness.application..")
             .should().dependOnClassesThat().resideInAnyPackage(
                 "org.springframework..", "jakarta.persistence..", "org.hibernate..",
                 "lombok..", "..infrastructure..", "..wire..")
@@ -28,9 +28,9 @@ class AccountArchitectureTest {
                 "..domain.repository..", "jakarta.persistence..", "org.springframework.data..")
             .check(classes);
 
-        noClasses().that().resideInAnyPackage("..account.domain..", "..tenant.domain..", "..logout.domain..")
+        noClasses().that().resideInAnyPackage("..account.domain..", "..providerbusiness.domain..", "..logout.domain..")
             .should().dependOnClassesThat()
-            .resideInAnyPackage("..tenant.application..", "..account.application..", "..logout.application..")
+            .resideInAnyPackage("..providerbusiness.application..", "..account.application..", "..logout.application..")
             .check(classes);
 
         org.assertj.core.api.Assertions.assertThat(classes.stream().map(type -> type.getPackageName()))
