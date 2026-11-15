@@ -71,7 +71,8 @@ class KeycloakAccessTokenValidatorTest {
 
   @Test
   void rejectsMissingCollaborators() {
-    assertThatThrownBy(() -> new KeycloakAccessTokenValidator(null, List.of())).isInstanceOf(NullPointerException.class);
+    List<String> noOfflineClients = List.of();
+    assertThatThrownBy(() -> new KeycloakAccessTokenValidator(null, noOfflineClients)).isInstanceOf(NullPointerException.class);
     assertThatThrownBy(() -> new KeycloakAccessTokenValidator(CLOCK, null)).isInstanceOf(NullPointerException.class);
   }
 

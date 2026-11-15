@@ -108,7 +108,8 @@ class ProviderBusinessServiceTest {
     when(accounts.requireActiveAccount()).thenThrow(new IllegalStateException("Account denied"));
     clearInvocations(repository);
     assertThatThrownBy(() -> service.create("Business")).isInstanceOf(IllegalStateException.class);
-    assertThatThrownBy(() -> service.myMemberships(new CeremoPageable(0, 10))).isInstanceOf(IllegalStateException.class);
+    CeremoPageable page = new CeremoPageable(0, 10);
+    assertThatThrownBy(() -> service.myMemberships(page)).isInstanceOf(IllegalStateException.class);
     verifyNoInteractions(repository);
   }
 
@@ -138,7 +139,8 @@ class ProviderBusinessServiceTest {
     verify(repository).recordChange(ID, OWNER, "SUSPENDED", "Investigation");
     verify(repository).recordChange(ID, OWNER, "REACTIVATED", "Review complete");
     assertThatThrownBy(() -> service.suspend(ID, " ")).isInstanceOf(AssertionException.class);
-    assertThatThrownBy(() -> service.reactivate(ID, "x".repeat(501))).isInstanceOf(AssertionException.class);
+    String tooLongReason = "x".repeat(501);
+    assertThatThrownBy(() -> service.reactivate(ID, tooLongReason)).isInstanceOf(AssertionException.class);
     when(repository.findById(ID)).thenReturn(Optional.empty());
     assertThatThrownBy(() -> service.suspend(ID, "Review")).isInstanceOf(CeremoException.class);
     assertThatThrownBy(() -> service.reactivate(ID, "Review")).isInstanceOf(CeremoException.class);
@@ -155,7 +157,8 @@ class ProviderBusinessServiceTest {
     assertThatThrownBy(() -> new ProviderBusinessService(accounts, null, repository)).isInstanceOf(NullPointerException.class);
     assertThatThrownBy(() -> new ProviderBusinessService(accounts, users, null)).isInstanceOf(NullPointerException.class);
     assertThatThrownBy(() -> ProviderBusinessId.of(null)).isInstanceOf(AssertionException.class);
-    assertThatThrownBy(() -> new ProviderBusiness(ID, "x".repeat(161), OWNER, ProviderBusinessStatus.ACTIVE))
+    String tooLongName = "x".repeat(161);
+    assertThatThrownBy(() -> new ProviderBusiness(ID, tooLongName, OWNER, ProviderBusinessStatus.ACTIVE))
         .isInstanceOf(AssertionException.class);
     assertThatThrownBy(() -> new ProviderBusiness(null, "Name", OWNER, ProviderBusinessStatus.ACTIVE))
         .isInstanceOf(AssertionException.class);

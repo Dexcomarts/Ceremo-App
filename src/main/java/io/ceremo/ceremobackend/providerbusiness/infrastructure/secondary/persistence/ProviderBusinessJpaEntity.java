@@ -33,4 +33,11 @@ class ProviderBusinessJpaEntity extends BaseEntity {
 
   ProviderBusiness toDomain() { return new ProviderBusiness(ProviderBusinessId.of(getId()), name, ownerId, status); }
   void updateStatus(ProviderBusinessStatus status) { this.status = status; }
+
+  // Identity is the assigned id only (BaseEntity); mutable mapped fields are deliberately excluded.
+  @Override
+  public boolean equals(Object other) { return super.equals(other); }
+
+  @Override
+  public int hashCode() { return super.hashCode(); }
 }

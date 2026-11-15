@@ -79,23 +79,26 @@ class OccasionTypeTest {
 
     @Test
     void rejectsValuesAboveTheirLengthLimits() {
+        String longCode = "C".repeat(61);
+        String longName = "N".repeat(121);
+        String longDescription = "D".repeat(1001);
         assertAll(
             () -> assertThrows(
                 StringTooLongException.class,
                 () -> new OccasionType(
-                    ID, "C".repeat(61), "Wedding", null, true
+                    ID, longCode, "Wedding", null, true
                 )
             ),
             () -> assertThrows(
                 StringTooLongException.class,
                 () -> new OccasionType(
-                    ID, "WEDDING", "N".repeat(121), null, true
+                    ID, "WEDDING", longName, null, true
                 )
             ),
             () -> assertThrows(
                 StringTooLongException.class,
                 () -> new OccasionType(
-                    ID, "WEDDING", "Wedding", "D".repeat(1001), true
+                    ID, "WEDDING", "Wedding", longDescription, true
                 )
             )
         );

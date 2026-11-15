@@ -5,7 +5,7 @@ import org.gradle.testing.jacoco.tasks.JacocoReport
 plugins {
 	java
 	jacoco
-	id("org.springframework.boot") version "4.1.1"
+	id("org.springframework.boot") version "4.1.2"
 	id("io.spring.dependency-management") version "1.1.7"
 	id("org.sonarqube") version "7.5.0.8588"
 }
@@ -35,7 +35,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-restclient")
 	implementation("org.aspectj:aspectjweaver")
 	implementation("org.apache.commons:commons-lang3")
-	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.0")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.2.0")
 	implementation("com.fasterxml.uuid:java-uuid-generator:5.1.1")
 	implementation("org.springframework.boot:spring-boot-starter-cache")
 	implementation("javax.cache:cache-api")

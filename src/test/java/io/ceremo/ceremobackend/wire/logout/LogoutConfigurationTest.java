@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.config.CronTask;
+import org.springframework.scheduling.config.ScheduledTask;
 import org.springframework.scheduling.config.ScheduledTaskHolder;
 
 class LogoutConfigurationTest {
@@ -41,7 +42,7 @@ class LogoutConfigurationTest {
       assertThat(context.getBean(LogoutProperties.class).revocationRetention()).isEqualTo(Duration.ofDays(91));
       assertThat(context.getBeansOfType(ScheduledTaskHolder.class).values().stream()
           .flatMap(holder -> holder.getScheduledTasks().stream())
-          .map(scheduled -> scheduled.getTask())
+          .map(ScheduledTask::getTask)
           .filter(CronTask.class::isInstance).map(task -> ((CronTask) task).getExpression()))
           .containsExactly("0 */15 * * * *");
     });
