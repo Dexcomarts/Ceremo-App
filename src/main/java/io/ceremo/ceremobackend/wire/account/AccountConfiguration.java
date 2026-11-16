@@ -24,7 +24,7 @@ import org.springframework.orm.jpa.SharedEntityManagerCreator;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration(proxyBeanMethods = false)
-@EnableConfigurationProperties(UserRegistrationProperties.class)
+@EnableConfigurationProperties({UserRegistrationProperties.class, StaffAccessProperties.class})
 public class AccountConfiguration {
   private static final Logger log = LoggerFactory.getLogger(AccountConfiguration.class);
 
@@ -62,8 +62,8 @@ public class AccountConfiguration {
   }
 
   @Bean
-  StaffAccess staffAccess(Clock clock) {
-    return new SpringStaffAccess(clock);
+  StaffAccess staffAccess(Clock clock, StaffAccessProperties staff) {
+    return new SpringStaffAccess(clock, staff.reauthenticationMaxAge(), staff.clients());
   }
 
   @Bean
