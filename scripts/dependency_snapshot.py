@@ -12,6 +12,8 @@ import zipfile
 from ci_report import download_archive, github_request, pages, read_json, workflow_name
 
 LIMIT = 5_000_000
+# Protected branches whose own pushes and pull requests may publish snapshots.
+BRANCHES = frozenset({'main', 'dev'})
 
 
 def text(value, pattern, label):
@@ -80,17 +82,18 @@ def source_context(run, repo, attempt):
             run.get('run_attempt') != attempt):
         raise ValueError('Expected the successful dependency workflow and exact attempt')
     sha = text(run.get('head_sha'), r'[a-f0-9]{40}', 'source commit')
-    if run.get('event') in ('push', 'schedule', 'workflow_dispatch') and run.get('head_branch') == 'main':
-        return sha, 'refs/heads/main'
+    branch = run.get('head_branch')
+    if run.get('event') in ('push', 'schedule', 'workflow_dispatch') and branch in BRANCHES:
+        return sha, f'refs/heads/{branch}'
     if run.get('event') == 'pull_request':
         matches = [pr for pr in pages(f'/repos/{repo}/commits/{sha}/pulls')
                    if pr['state'] == 'open' and pr['head']['sha'] == sha and
-                   pr['base']['ref'] == 'main' and pr['base']['repo']['full_name'] == repo]
+                   pr['base']['ref'] in BRANCHES and pr['base']['repo']['full_name'] == repo]
         if len(matches) == 1:
             number = int(matches[0]['number'])
             current = github_request(f'/repos/{repo}/pulls/{number}')
             if (current['state'] == 'open' and current['head']['sha'] == sha and
-                    current['base']['ref'] == 'main' and current['base']['repo']['full_name'] == repo):
+                    current['base']['ref'] in BRANCHES and current['base']['repo']['full_name'] == repo):
                 return sha, f'refs/pull/{number}/merge'
     raise ValueError('Unsupported or obsolete dependency source')
 
@@ -111,9 +114,9 @@ def publish(run_id, attempt):
     repo = text(os.environ['GITHUB_REPOSITORY'], r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', 'repository')
     run = github_request(f'/repos/{repo}/actions/runs/{run_id}')
     sha, ref = source_context(run, repo, attempt)
-    if ref == 'refs/heads/main':
-        if github_request(f'/repos/{repo}/branches/main')['commit']['sha'] != sha:
-            raise ValueError('Main has moved; do not publish an obsolete snapshot')
+    branch = ref.removeprefix('refs/heads/') if ref.startswith('refs/heads/') else None
+    if branch and github_request(f'/repos/{repo}/branches/{branch}')['commit']['sha'] != sha:
+        raise ValueError('Branch has moved; do not publish an obsolete snapshot')
     jobs = pages(f'/repos/{repo}/actions/runs/{run_id}/attempts/{attempt}/jobs', 'jobs')
     if len(jobs) != 1 or jobs[0]['name'] != 'Resolve Gradle dependencies' or jobs[0]['conclusion'] != 'success':
         raise ValueError('Dependency generation job was not successful')
@@ -131,8 +134,8 @@ def publish(run_id, attempt):
     current = github_request(f'/repos/{repo}/actions/runs/{run_id}')
     if source_context(current, repo, attempt) != (sha, ref):
         raise ValueError('Dependency source changed during validation')
-    if ref == 'refs/heads/main' and github_request(f'/repos/{repo}/branches/main')['commit']['sha'] != sha:
-        raise ValueError('Main changed during validation')
+    if branch and github_request(f'/repos/{repo}/branches/{branch}')['commit']['sha'] != sha:
+        raise ValueError('Branch changed during validation')
     accepted = github_request(f'/repos/{repo}/dependency-graph/snapshots', 'POST', snapshot)
     response_result = accepted.get('result')
     if response_result not in ('SUCCESS', 'ACCEPTED'):

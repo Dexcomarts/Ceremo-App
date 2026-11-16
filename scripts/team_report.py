@@ -7,7 +7,7 @@ import urllib.error
 import zipfile
 
 import ci_report as ci
-from dependency_snapshot import publication_receipt
+from dependency_snapshot import BRANCHES, publication_receipt
 
 
 def latest_runs(values, sha):
@@ -82,7 +82,7 @@ def render_team_report(repo, sha, runs, jobs, results):
 
 def eligible_pr(pr, repo, sha):
     return (pr['state'] == 'open' and pr['head']['sha'] == sha and
-            pr['base']['ref'] == 'main' and pr['base']['repo']['full_name'] == repo)
+            pr['base']['ref'] in BRANCHES and pr['base']['repo']['full_name'] == repo)
 
 
 def measurements(repo, backend, pr, sha):
