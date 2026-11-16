@@ -15,8 +15,11 @@ services:
       KC_BOOTSTRAP_ADMIN_PASSWORD: ${CEREMO_KEYCLOAK_ADMIN_PASSWORD:-admin}
       KC_HTTP_PORT: '9080'
       KC_HEALTH_ENABLED: 'true'
-      # Not secret. Read by the realm import placeholder; set it in the untracked root .env.
-      CEREMO_GOOGLE_CLIENT_ID: ${CEREMO_GOOGLE_CLIENT_ID:-}
+      # Not secret. Read by the realm import placeholders; set CEREMO_GOOGLE_CLIENT_ID in the untracked root .env.
+      # Without it, Google is imported disabled: no login button and kc_idp_hint=google falls back to the form.
+      # Keycloak drops empty config values on import, so the ID always gets a non-empty fallback.
+      CEREMO_GOOGLE_CLIENT_ID: ${CEREMO_GOOGLE_CLIENT_ID:-google-client-id-not-configured}
+      CEREMO_GOOGLE_ENABLED: ${CEREMO_GOOGLE_CLIENT_ID:+true}
     ports:
       - '127.0.0.1:9080:9080'
     depends_on:
