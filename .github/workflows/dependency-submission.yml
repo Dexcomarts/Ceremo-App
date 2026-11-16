@@ -19,7 +19,7 @@ concurrency:
 jobs:
   graph:
     name: Resolve Gradle dependencies
-    if: github.event_name != 'workflow_dispatch' || github.ref == 'refs/heads/main'
+    if: github.event_name != 'workflow_dispatch' || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     env:
