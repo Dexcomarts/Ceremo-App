@@ -43,7 +43,8 @@ class ApplicationSecurityPropertiesTest {
     assertThat(properties.getOauth2().getAudience()).containsExactly("audience");
     properties.getOauth2().setOfflineClients(List.of("android_app"));
     assertThat(properties.getOauth2().getOfflineClients()).containsExactly("android_app");
-    assertThatThrownBy(() -> properties.getOauth2().getOfflineClients().add("web_app"))
+    List<String> offlineClients = properties.getOauth2().getOfflineClients();
+    assertThatThrownBy(() -> offlineClients.add("web_app"))
         .isInstanceOf(UnsupportedOperationException.class);
   }
 

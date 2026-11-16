@@ -31,7 +31,8 @@ class RevocationRetentionServiceTest {
   void rejectsARetentionThatWouldPutTheCutoffInTheFuture() {
     assertThatThrownBy(() -> new RevocationRetentionService(revocations, clock, Duration.ZERO))
         .isInstanceOf(AssertionException.class);
-    assertThatThrownBy(() -> new RevocationRetentionService(revocations, clock, Duration.ofDays(-1)))
+    Duration negative = Duration.ofDays(-1);
+    assertThatThrownBy(() -> new RevocationRetentionService(revocations, clock, negative))
         .isInstanceOf(AssertionException.class);
   }
 

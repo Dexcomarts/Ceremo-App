@@ -78,4 +78,15 @@ class UserIdentityJpaEntity extends BaseEntity {
     Instant getLastSeenAt() {
         return lastSeenAt;
     }
+
+    // Identity is the assigned id only (BaseEntity); mapped fields are deliberately excluded.
+    @Override
+    public boolean equals(Object other) {
+        return super.equals(other);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

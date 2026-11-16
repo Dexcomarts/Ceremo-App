@@ -20,7 +20,6 @@ import io.ceremo.ceremobackend.logout.domain.repository.SessionRevocations;
 import io.ceremo.ceremobackend.shared.error.domain.CeremoException;
 import io.ceremo.ceremobackend.providerbusiness.domain.model.ProviderBusinessId;
 import io.ceremo.ceremobackend.providerbusiness.application.port.in.ProviderBusinesses;
-import io.ceremo.ceremobackend.providerbusiness.domain.model.MemberRole;
 import io.ceremo.ceremobackend.providerbusiness.domain.repository.ProviderBusinessRepository;
 import io.ceremo.ceremobackend.account.domain.model.UserIdentity;
 import java.net.InetSocketAddress;
@@ -509,7 +508,8 @@ class AccountProviderBusinessSecurityIntegrationTest {
     String owner = token("owner");
     register(owner);
     assume(owner);
-    assertThatThrownBy(() -> new TransactionTemplate(transactionManager).executeWithoutResult(status -> {
+    TransactionTemplate transaction = new TransactionTemplate(transactionManager);
+    assertThatThrownBy(() -> transaction.executeWithoutResult(status -> {
       businesses.create("Rolled back");
       throw new IllegalStateException("Later operation failed");
     })).isInstanceOf(IllegalStateException.class);
@@ -517,8 +517,10 @@ class AccountProviderBusinessSecurityIntegrationTest {
     assertThat(jdbc.queryForObject("select count(*) from provider_business_member", Long.class)).isZero();
     assertThat(jdbc.queryForObject("select count(*) from provider_business_audit", Long.class)).isZero();
     UUID tenant = create(owner, "Kept");
-    assertThatThrownBy(() -> new TransactionTemplate(transactionManager).executeWithoutResult(status ->
-        repository.recordChange(ProviderBusinessId.of(tenant), UUID.fromString("01940d11-7390-7000-8000-000000000099"), "CREATED", "Invalid actor")))
+    ProviderBusinessId keptBusiness = ProviderBusinessId.of(tenant);
+    UUID unknownActor = UUID.fromString("01940d11-7390-7000-8000-000000000099");
+    assertThatThrownBy(() -> transaction.executeWithoutResult(status ->
+        repository.recordChange(keptBusiness, unknownActor, "CREATED", "Invalid actor")))
         .isInstanceOf(RuntimeException.class);
     assertThat(jdbc.queryForObject("select count(*) from provider_business_audit", Long.class)).isEqualTo(1L);
   }

@@ -27,6 +27,7 @@ public class JpaProviderBusinessRepository implements ProviderBusinessRepository
       (b.ownerId = :userId or exists (select m.id from ProviderBusinessMemberJpaEntity m
        where m.providerBusinessId = b.id and m.userId = :userId and m.status = 'ACTIVE'))
       """;
+  private static final String USER_ID = "userId";
   private final EntityManager entityManager;
 
   public JpaProviderBusinessRepository(EntityManager entityManager) {
@@ -67,11 +68,11 @@ public class JpaProviderBusinessRepository implements ProviderBusinessRepository
     List<ProviderBusiness> content = entityManager.createQuery(
             "select b from ProviderBusinessJpaEntity b where " + MEMBER_SCOPE + " order by b.id",
             ProviderBusinessJpaEntity.class)
-        .setParameter("userId", userId).setFirstResult(pageable.offset()).setMaxResults(pageable.pageSize())
+        .setParameter(USER_ID, userId).setFirstResult(pageable.offset()).setMaxResults(pageable.pageSize())
         .getResultList().stream().map(ProviderBusinessJpaEntity::toDomain).toList();
     long count = entityManager.createQuery(
             "select count(b) from ProviderBusinessJpaEntity b where " + MEMBER_SCOPE, Long.class)
-        .setParameter("userId", userId).getSingleResult();
+        .setParameter(USER_ID, userId).getSingleResult();
     return page(content, pageable, count);
   }
 
@@ -99,13 +100,13 @@ public class JpaProviderBusinessRepository implements ProviderBusinessRepository
             select m, b from ProviderBusinessMemberJpaEntity m, ProviderBusinessJpaEntity b
             where b.id = m.providerBusinessId and m.userId = :userId order by b.id
             """, Object[].class)
-        .setParameter("userId", userId).setFirstResult(pageable.offset()).setMaxResults(pageable.pageSize())
+        .setParameter(USER_ID, userId).setFirstResult(pageable.offset()).setMaxResults(pageable.pageSize())
         .getResultList().stream()
         .map(row -> ((ProviderBusinessMemberJpaEntity) row[0]).toMembership(((ProviderBusinessJpaEntity) row[1]).toDomain()))
         .toList();
     long count = entityManager.createQuery(
             "select count(m) from ProviderBusinessMemberJpaEntity m where m.userId = :userId", Long.class)
-        .setParameter("userId", userId).getSingleResult();
+        .setParameter(USER_ID, userId).getSingleResult();
     return page(content, pageable, count);
   }
 
@@ -159,7 +160,7 @@ public class JpaProviderBusinessRepository implements ProviderBusinessRepository
   private Optional<ProviderBusinessMemberJpaEntity> findMember(ProviderBusinessId id, UUID userId) {
     return entityManager.createQuery("""
         select m from ProviderBusinessMemberJpaEntity m where m.providerBusinessId = :id and m.userId = :userId
-        """, ProviderBusinessMemberJpaEntity.class).setParameter("id", id.value()).setParameter("userId", userId)
+        """, ProviderBusinessMemberJpaEntity.class).setParameter("id", id.value()).setParameter(USER_ID, userId)
         .getResultStream().findFirst();
   }
 
