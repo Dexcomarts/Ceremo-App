@@ -2,18 +2,25 @@
 services:
   keycloak:
     image: quay.io/keycloak/keycloak:26.4.2
-    command: ['start-dev', '--import-realm']
+    # The file vault holds the Google client secret (realm key googleClientSecret -> file ceremo_googleClientSecret).
+    command: ['start-dev', '--import-realm', '--vault=file', '--vault-dir=/opt/keycloak/vault']
     volumes:
       - ./keycloak-realm-config:/opt/keycloak/data/import:ro
       - keycloak_data:/opt/keycloak/data
+      # Git-ignored. Write the secret with no trailing newline: Keycloak reads the file byte for byte.
+      - ./keycloak-vault:/opt/keycloak/vault:ro
     environment:
       KC_DB: dev-file
       KC_BOOTSTRAP_ADMIN_USERNAME: ${CEREMO_KEYCLOAK_ADMIN_USERNAME:-admin}
       KC_BOOTSTRAP_ADMIN_PASSWORD: ${CEREMO_KEYCLOAK_ADMIN_PASSWORD:-admin}
       KC_HTTP_PORT: '9080'
       KC_HEALTH_ENABLED: 'true'
+      # Not secret. Read by the realm import placeholder; set it in the untracked root .env.
+      CEREMO_GOOGLE_CLIENT_ID: ${CEREMO_GOOGLE_CLIENT_ID:-}
     ports:
       - '127.0.0.1:9080:9080'
+    depends_on:
+      - mailpit
     healthcheck:
       test:
         - CMD

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/admin/provider-businesses")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-@Tag(name = "Platform admin", description = "Staff operations; require ROLE_ADMIN, MFA and a recent sign-in")
+@Tag(name = "Platform admin", description = "Staff operations; require ROLE_ADMIN from a staff web client and a sign-in within 2 hours")
 public class AdminProviderBusinessResource {
   private final ProviderBusinesses businesses;
 

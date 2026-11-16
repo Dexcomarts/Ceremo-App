@@ -311,7 +311,7 @@ class AccountProviderBusinessSecurityIntegrationTest {
   }
 
   @Test
-  void suspendedBusinessesCannotAddOrAcceptMembersAndOnlyRecentMfaStaffCanRestoreThem() throws Exception {
+  void suspendedBusinessesCannotAddOrAcceptMembersAndOnlyRecentlySignedInStaffCanRestoreThem() throws Exception {
     String owner = token("owner");
     String member = token("member");
     String admin = token("admin", "admin-session", List.of("ROLE_ADMIN"), true, claims -> {});
@@ -323,9 +323,21 @@ class AccountProviderBusinessSecurityIntegrationTest {
     String base = "/api/v1/admin/provider-businesses/" + tenant;
     mvc.perform(auth(post(base + "/suspend"), owner).contentType(MediaType.APPLICATION_JSON)
         .content("{\"reason\":\"Investigation\"}")).andExpect(status().isForbidden());
-    String noMfa = token("admin", "admin-session", List.of("ROLE_ADMIN"), false, claims -> {});
-    mvc.perform(auth(post(base + "/suspend"), noMfa).contentType(MediaType.APPLICATION_JSON)
-        .content("{\"reason\":\"Investigation\"}")).andExpect(status().isForbidden());
+    String staleSignIn = token("admin", "admin-session", List.of("ROLE_ADMIN"), true,
+        claims -> claims.claim("auth_time", Instant.now().minusSeconds(7_201).getEpochSecond()));
+    mvc.perform(auth(post(base + "/suspend"), staleSignIn).contentType(MediaType.APPLICATION_JSON)
+        .content("{\"reason\":\"Investigation\"}")).andExpect(status().isForbidden())
+        .andExpect(jsonPath("$.key").value("recent-authentication-required"));
+    String noSignInTime = token("admin", "admin-session", List.of("ROLE_ADMIN"), false,
+        claims -> claims.claim("azp", "web_app"));
+    mvc.perform(auth(post(base + "/suspend"), noSignInTime).contentType(MediaType.APPLICATION_JSON)
+        .content("{\"reason\":\"Investigation\"}")).andExpect(status().isForbidden())
+        .andExpect(jsonPath("$.key").value("recent-authentication-required"));
+    String androidAdmin = token("admin", "admin-session", List.of("ROLE_ADMIN"), true,
+        claims -> claims.claim("azp", "android_app"));
+    mvc.perform(auth(post(base + "/suspend"), androidAdmin).contentType(MediaType.APPLICATION_JSON)
+        .content("{\"reason\":\"Investigation\"}")).andExpect(status().isForbidden())
+        .andExpect(content().string(""));
     mvc.perform(auth(post(base + "/suspend"), admin).contentType(MediaType.APPLICATION_JSON)
         .content("{\"reason\":\"Investigation\"}")).andExpect(status().isOk())
         .andExpect(jsonPath("$.status").value("SUSPENDED"));
@@ -606,13 +618,14 @@ class AccountProviderBusinessSecurityIntegrationTest {
     return token(subject, subject + "-session", List.of("ROLE_CUSTOMER"), false, claims -> {});
   }
 
-  private static String token(String subject, String sid, List<String> roles, boolean mfa,
+  private static String token(String subject, String sid, List<String> roles, boolean recentStaffSignIn,
       Consumer<JWTClaimsSet.Builder> change) throws Exception {
     Instant now = Instant.now();
     JWTClaimsSet.Builder claims = new JWTClaimsSet.Builder().issuer(issuer).subject(subject).audience("ceremo-api")
         .claim("typ", "Bearer").claim("sid", sid).claim("roles", roles).claim("email_verified", true)
         .issueTime(Date.from(now.minusSeconds(1))).expirationTime(Date.from(now.plusSeconds(300)));
-    if (mfa) { claims.claim("amr", List.of("mfa")).claim("auth_time", now.getEpochSecond()); }
+    // No amr: staff need only a recent sign-in from a staff web client (founder decision, 16 Nov 2026).
+    if (recentStaffSignIn) { claims.claim("azp", "web_app").claim("auth_time", now.getEpochSecond()); }
     change.accept(claims);
     SignedJWT jwt = new SignedJWT(new JWSHeader(JWSAlgorithm.RS256), claims.build());
     jwt.sign(new RSASSASigner(signingKey));

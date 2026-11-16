@@ -23,7 +23,8 @@ class AccountConfigurationTest {
         .withUserConfiguration(AccountConfiguration.class)
         .withBean(EntityManagerFactory.class, () -> mock(EntityManagerFactory.class))
         .withBean(PlatformTransactionManager.class, () -> mock(PlatformTransactionManager.class))
-        .withBean(CurrentUser.class, () -> mock(CurrentUser.class));
+        .withBean(CurrentUser.class, () -> mock(CurrentUser.class))
+        .withPropertyValues("application.staff.reauthentication-max-age=PT2H", "application.staff.clients=web_app");
 
     @Test
     void exposesOneTransactionalInboundBeanAndTheConfiguredTerms() {
@@ -39,6 +40,7 @@ class AccountConfigurationTest {
                     io.ceremo.ceremobackend.account.application.port.out.StaffAccess.class);
                 assertThat(context.getBean(UserRegistrationProperties.class).termsVersion())
                     .isEqualTo("terms-v1");
+                assertThat(context.getBean(StaffAccessProperties.class).clients()).containsExactly("web_app");
                 assertThat(context.getBean(Clock.class).getZone()).isEqualTo(ZoneOffset.UTC);
             });
     }

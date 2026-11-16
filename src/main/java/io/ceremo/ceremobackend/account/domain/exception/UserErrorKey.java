@@ -8,7 +8,8 @@ public enum UserErrorKey implements ErrorKey {
     USER_NOT_FOUND("user-not-found"),
     EMAIL_NOT_VERIFIED("email-not-verified"),
     ACCOUNT_RESTRICTED("account-restricted"),
-    REGISTRATION_CLOSED("registration-closed");
+    REGISTRATION_CLOSED("registration-closed"),
+    RECENT_AUTHENTICATION_REQUIRED("recent-authentication-required");
     
     private final String key;
 
