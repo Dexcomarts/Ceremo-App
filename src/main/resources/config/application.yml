@@ -71,7 +71,18 @@ spring:
 application:
   version: '1.0.0'
   registration:
+    # Unset or blank: the API runs but registration returns 403 registration-closed until terms are published.
     terms-version: ${CEREMO_TERMS_VERSION:}
+  staff:
+    # Super admins re-enter their password (prompt=login) at most this long before a staff action. No MFA step
+    # (founder decision, 16 Nov 2026). StaffAccessProperties allows PT1M to PT12H.
+    reauthentication-max-age: PT2H
+    # The token's azp. Android and offline tokens are refused for staff actions; Swagger UI uses web_app.
+    clients: web_app,ceremo-admin
+  logout:
+    # Must outlive the Android offline-session maximum (90 d, ADR 11.13) + token cap + skew. LogoutProperties enforces P91D to P120D.
+    revocation-retention: P92D
+    revocation-purge-cron: "0 */15 * * * *"
   logging:
     logstash:
       tcp:
@@ -87,16 +98,22 @@ application:
   security:
     oauth2:
       audience: ceremo-api
+      # ADR 11.13: only the Android client may use offline-session tokens.
+      offline-clients: android_app
 management:
   endpoint:
     health:
       access: read-only
       probes:
         enabled: true
-      show-details: always
+      show-details: when-authorized
+      show-components: when-authorized
+      roles:
+        - ROLE_ADMIN
   endpoints:
     access:
       default: none
+      max-permitted: read-only
     jmx:
       exposure:
         exclude: '*'
@@ -104,13 +121,7 @@ management:
       base-path: /management
       exposure:
         include:
-          - configprops
-          - env
           - health
-          - info
-          - logfile
-          - loggers
-          - threaddump
 server:
   port: 8080
 springdoc:

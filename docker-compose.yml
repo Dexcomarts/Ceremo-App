@@ -2,4 +2,5 @@ name: ceremo
 include:
   - src/docker/postgresql.yml
   - src/docker/keycloak.yml
+  - src/docker/mailpit.yml
   - src/docker/sonar.yml

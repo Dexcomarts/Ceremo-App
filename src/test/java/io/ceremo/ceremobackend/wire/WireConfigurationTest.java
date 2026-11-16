@@ -100,7 +100,7 @@ class WireConfigurationTest {
   void publishesCeremoOpenApiWithAuthorizationCodeFlow() throws Exception {
     mvc.perform(get("/v3/api-docs/all").with(user("developer")))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$.info.title").value("CEREMO API"))
+        .andExpect(jsonPath("$.info.title").value("ceremo API"))
         .andExpect(jsonPath("$.externalDocs").doesNotExist())
         .andExpect(jsonPath("$.components.securitySchemes.security_auth.flows.authorizationCode.authorizationUrl")
             .value("https://identity.example/authorize"))

@@ -33,9 +33,12 @@ public final class UserService implements UserAccounts {
         this.currentUser = Objects.requireNonNull(currentUser, "currentUser");
         this.clock = Objects.requireNonNull(clock, "clock");
 
-        Assert.field("registrationTermsVersion", registrationTermsVersion)
-            .notBlank()
-            .maxLength(40);
+        // null means no current terms are configured: the API runs, but registration stays closed.
+        if (registrationTermsVersion != null) {
+            Assert.field("registrationTermsVersion", registrationTermsVersion)
+                .notBlank()
+                .maxLength(40);
+        }
 
         this.registrationTermsVersion = registrationTermsVersion;
     }
@@ -53,12 +56,21 @@ public final class UserService implements UserAccounts {
 
         UserIdentity identity = requireIdentity();
 
+        // Adapted from Mastodon's check_enabled_registrations: refuse only account creation while it is closed.
+        if (registrationTermsVersion == null) {
+            throw CeremoException
+                .builder(UserErrorKey.REGISTRATION_CLOSED)
+                .status(ErrorStatus.FORBIDDEN)
+                .message("Registration is closed until the current ceremo terms are published.")
+                .build();
+        }
+
         if (!termsAccepted
             || !registrationTermsVersion.equals(termsVersion)) {
 
             throw CeremoException
                 .badRequest(UserErrorKey.TERMS_NOT_ACCEPTED)
-                .message("The current CEREMO terms must be accepted.")
+                .message("The current ceremo terms must be accepted.")
                 .build();
         }
 

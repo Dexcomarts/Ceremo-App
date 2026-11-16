@@ -12,8 +12,8 @@
   "ssoSessionIdleTimeoutRememberMe": 0,
   "ssoSessionMaxLifespanRememberMe": 0,
   "offlineSessionIdleTimeout": 2592000,
-  "offlineSessionMaxLifespanEnabled": false,
-  "offlineSessionMaxLifespan": 5184000,
+  "offlineSessionMaxLifespanEnabled": true,
+  "offlineSessionMaxLifespan": 7776000,
   "clientSessionIdleTimeout": 0,
   "clientSessionMaxLifespan": 0,
   "clientOfflineSessionIdleTimeout": 0,
@@ -27,13 +27,13 @@
   "oauth2DevicePollingInterval": 5,
   "enabled": true,
   "sslRequired": "external",
-  "registrationAllowed": false,
-  "registrationEmailAsUsername": false,
+  "registrationAllowed": true,
+  "registrationEmailAsUsername": true,
   "rememberMe": false,
   "verifyEmail": true,
   "loginWithEmailAllowed": true,
   "duplicateEmailsAllowed": false,
-  "resetPasswordAllowed": false,
+  "resetPasswordAllowed": true,
   "editUsernameAllowed": false,
   "bruteForceProtected": true,
   "organizationsEnabled": true,
@@ -44,6 +44,7 @@
   "quickLoginCheckMilliSeconds": 1000,
   "maxDeltaTimeSeconds": 43200,
   "failureFactor": 30,
+  "passwordPolicy": "length(15) and maxLength(64) and notUsername and notEmail",
   "roles": {
     "realm": [
       {
@@ -507,6 +508,7 @@
   "webAuthnPolicyPasswordlessCreateTimeout": 0,
   "webAuthnPolicyPasswordlessAvoidSameAuthenticatorRegister": false,
   "webAuthnPolicyPasswordlessAcceptableAaguids": [],
+  "webAuthnPolicyPasswordlessPasskeysEnabled": true,
   "users": [
     {
       "id": "02f8e876-6dcb-4eee-886c-67ce92491b98",
@@ -1127,6 +1129,7 @@
         "web-origins",
         "ceremo",
         "openid",
+        "basic",
         "roles",
         "profile",
         "email"
@@ -1148,9 +1151,125 @@
           }
         }
       ]
+    },
+    {
+      "clientId": "android_app",
+      "name": "ceremo Android app",
+      "description": "Public native client (ADR 11.13): PKCE S256, system browser, offline tokens allowed",
+      "enabled": true,
+      "publicClient": true,
+      "protocol": "openid-connect",
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "frontchannelLogout": false,
+      "fullScopeAllowed": true,
+      "redirectUris": [
+        "io.ceremo.android:/oauth2redirect"
+      ],
+      "webOrigins": [],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "io.ceremo.android:/logout"
+      },
+      "defaultClientScopes": [
+        "web-origins",
+        "ceremo",
+        "openid",
+        "basic",
+        "roles",
+        "profile",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "offline_access"
+      ],
+      "protocolMappers": [
+        {
+          "name": "ceremo-api audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "included.custom.audience": "ceremo-api"
+          }
+        }
+      ]
+    },
+    {
+      "clientId": "ceremo-admin",
+      "name": "ceremo staff console",
+      "description": "Public web client for super admins: PKCE S256, no password grant, no offline tokens, short sessions. Redirect URIs are added when the admin console URL is decided.",
+      "enabled": true,
+      "publicClient": true,
+      "protocol": "openid-connect",
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "frontchannelLogout": false,
+      "fullScopeAllowed": true,
+      "redirectUris": [],
+      "webOrigins": [],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "client.session.idle.timeout": "900",
+        "client.session.max.lifespan": "14400"
+      },
+      "defaultClientScopes": [
+        "web-origins",
+        "ceremo",
+        "openid",
+        "basic",
+        "roles",
+        "profile",
+        "email"
+      ],
+      "optionalClientScopes": [],
+      "protocolMappers": [
+        {
+          "name": "ceremo-api audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "included.custom.audience": "ceremo-api"
+          }
+        }
+      ]
     }
   ],
   "clientScopes": [
+    {
+      "name": "basic",
+      "description": "OpenID Connect scope for add all basic claims to the token",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "false",
+        "display.on.consent.screen": "false"
+      },
+      "protocolMappers": [
+        {
+          "name": "auth_time",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "AUTH_TIME",
+            "claim.name": "auth_time",
+            "jsonType.label": "long",
+            "access.token.claim": "true",
+            "id.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    },
     {
       "id": "52d73c82-423c-44a8-b2ec-1e13f4cd6065",
       "name": "address",
@@ -1737,13 +1856,13 @@
   ],
   "defaultDefaultClientScopes": [
     "web-origins",
+    "basic",
     "email",
     "profile",
     "roles",
     "role_list"
   ],
   "defaultOptionalClientScopes": [
-    "offline_access",
     "phone",
     "address",
     "microprofile-jwt"
@@ -1757,7 +1876,15 @@
     "xXSSProtection": "1; mode=block",
     "strictTransportSecurity": "max-age=31536000; includeSubDomains"
   },
-  "smtpServer": {},
+  "smtpServer": {
+    "host": "mailpit",
+    "port": "1025",
+    "from": "no-reply@ceremo.local",
+    "fromDisplayName": "ceremo (development)",
+    "auth": "false",
+    "ssl": "false",
+    "starttls": "false"
+  },
   "eventsEnabled": true,
   "eventsListeners": [
     "jboss-logging"
@@ -1765,9 +1892,42 @@
   "enabledEventTypes": [],
   "adminEventsEnabled": true,
   "adminEventsDetailsEnabled": false,
-  "identityProviders": [],
+  "identityProviders": [
+    {
+      "alias": "google",
+      "displayName": "Google",
+      "providerId": "google",
+      "enabled": true,
+      "trustEmail": true,
+      "storeToken": false,
+      "addReadTokenRoleOnCreate": false,
+      "linkOnly": false,
+      "hideOnLogin": false,
+      "firstBrokerLoginFlowAlias": "first broker login",
+      "config": {
+        "clientId": "${CEREMO_GOOGLE_CLIENT_ID:google-client-id-not-configured}",
+        "clientSecret": "${vault.googleClientSecret}",
+        "defaultScope": "openid email profile",
+        "syncMode": "IMPORT",
+        "offlineAccess": "false",
+        "hostedDomain": ""
+      }
+    }
+  ],
   "identityProviderMappers": [],
   "components": {
+    "org.keycloak.userprofile.UserProfileProvider": [
+      {
+        "name": "Declarative User Profile",
+        "providerId": "declarative-user-profile",
+        "subComponents": {},
+        "config": {
+          "kc.user.profile.config": [
+            "{\"attributes\":[{\"name\":\"username\",\"displayName\":\"${username}\",\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"validations\":{\"length\":{\"min\":3,\"max\":255},\"username-prohibited-characters\":{},\"up-username-not-idn-homograph\":{}}},{\"name\":\"email\",\"displayName\":\"${email}\",\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"validations\":{\"email\":{},\"length\":{\"max\":255}}},{\"name\":\"firstName\",\"displayName\":\"${firstName}\",\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}}},{\"name\":\"lastName\",\"displayName\":\"${lastName}\",\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}}}],\"groups\":[{\"name\":\"user-metadata\",\"displayHeader\":\"User metadata\",\"displayDescription\":\"Attributes, which refer to user metadata\"}]}"
+          ]
+        }
+      }
+    ],
     "org.keycloak.services.clientregistration.policy.ClientRegistrationPolicy": [
       {
         "id": "827fde01-dc1b-4c1f-a529-9ef833ca3432",
@@ -1928,7 +2088,7 @@
         {
           "authenticator": "idp-email-verification",
           "authenticatorFlow": false,
-          "requirement": "ALTERNATIVE",
+          "requirement": "DISABLED",
           "priority": 10,
           "userSetupAllowed": false,
           "autheticatorFlow": false
@@ -2411,14 +2571,6 @@
           "autheticatorFlow": false
         },
         {
-          "authenticator": "registration-profile-action",
-          "authenticatorFlow": false,
-          "requirement": "REQUIRED",
-          "priority": 40,
-          "userSetupAllowed": false,
-          "autheticatorFlow": false
-        },
-        {
           "authenticator": "registration-password-action",
           "authenticatorFlow": false,
           "requirement": "REQUIRED",
@@ -2518,7 +2670,7 @@
       "alias": "CONFIGURE_TOTP",
       "name": "Configure OTP",
       "providerId": "CONFIGURE_TOTP",
-      "enabled": true,
+      "enabled": false,
       "defaultAction": false,
       "priority": 10,
       "config": {}
@@ -2566,6 +2718,15 @@
       "enabled": false,
       "defaultAction": false,
       "priority": 60,
+      "config": {}
+    },
+    {
+      "alias": "webauthn-register-passwordless",
+      "name": "Webauthn Register Passwordless",
+      "providerId": "webauthn-register-passwordless",
+      "enabled": true,
+      "defaultAction": false,
+      "priority": 80,
       "config": {}
     },
     {

@@ -54,3 +54,7 @@ CLAUDE.md
 /.agents/
 /.codex/
 /.claude/
+
+# Keycloak file vault: real secrets, never tracked (only the placeholder README).
+/src/docker/keycloak-vault/*
+!/src/docker/keycloak-vault/README.txt

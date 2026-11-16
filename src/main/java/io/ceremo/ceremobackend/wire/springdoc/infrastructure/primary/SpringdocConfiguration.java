@@ -25,10 +25,10 @@ class SpringdocConfiguration {
 
   private Info swaggerInfo() {
     return new Info()
-        .title("CEREMO API")
+        .title("ceremo API")
         .description(
 """
-CEREMO helps people find ceremony and event service providers in Ghana.
+ceremo helps people find ceremony and event service providers in Ghana.
 Customers browse free. Providers can subscribe for continued discovery.
 """)
         .version(version);

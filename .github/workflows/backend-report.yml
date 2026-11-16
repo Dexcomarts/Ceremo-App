@@ -44,12 +44,36 @@ jobs:
       - name: Verify reporting and publication safeguards
         run: python3 -m unittest discover -s scripts -p 'test_*.py'
 
-  comment:
+  resolve:
     if: github.event_name == 'workflow_run' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-24.04
     timeout-minutes: 5
+    permissions:
+      actions: read
+      contents: read
+      pull-requests: read
+    outputs:
+      pullRequest: ${{ steps.target.outputs.pullRequest }}
+    steps:
+      - name: Check out trusted PR resolver
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          ref: ${{ github.workflow_sha }}
+          persist-credentials: false
+      - name: Resolve current PR for concurrency
+        id: target
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPORT_RUN_ID: ${{ inputs.runId || github.event.workflow_run.id }}
+        run: python3 scripts/ci_report.py resolve --run-id "$REPORT_RUN_ID"
+
+  comment:
+    needs: resolve
+    if: needs.resolve.outputs.pullRequest != ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
     concurrency:
-      group: ceremo-pr-report
+      group: ceremo-pr-report-${{ needs.resolve.outputs.pullRequest }}
       cancel-in-progress: false
     permissions:
       actions: read

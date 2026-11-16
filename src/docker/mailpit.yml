@@ -1,0 +1,11 @@
+# Local development only: catches Keycloak verification and password-reset emails. Production needs a real mail
+# provider with SPF, DKIM and DMARC. Inbox: http://localhost:8025
+services:
+  mailpit:
+    # v1.33.0 (released 2026-10-31), pinned by index digest. The image has its own HEALTHCHECK (mailpit readyz).
+    image: axllent/mailpit:v1.33.0@sha256:9b3a463be15354c0f0eba91697d80e3e0d8a5623ef0e627cacc836bc17fd5231
+    environment:
+      MP_MAX_MESSAGES: '500'
+    ports:
+      - '127.0.0.1:1025:1025'
+      - '127.0.0.1:8025:8025'

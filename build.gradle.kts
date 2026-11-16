@@ -5,7 +5,7 @@ import org.gradle.testing.jacoco.tasks.JacocoReport
 plugins {
 	java
 	jacoco
-	id("org.springframework.boot") version "4.1.1"
+	id("org.springframework.boot") version "4.1.2"
 	id("io.spring.dependency-management") version "1.1.7"
 	id("org.sonarqube") version "7.5.0.8588"
 }
@@ -24,6 +24,7 @@ repositories {
 }
 
 dependencies {
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-flyway")
 	implementation("org.springframework.boot:spring-boot-starter-security")
@@ -34,7 +35,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-restclient")
 	implementation("org.aspectj:aspectjweaver")
 	implementation("org.apache.commons:commons-lang3")
-	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.0")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.2.0")
 	implementation("com.fasterxml.uuid:java-uuid-generator:5.1.1")
 	implementation("org.springframework.boot:spring-boot-starter-cache")
 	implementation("javax.cache:cache-api")
@@ -103,8 +104,9 @@ val verifyCoverageInputs = tasks.register("verifyCoverageInputs") {
     group = "verification"
     description = "Rejects absent or empty coverage data from either required test suite."
     dependsOn(tasks.test, integrationTest)
+    val executionDataFiles = combinedExecutionData
     doLast {
-        check(combinedExecutionData.files.all { it.isFile && it.length() > 0 }) {
+        check(executionDataFiles.files.all { it.isFile && it.length() > 0 }) {
             "Both test suites must supply JaCoCo execution data."
         }
     }
@@ -164,7 +166,7 @@ val sonarTestReport = tasks.register<Exec>("sonarTestReport") {
 sonar {
     properties {
         property("sonar.projectKey", "ceremo_backend")
-        property("sonar.projectName", "CEREMO Backend")
+        property("sonar.projectName", "ceremo Backend")
         property("sonar.host.url", providers.environmentVariable("SONAR_HOST_URL")
             .orElse("http://localhost:9001").get())
         property("sonar.qualitygate.wait", true)

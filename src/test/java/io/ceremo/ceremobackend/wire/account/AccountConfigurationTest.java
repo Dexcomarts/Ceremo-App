@@ -23,7 +23,8 @@ class AccountConfigurationTest {
         .withUserConfiguration(AccountConfiguration.class)
         .withBean(EntityManagerFactory.class, () -> mock(EntityManagerFactory.class))
         .withBean(PlatformTransactionManager.class, () -> mock(PlatformTransactionManager.class))
-        .withBean(CurrentUser.class, () -> mock(CurrentUser.class));
+        .withBean(CurrentUser.class, () -> mock(CurrentUser.class))
+        .withPropertyValues("application.staff.reauthentication-max-age=PT2H", "application.staff.clients=web_app");
 
     @Test
     void exposesOneTransactionalInboundBeanAndTheConfiguredTerms() {
@@ -39,20 +40,33 @@ class AccountConfigurationTest {
                     io.ceremo.ceremobackend.account.application.port.out.StaffAccess.class);
                 assertThat(context.getBean(UserRegistrationProperties.class).termsVersion())
                     .isEqualTo("terms-v1");
+                assertThat(context.getBean(StaffAccessProperties.class).clients()).containsExactly("web_app");
                 assertThat(context.getBean(Clock.class).getZone()).isEqualTo(ZoneOffset.UTC);
             });
     }
 
     @Test
-    void rejectsMissingTermsConfiguration() {
-        runner.run(context -> assertThat(context).hasFailed()
-            .getFailure().hasRootCauseInstanceOf(AssertionException.class));
+    void startsWithRegistrationClosedWhenNoTermsAreConfigured() {
+        runner.run(context -> {
+            assertThat(context).hasNotFailed().hasSingleBean(UserAccounts.class);
+            assertThat(context.getBean(UserRegistrationProperties.class).termsVersion()).isNull();
+        });
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", " ", "this-terms-version-is-longer-than-forty-characters"})
-    void rejectsBlankOrOversizedTermsConfiguration(String version) {
+    @ValueSource(strings = {"", " "})
+    void treatsBlankTermsConfigurationAsRegistrationClosed(String version) {
         runner.withPropertyValues("application.registration.terms-version=" + version)
+            .run(context -> {
+                assertThat(context).hasNotFailed().hasSingleBean(UserAccounts.class);
+                assertThat(context.getBean(UserRegistrationProperties.class).termsVersion()).isNull();
+            });
+    }
+
+    @Test
+    void rejectsAnOversizedTermsVersionAsAConfigurationError() {
+        runner.withPropertyValues(
+                "application.registration.terms-version=this-terms-version-is-longer-than-forty-characters")
             .run(context -> assertThat(context).hasFailed()
                 .getFailure().hasRootCauseInstanceOf(AssertionException.class));
     }

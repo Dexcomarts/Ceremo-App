@@ -33,9 +33,11 @@ class BeanValidationErrorsHandler {
     MethodArgumentNotValidException exception,
     HttpServletRequest request
   ) {
-    var problem = ApiProblemResponse.withErrors(TITLE, DETAIL, request.getRequestURI(), buildErrors(exception));
+    var errors = buildErrors(exception);
+    var problem = ApiProblemResponse.withErrors(TITLE, DETAIL, request.getRequestURI(), errors);
 
-    log.info("Bean validation failed at {}", request.getRequestURI());
+    // Log server-controlled values only; the request URI is attacker-supplied.
+    log.info("Bean validation failed for {} field(s)", errors.size());
 
     return ResponseEntity
       .status(HttpStatus.BAD_REQUEST)
@@ -68,9 +70,11 @@ class BeanValidationErrorsHandler {
     ConstraintViolationException exception,
     HttpServletRequest request
   ) {
-    var problem = ApiProblemResponse.withErrors(TITLE, DETAIL, request.getRequestURI(), buildErrors(exception));
+    var errors = buildErrors(exception);
+    var problem = ApiProblemResponse.withErrors(TITLE, DETAIL, request.getRequestURI(), errors);
 
-    log.info("Bean validation failed at {}", request.getRequestURI());
+    // Log server-controlled values only; the request URI is attacker-supplied.
+    log.info("Bean validation failed for {} field(s)", errors.size());
 
     return ResponseEntity
       .status(HttpStatus.BAD_REQUEST)

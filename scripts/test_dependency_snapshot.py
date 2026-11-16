@@ -41,7 +41,7 @@ class DependencySnapshotTest(unittest.TestCase):
         return raw.getvalue()
 
     def test_publisher_writes_only_a_validated_snapshot_and_confirmed_receipt(self):
-        for accepted in ('SUCCESS', 'FAILURE'):
+        for accepted in ('SUCCESS', 'ACCEPTED', 'FAILURE'):
             with self.subTest(accepted=accepted), tempfile.TemporaryDirectory() as directory:
                 previous = Path.cwd()
                 try:
@@ -59,7 +59,7 @@ class DependencySnapshotTest(unittest.TestCase):
                             patch.object(subject, 'github_request', side_effect=api), \
                             patch.object(subject, 'pages', side_effect=pages), \
                             patch.object(subject, 'download_archive', return_value=self.archive({'snapshot.json': snapshot()})):
-                        if accepted == 'SUCCESS':
+                        if accepted in ('SUCCESS', 'ACCEPTED'):
                             subject.publish(123, 2)
                         else:
                             with self.assertRaisesRegex(ValueError, 'confirm'):
@@ -68,7 +68,7 @@ class DependencySnapshotTest(unittest.TestCase):
                     self.assertEqual(len(writes), 1)
                     self.assertEqual(writes[0][2]['sha'], SHA)
                     self.assertEqual(writes[0][2]['job']['id'], '123-2')
-                    self.assertEqual(Path('build/reports/dependencies/publication.json').exists(), accepted == 'SUCCESS')
+                    self.assertEqual(Path('build/reports/dependencies/publication.json').exists(), accepted in ('SUCCESS', 'ACCEPTED'))
                 finally:
                     os.chdir(previous)
 
@@ -99,7 +99,8 @@ class DependencySnapshotTest(unittest.TestCase):
 
     def test_accepted_receipt_is_bound_to_a_trusted_publisher_and_source_commit(self):
         artifact = {'id': 1, 'name': 'dependency-publication-' + SHA, 'expired': False, 'workflow_run': {'id': 6}}
-        publisher = {'id': 6, 'name': 'Publish dependency graph', 'event': 'workflow_run',
+        publisher = {'id': 6, 'name': 'Dependency publication 123 attempt 2',
+                     'display_title': 'Dependency publication 123 attempt 2', 'event': 'workflow_run',
                      'path': '.github/workflows/dependency-publish.yml',
                      'repository': {'full_name': REPO}, 'conclusion': 'success'}
         receipt = {'sha': SHA, 'accepted': True, 'sourceRunId': 123, 'sourceAttempt': 2}
@@ -117,8 +118,22 @@ class DependencySnapshotTest(unittest.TestCase):
     def test_missing_snapshot_receipts_fail_instead_of_becoming_warnings(self):
         with patch('dependency_snapshot.publication_receipt', return_value=None), self.assertRaises(ValueError):
             require_publications(REPO, SHA, 'b' * 40, timeout=0)
-        with patch('dependency_snapshot.publication_receipt', return_value={'accepted': True}):
+        with patch('dependency_snapshot.publication_receipt', return_value={'accepted': True}), \
+                patch('dependency_snapshot.snapshots_indexed', return_value=True):
             require_publications(REPO, SHA, 'b' * 40, timeout=0)
+
+    def test_accepted_receipts_cannot_hide_missing_comparison_snapshots(self):
+        with patch.object(subject, 'publication_receipt', return_value={'accepted': True}), \
+                patch.object(subject, 'snapshots_indexed', return_value=False), self.assertRaises(ValueError):
+            require_publications(REPO, SHA, 'b' * 40, timeout=0)
+
+    def test_comparison_requires_a_valid_response_without_snapshot_warnings(self):
+        for warning, expected in [('', True), ('eyJtaXNzaW5nIjp0cnVlfQ==', False)]:
+            with patch.object(subject, 'github_request', return_value=([], {
+                    'x-github-dependency-graph-snapshot-warnings': warning})):
+                self.assertEqual(subject.snapshots_indexed(REPO, SHA, 'b' * 40), expected)
+        with patch.object(subject, 'github_request', return_value=({}, {})), self.assertRaises(ValueError):
+            subject.snapshots_indexed(REPO, SHA, 'b' * 40)
     def test_keeps_the_full_graph_and_removes_unnecessary_metadata(self):
         data = snapshot()
         data['metadata'] = {'untrusted': 'not forwarded'}

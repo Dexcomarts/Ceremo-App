@@ -30,6 +30,20 @@ class CeremoPageableTest {
   }
 
   @Test
+  void shouldComputeTheLargestAllowedOffsetWithoutOverflow() {
+    var pageable = new CeremoPageable(Integer.MAX_VALUE, 1);
+
+    assertThat(pageable.offset()).isEqualTo(Integer.MAX_VALUE);
+  }
+
+  @Test
+  void shouldRejectAPageWhoseOffsetWouldOverflow() {
+    assertThatThrownBy(() -> new CeremoPageable(Integer.MAX_VALUE / 100 + 1, 100))
+      .isExactlyInstanceOf(NumberValueTooHighException.class)
+      .hasMessageContaining("page");
+  }
+
+  @Test
   void shouldGetFirstPageInformation() {
     var pageable = new CeremoPageable(0, 15);
 

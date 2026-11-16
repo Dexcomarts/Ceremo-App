@@ -102,6 +102,31 @@ class UserServiceTest {
     }
 
     @Test
+    void closedRegistrationRefusesAccountCreationButStillServesExistingAccounts() {
+        UserService closed = new UserService(users, currentUser, Clock.fixed(NOW, ZoneOffset.UTC), null);
+        when(currentUser.requireIdentity()).thenReturn(identity);
+
+        CeremoException error = assertThrows(
+            CeremoException.class,
+            () -> closed.register("Ama Mensah", "terms-v1", true));
+
+        assertEquals(UserErrorKey.REGISTRATION_CLOSED, error.key());
+        assertEquals(ErrorStatus.FORBIDDEN, error.status());
+        verifyNoInteractions(users);
+        when(users.findByIdentity(identity)).thenReturn(Optional.empty());
+        assertTrue(closed.currentUser().isEmpty());
+    }
+
+    @Test
+    void rejectsABlankOrOversizedConfiguredTermsVersion() {
+        Clock clock = Clock.fixed(NOW, ZoneOffset.UTC);
+        assertThrows(io.ceremo.ceremobackend.shared.error.domain.AssertionException.class,
+            () -> new UserService(users, currentUser, clock, " "));
+        assertThrows(io.ceremo.ceremobackend.shared.error.domain.AssertionException.class,
+            () -> new UserService(users, currentUser, clock, "x".repeat(41)));
+    }
+
+    @Test
     void rejectsAcceptanceOfAnOldTermsVersion() {
         when(currentUser.requireIdentity()).thenReturn(identity);
 
