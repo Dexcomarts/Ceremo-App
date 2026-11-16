@@ -168,5 +168,86 @@ class DependencySnapshotTest(unittest.TestCase):
                 source_context(candidate, REPO, 2)
 
 
+    def test_accepts_only_protected_branch_pushes_and_pull_requests(self):
+        run = self.run_data()
+        for event in ('push', 'schedule', 'workflow_dispatch'):
+            for branch in ('main', 'dev'):
+                candidate = {**run, 'event': event, 'head_branch': branch}
+                with self.subTest(event=event, branch=branch):
+                    self.assertEqual(source_context(candidate, REPO, 2), (SHA, 'refs/heads/' + branch))
+            for branch in ('feature', 'dev2', 'main ', ' dev', 'Dev', 'refs/heads/dev', '', None):
+                candidate = {**run, 'event': event, 'head_branch': branch}
+                with self.subTest(event=event, branch=branch), self.assertRaises(ValueError):
+                    source_context(candidate, REPO, 2)
+
+    def test_pull_requests_must_target_a_protected_branch_in_this_repository(self):
+        run = {**self.run_data(), 'event': 'pull_request', 'head_branch': 'feature'}
+        def pr(base, repo=REPO):
+            return {'number': 7, 'state': 'open', 'head': {'sha': SHA},
+                    'base': {'ref': base, 'repo': {'full_name': repo}}}
+        for base in ('main', 'dev'):
+            with self.subTest(base=base), patch.object(subject, 'pages', return_value=[pr(base)]), \
+                    patch.object(subject, 'github_request', return_value=pr(base)):
+                self.assertEqual(source_context(run, REPO, 2), (SHA, 'refs/pull/7/merge'))
+        for listed, current in [(pr('feature'), pr('feature')), (pr('dev2'), pr('dev2')),
+                                (pr('main '), pr('main ')), (pr('dev', 'fork/project'), pr('dev', 'fork/project')),
+                                (pr('dev'), pr('feature'))]:
+            with self.subTest(listed=listed['base'], current=current['base']), \
+                    patch.object(subject, 'pages', return_value=[listed]), \
+                    patch.object(subject, 'github_request', return_value=current), self.assertRaises(ValueError):
+                source_context(run, REPO, 2)
+        with patch.object(subject, 'pages', return_value=[pr('main'), {**pr('dev'), 'number': 8}]), \
+                patch.object(subject, 'github_request') as api, self.assertRaises(ValueError):
+            source_context(run, REPO, 2)
+        api.assert_not_called()
+
+    def test_dev_snapshot_checks_the_dev_head_and_never_submits_when_dev_moved(self):
+        dev = snapshot(); dev['ref'] = 'refs/heads/dev'
+        for heads in ([SHA, SHA], ['b' * 40, SHA], [SHA, 'b' * 40]):
+            calls = []
+            pending = list(heads)
+            def api(path, method='GET', body=None):
+                calls.append((path, method))
+                if method == 'POST':
+                    return {'result': 'SUCCESS'}
+                if '/branches/' in path:
+                    return {'commit': {'sha': pending.pop(0)}}
+                return {**self.run_data(), 'head_branch': 'dev'}
+            with self.subTest(heads=heads), tempfile.TemporaryDirectory() as directory:
+                previous = Path.cwd()
+                try:
+                    os.chdir(directory)
+                    with patch.dict(os.environ, {'GITHUB_REPOSITORY': REPO, 'GITHUB_OUTPUT': ''}), \
+                            patch.object(subject, 'github_request', side_effect=api), \
+                            patch.object(subject, 'pages', side_effect=[
+                                [{'name': 'Resolve Gradle dependencies', 'conclusion': 'success'}],
+                                [{'id': 9, 'name': 'ceremo-dependencies-123-2', 'expired': False}]]), \
+                            patch.object(subject, 'download_archive', return_value=self.archive({'snapshot.json': dev})):
+                        if heads == [SHA, SHA]:
+                            subject.publish(123, 2)
+                        else:
+                            with self.assertRaisesRegex(ValueError, 'Branch'):
+                                subject.publish(123, 2)
+                finally:
+                    os.chdir(previous)
+                branch_reads = [path for path, _ in calls if '/branches/' in path]
+                self.assertTrue(branch_reads)
+                self.assertTrue(all(path == f'/repos/{REPO}/branches/dev' for path in branch_reads))
+                self.assertEqual(len([c for c in calls if c[1] == 'POST']), 1 if heads == [SHA, SHA] else 0)
+
+    def test_a_main_artifact_cannot_be_published_for_a_dev_run(self):
+        def api(path, method='GET', body=None):
+            return {'commit': {'sha': SHA}} if '/branches/' in path else {**self.run_data(), 'head_branch': 'dev'}
+        with patch.dict(os.environ, {'GITHUB_REPOSITORY': REPO}), \
+                patch.object(subject, 'github_request', side_effect=api) as requests, \
+                patch.object(subject, 'pages', side_effect=[
+                    [{'name': 'Resolve Gradle dependencies', 'conclusion': 'success'}],
+                    [{'id': 9, 'name': 'ceremo-dependencies-123-2', 'expired': False}]]), \
+                patch.object(subject, 'download_archive', return_value=self.archive({'snapshot.json': snapshot()})), \
+                self.assertRaisesRegex(ValueError, 'source revision'):
+            subject.publish(123, 2)
+        self.assertFalse(any(len(call.args) > 1 and call.args[1] == 'POST' for call in requests.call_args_list))
+
+
 if __name__ == '__main__':
     unittest.main()

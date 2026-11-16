@@ -130,5 +130,16 @@ class TeamReportTest(unittest.TestCase):
         self.assertEqual(api.call_count, 1)
 
 
+    def test_only_open_prs_into_protected_branches_of_this_repository_are_eligible(self):
+        def pr(base, repo=REPO, state='open', sha=SHA):
+            return {'state': state, 'head': {'sha': sha}, 'base': {'ref': base, 'repo': {'full_name': repo}}}
+        for base in ('main', 'dev'):
+            self.assertTrue(team_report.eligible_pr(pr(base), REPO, SHA))
+        for candidate in (pr('feature'), pr('dev2'), pr('main '), pr('dev', 'fork/project'),
+                          pr('dev', state='closed'), pr('dev', sha='b' * 40)):
+            with self.subTest(candidate=candidate):
+                self.assertFalse(team_report.eligible_pr(candidate, REPO, SHA))
+
+
 if __name__ == '__main__':
     unittest.main()
