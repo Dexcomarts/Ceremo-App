@@ -70,6 +70,10 @@ class RealmSignInPolicyTest {
   void offersGoogleWithTheSecretInTheVaultAndNeverLinksAccountsAutomatically() {
     JsonNode google = find(REALM.get("identityProviders"), "alias", "google");
     assertThat(google.get("providerId").asString()).isEqualTo("google");
+    // Off unless a client ID is configured (Cal.com, Outline and Discourse gate optional Google login the same way).
+    // Disabled, not hideOnLogin: kc_idp_hint still redirects to an enabled but hidden provider.
+    assertThat(google.get("enabled").asString()).isEqualTo("${CEREMO_GOOGLE_ENABLED:false}");
+    assertThat(google.get("hideOnLogin").asBoolean()).isFalse();
     assertThat(google.get("trustEmail").asBoolean()).isTrue();
     assertThat(google.get("storeToken").asBoolean()).isFalse();
     assertThat(google.get("config").get("clientSecret").asString()).isEqualTo("${vault.googleClientSecret}");
